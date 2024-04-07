@@ -16,8 +16,8 @@ public class Entry {
         distance = dist;
     } //constructor
 
-    public Entry(String n, int d, int m, int y, int h, int min, int s, double dist) {
-        this(n, ZonedDateTime.of(y,m,d,h,min,s,0, TimeZone.getDefault().toZoneId()), dist);
+    public Entry(String n, int d, int m, int y, int h, int min, int s, TimeZone tz, double dist) {
+        this(n, ZonedDateTime.of(y,m,d,h,min,s,0, tz.toZoneId()), dist);
     } //constructor
 
     public String getName() {

@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.TimeZone;
 
 public class TrainingRecordGUI extends JFrame implements ActionListener {
 
@@ -102,7 +103,9 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         int h = Integer.parseInt(hours.getText());
         int mm = Integer.parseInt(mins.getText());
         int s = Integer.parseInt(secs.getText());
-        Entry e = new Entry(n, d, m, y, h, mm, s, km);
+        // TODO: This is temporary until we get `TrainingRecord` to resolved time zones by itself
+        TimeZone tz = TimeZone.getDefault();
+        Entry e = new Entry(n, d, m, y, h, mm, s, tz, km);
         myAthletes.addEntry(e);
         return message;
     }

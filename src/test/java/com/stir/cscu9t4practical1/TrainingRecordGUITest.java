@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.TimeZone;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,6 +21,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  @author saemundur */
 public class TrainingRecordGUITest {
+
+    // use a fixed time zone for tests
+    final static TimeZone tz = TimeZone.getTimeZone("GMT");
 
     public TrainingRecordGUITest() {
     }
@@ -78,7 +82,7 @@ public class TrainingRecordGUITest {
     public void testAddEntry() {
         System.out.println("addEntry");
         TrainingRecordGUI instance = new TrainingRecordGUI();
-        Entry entry = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
+        Entry entry = new Entry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3);
         instance.fillDisplay(entry);
         String message = instance.addEntry("generic");
         System.out.println(message);

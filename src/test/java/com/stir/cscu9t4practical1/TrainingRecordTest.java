@@ -7,11 +7,16 @@ package com.stir.cscu9t4practical1;
 
 import org.junit.jupiter.api.*;
 
+import java.util.TimeZone;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  @author saemundur */
 public class TrainingRecordTest {
+
+    // use a fixed time zone for tests
+    final static TimeZone tz = TimeZone.getTimeZone("GMT");
 
     public TrainingRecordTest() {
     }
@@ -40,7 +45,7 @@ public class TrainingRecordTest {
     @Test
     public void testAddEntry() {
         System.out.println("addEntry");
-        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
+        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3);
         TrainingRecord instance = new TrainingRecord();
         instance.addEntry(a);
         assertEquals(instance.getNumberOfEntries(), 1);
@@ -53,8 +58,8 @@ public class TrainingRecordTest {
     @Test
     public void testAddEntryUnique() {
         System.out.println("addEntry -- fail");
-        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
-        Entry b = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
+        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3);
+        Entry b = new Entry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3);
         TrainingRecord instance = new TrainingRecord();
         instance.addEntry(a);
         instance.addEntry(b);
@@ -72,10 +77,10 @@ public class TrainingRecordTest {
         System.out.println("lookupEntry");
         TrainingRecord instance = new TrainingRecord();
         String expResult = "No entries found";
-        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
-        Entry b = new Entry("Bob", 1, 2, 2003, 0, 14, 15, 3);
-        Entry c1 = new Entry("Claire", 7, 3, 2010, 0, 26, 20, 7);
-        Entry c2 = new Entry("Claire", 11, 3, 2010, 0, 24, 55, 7);
+        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3);
+        Entry b = new Entry("Bob", 1, 2, 2003, 0, 14, 15, tz, 3);
+        Entry c1 = new Entry("Claire", 7, 3, 2010, 0, 26, 20, tz, 7);
+        Entry c2 = new Entry("Claire", 11, 3, 2010, 0, 24, 55, tz, 7);
         instance.addEntry(a);
         instance.addEntry(b);
         instance.addEntry(c1);
@@ -96,10 +101,10 @@ public class TrainingRecordTest {
     public void testGetNumberOfEntries() {
         System.out.println("GetNumberOfEntries");
         TrainingRecord instance = new TrainingRecord();
-        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
-        Entry b = new Entry("Bob", 1, 2, 2003, 0, 14, 15, 3);
-        Entry c1 = new Entry("Claire", 7, 3, 2010, 0, 26, 20, 7);
-        Entry c2 = new Entry("Claire", 11, 3, 2010, 0, 24, 55, 7);
+        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3);
+        Entry b = new Entry("Bob", 1, 2, 2003, 0, 14, 15, tz, 3);
+        Entry c1 = new Entry("Claire", 7, 3, 2010, 0, 26, 20, tz, 7);
+        Entry c2 = new Entry("Claire", 11, 3, 2010, 0, 24, 55, tz, 7);
         assertEquals(instance.getNumberOfEntries(), 0);
         instance.addEntry(a);
         assertEquals(instance.getNumberOfEntries(), 1);
@@ -123,8 +128,8 @@ public class TrainingRecordTest {
         String expectResults = "Alice ran 3.0 km in 0:16:7 on 1/2/2003\n" +
                 "Bob ran 3.0 km in 0:14:15 on 1/2/2003\n";
         TrainingRecord instance = new TrainingRecord();
-        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
-        Entry b = new Entry("Bob", 1, 2, 2003, 0, 14, 15, 3);
+        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3);
+        Entry b = new Entry("Bob", 1, 2, 2003, 0, 14, 15, tz, 3);
         instance.addEntry(a);
         instance.addEntry(b);
         fail("This method cannot be tested as it does not exist yet");
