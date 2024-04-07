@@ -123,7 +123,7 @@ public class SprintEntryTest {
     public void testGetDistance() {
         System.out.println("getDistance");
         Entry instance = new SprintEntry("Alice", 1, 2, 2003, 0, 16, 7, 300, 4, 2);
-        double expResult = 3.0;
+        double expResult = 300.0;
         double result = instance.getDistance();
         assertEquals(result, expResult, 0.0);
     }
