@@ -33,6 +33,19 @@ public class TrainingRecord {
         return null;
     }
 
+    @Deprecated
+    public String lookupEntries(int day, int month, int year) {
+        StringBuilder sb = new StringBuilder();
+        for (Entry entry : store) {
+            if (entry.getYear() == year && entry.getMonth() == month && entry.getDay() == day) {
+                sb.append(entry.formattedEntry());
+            }
+        }
+        String str = sb.toString();
+        // this is what the tests expect
+        return str.isEmpty() ? "Sorry couldn't find anything for this date" : str;
+    }
+
     public int getNumberOfEntries() {
         return store.size();
     }
