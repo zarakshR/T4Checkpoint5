@@ -7,6 +7,7 @@ package com.stir.cscu9t4practical1;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.ZonedDateTime;
 import java.util.TimeZone;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,7 +18,9 @@ public class SwimEntryTest {
 
     // use a fixed time zone for tests
     final static TimeZone tz = TimeZone.getTimeZone("GMT");
-    final static SwimEntry outdoorSwimEntry = new SwimEntry("Alice", 1, 2, 2003, 0, 16, 7, 3, tz, SwimEntry.LOCATION.OUTDOORS);
+    final static ZonedDateTime zonedDateTime = ZonedDateTime.of(
+            2003, 2, 1, 0, 16, 7, 0, TimeZone.getTimeZone("GMT").toZoneId());
+    final static SwimEntry outdoorSwimEntry = new SwimEntry("Alice", zonedDateTime, 3, SwimEntry.LOCATION.OUTDOORS);
 
     /**
      Test of getLocation method, of class SwimEntry
@@ -26,7 +29,7 @@ public class SwimEntryTest {
     public void testGetLocation() {
         assertEquals(SwimEntry.LOCATION.OUTDOORS, outdoorSwimEntry.getLocation());
 
-        SwimEntry poolSwimEntry = new SwimEntry("Alice", 1, 2, 2003, 0, 16, 7, 3, tz, SwimEntry.LOCATION.POOL);
+        SwimEntry poolSwimEntry = new SwimEntry("Alice", zonedDateTime, 3, SwimEntry.LOCATION.POOL);
         assertEquals(SwimEntry.LOCATION.POOL, poolSwimEntry.getLocation());
     }
 

@@ -1,15 +1,15 @@
 package com.stir.cscu9t4practical1;
 
-import java.util.TimeZone;
+import java.time.ZonedDateTime;
 
 public class CycleEntry extends Entry {
 
     private final Terrain terrain;
     private final Tempo tempo;
 
-    public CycleEntry(String n, int d, int m, int y, int h, int min, int s, TimeZone tz, float dist, Terrain terrain,
+    public CycleEntry(String n, ZonedDateTime zonedDateTime, float dist, Terrain terrain,
                       Tempo tempo) {
-        super(n, d, m, y, h, min, s, tz, dist);
+        super(n, zonedDateTime, dist);
         this.terrain = terrain;
         this.tempo = tempo;
     }

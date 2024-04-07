@@ -1,18 +1,18 @@
 package com.stir.cscu9t4practical1;
 
-import java.util.TimeZone;
+import java.time.ZonedDateTime;
 
 public class SwimEntry extends Entry {
 
     private final LOCATION location;
 
-    public LOCATION getLocation() {
-        return location;
+    public SwimEntry(String n, ZonedDateTime zonedDateTime, float dist, LOCATION location) {
+        super(n, zonedDateTime, dist);
+        this.location = location;
     }
 
-    public SwimEntry(String n, int d, int m, int y, int h, int min, int s, float dist, TimeZone tz, LOCATION location) {
-        super(n, d, m, y, h, min, s, tz, dist);
-        this.location = location;
+    public LOCATION getLocation() {
+        return location;
     }
 
     @Override

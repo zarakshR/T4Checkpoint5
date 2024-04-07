@@ -7,6 +7,7 @@ package com.stir.cscu9t4practical1;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.ZonedDateTime;
 import java.util.TimeZone;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,7 +18,9 @@ public class CycleEntryTest {
 
     // use a fixed time zone for tests
     final static TimeZone tz = TimeZone.getTimeZone("GMT");
-    final CycleEntry instance = new CycleEntry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3, CycleEntry.Terrain.ASPHALT,
+    final static ZonedDateTime zonedDateTime = ZonedDateTime.of(
+            2003, 2, 1, 0, 16, 7, 0, TimeZone.getTimeZone("GMT").toZoneId());
+    final static CycleEntry instance = new CycleEntry("Alice", zonedDateTime, 3, CycleEntry.Terrain.ASPHALT,
             CycleEntry.Tempo.MODERATE);
 
     /**

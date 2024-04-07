@@ -1,11 +1,18 @@
 package com.stir.cscu9t4practical1;
 
-import java.util.TimeZone;
+import java.time.ZonedDateTime;
 
 public class SprintEntry extends Entry {
 
     private final Integer repetitions;
     private final Integer recovery;
+
+    public SprintEntry(String n, ZonedDateTime zonedDateTime, float dist, Integer repetitions,
+                       Integer recovery) {
+        super(n, zonedDateTime, dist);
+        this.repetitions = repetitions;
+        this.recovery = recovery;
+    }
 
     public Integer getRepetitions() {
         return repetitions;
@@ -13,13 +20,6 @@ public class SprintEntry extends Entry {
 
     public Integer getRecovery() {
         return recovery;
-    }
-
-    public SprintEntry(String n, int d, int m, int y, int h, int min, int s, TimeZone tz, float dist, Integer repetitions,
-                       Integer recovery) {
-        super(n, d, m, y, h, min, s, tz, dist);
-        this.repetitions = repetitions;
-        this.recovery = recovery;
     }
 
     @Override
