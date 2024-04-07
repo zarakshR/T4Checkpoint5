@@ -21,6 +21,11 @@ public class SwimEntry extends Entry {
                 "on " + formattedDate() + "\n";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
     public enum LOCATION {
         OUTDOORS,
         POOL;

@@ -5,7 +5,9 @@
  */
 package com.stir.cscu9t4practical1;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.time.ZonedDateTime;
 import java.util.TimeZone;
@@ -95,10 +97,10 @@ public class TrainingRecordTest {
         int d = 1;
         int m = 2;
         int y = 2003;
-        String resultSuccess = instance.lookupEntries(d,m,y);
-        String resultNone = instance.lookupEntries(d,m,1999);
-        assertEquals(expectResultsNone,resultNone);
-        assertEquals(expectResults,resultSuccess);
+        String resultSuccess = instance.lookupEntries(d, m, y);
+        String resultNone = instance.lookupEntries(d, m, 1999);
+        assertEquals(expectResultsNone, resultNone);
+        assertEquals(expectResults, resultSuccess);
     }
 
 }

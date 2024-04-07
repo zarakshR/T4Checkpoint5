@@ -1,4 +1,3 @@
-// GUI and main program for the Training Record
 package com.stir.cscu9t4practical1;
 
 import javax.swing.*;
@@ -33,7 +32,6 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 
     private final JTextArea outputArea = new JTextArea(5, 50);
 
-    // set up the GUI
     public TrainingRecordGUI() {
         super("Training Record");
         setLayout(new FlowLayout());
@@ -71,16 +69,12 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         setVisible(true);
         blankDisplay();
 
-        // To save typing in new entries while testing, uncomment
-        // the following lines (or add your own test cases)
-
-    } // constructor
+    }
 
     public static void main(String[] args) {
         TrainingRecordGUI applic = new TrainingRecordGUI();
-    } // main
+    }
 
-    // listen for and respond to GUI events
     public void actionPerformed(ActionEvent event) {
         String message = "";
         if (event.getSource() == addR) {
@@ -91,19 +85,13 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         }
         outputArea.setText(message);
         blankDisplay();
-    } // actionPerformed
+    }
 
     public String addEntry(String what) {
         String message = "Record added\n";
         System.out.println("Adding " + what + " entry to the records");
         String n = name.getText();
-        int m = Integer.parseInt(month.getText());
-        int d = Integer.parseInt(day.getText());
-        int y = Integer.parseInt(year.getText());
         float km = java.lang.Float.parseFloat(dist.getText());
-        int h = Integer.parseInt(hours.getText());
-        int mm = Integer.parseInt(mins.getText());
-        int s = Integer.parseInt(secs.getText());
         // TODO: This is temporary until we get `TrainingRecord` to use time zones properly
         ZonedDateTime zonedDateTime = ZonedDateTime.now();
         Entry e = new Entry(n, zonedDateTime, km);
@@ -129,10 +117,9 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         mins.setText("");
         secs.setText("");
         dist.setText("");
+    }
 
-    }// blankDisplay
-
-    // Fills the input fields on the display for testing purposes only
+    // fills the input fields on the display for testing purposes only
     public void fillDisplay(Entry ent) {
         name.setText(ent.getName());
         day.setText(String.valueOf(ent.getDay()));
@@ -144,4 +131,4 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         dist.setText(String.valueOf(ent.getDistance()));
     }
 
-} // TrainingRecordGUI
+}

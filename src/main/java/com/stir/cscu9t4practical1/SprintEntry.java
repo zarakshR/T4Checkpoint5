@@ -32,4 +32,9 @@ public class SprintEntry extends Entry {
     public String formattedEntry() {
         return getName() + " sprinted " + getRepetitions() + " x " + formattedDistance() + " in " + formattedTime() + " with " + getRecovery() + " minutes recovery on " + formattedDate() + "\n";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
 }

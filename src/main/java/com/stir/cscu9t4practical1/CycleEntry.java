@@ -28,6 +28,11 @@ public class CycleEntry extends Entry {
                 "on " + formattedDate() + " on " + getTerrain() + " at " + getTempo() + " tempo\n";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
     public enum Terrain {
         ASPHALT,
         GRAVEL,

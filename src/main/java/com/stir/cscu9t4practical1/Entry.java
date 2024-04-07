@@ -80,6 +80,6 @@ public class Entry {
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        return  31 * result + (dateAndTime != null ? dateAndTime.hashCode() : 0);
+        return 31 * result + (dateAndTime != null ? dateAndTime.hashCode() : 0);
     }
 }
