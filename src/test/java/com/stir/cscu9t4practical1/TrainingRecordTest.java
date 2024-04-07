@@ -17,11 +17,11 @@ public class TrainingRecordTest {
     }
 
     @BeforeAll
-    public void setUpClass() {
+    public static void setUpClass() {
     }
 
     @AfterAll
-    public void tearDownClass() {
+    public static void tearDownClass() {
     }
 
     @BeforeEach
