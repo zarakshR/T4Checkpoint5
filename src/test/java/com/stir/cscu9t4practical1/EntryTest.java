@@ -136,7 +136,7 @@ public class EntryTest {
         System.out.println("getEntry");
         Entry instance = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
         String expResult = "Alice had a training session, achieving distance 3.0 km in 0:16:7 on 1/2/2003\n";
-        String result = instance.getEntry();
+        String result = instance.formattedEntry();
         assertEquals(expResult, result);
     }
 

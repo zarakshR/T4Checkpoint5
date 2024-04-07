@@ -64,7 +64,7 @@ public class Entry {
         return getDistance() + " km";
     }
 
-    public String getEntry() {
+    public String formattedEntry() {
         return getName() + " had a training session, achieving distance " + formattedDistance() + " in " + formattedTime() + " " +
                 "on " + formattedDate() + "\n";
     }

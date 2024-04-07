@@ -21,7 +21,7 @@ public class CycleEntry extends Entry {
     }
 
     @Override
-    public String getEntry() {
+    public String formattedEntry() {
         return getName() + " cycled " + formattedDistance() + " in " + formattedTime() + " " +
                 "on " + formattedDate() + " on " + getTerrain() + " at " + getTempo() + " tempo\n";
     }

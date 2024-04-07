@@ -14,7 +14,7 @@ public class SwimEntry extends Entry {
     }
 
     @Override
-    public String getEntry() {
+    public String formattedEntry() {
         return getName() + " swam " + formattedDistance() + " " + getWhere() + " in " + formattedTime() + " " +
                 "on " + formattedDate() + "\n";
     }

@@ -27,7 +27,7 @@ public class TrainingRecord {
         while (iter.hasNext()) {
             Entry current = iter.next();
             if (current.getDay() == d && current.getMonth() == m && current.getYear() == y)
-                result = current.getEntry();
+                result = current.formattedEntry();
         }
         return result;
     } // lookupEntry

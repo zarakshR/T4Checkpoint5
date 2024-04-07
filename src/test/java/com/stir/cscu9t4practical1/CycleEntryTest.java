@@ -160,7 +160,7 @@ public class CycleEntryTest {
         System.out.println("getEntry");
         Entry instance = new CycleEntry("Alice", 1, 2, 2003, 0, 16, 7, 3, "asphalt", "moderate");
         String expResult = "Alice cycled 3.0 km in 0:16:7 on 1/2/2003 on asphalt at moderate tempo\n";
-        String result = instance.getEntry();
+        String result = instance.formattedEntry();
         assertEquals(expResult, result);
     }
 
