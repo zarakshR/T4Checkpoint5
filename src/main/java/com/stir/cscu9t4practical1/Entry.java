@@ -61,7 +61,7 @@ public class Entry {
     }
 
     public String formattedEntry() {
-        return getName() + " had a training session, achieving distance " + formattedDistance() + " in " + formattedTime() + " " +
+        return getName() + " ran " + formattedDistance() + " in " + formattedTime() + " " +
                 "on " + formattedDate() + "\n";
     }
 
