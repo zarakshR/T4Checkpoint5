@@ -1,4 +1,8 @@
-package com.stir.cscu9t4practical1;
+package com.stir.cscu9t4practical1.gui;
+
+import com.stir.cscu9t4practical1.entries.TrainingRecord;
+import com.stir.cscu9t4practical1.entries.Entry;
+import com.stir.cscu9t4practical1.entries.RunEntry;
 
 import javax.swing.*;
 import java.awt.*;

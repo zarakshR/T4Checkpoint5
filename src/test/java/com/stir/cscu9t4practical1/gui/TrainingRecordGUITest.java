@@ -4,8 +4,10 @@
  * However, you're welcome to use this starter template and extend it and add
  * test for public methods you implement in TrainingRecordGUI.java
  */
-package com.stir.cscu9t4practical1;
+package com.stir.cscu9t4practical1.gui;
 
+import com.stir.cscu9t4practical1.entries.Entry;
+import com.stir.cscu9t4practical1.entries.RunEntry;
 import org.junit.jupiter.api.*;
 
 import javax.swing.*;

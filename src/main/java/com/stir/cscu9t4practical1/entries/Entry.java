@@ -1,5 +1,5 @@
 // This class holds information about a single training session
-package com.stir.cscu9t4practical1;
+package com.stir.cscu9t4practical1.entries;
 
 import java.time.ZonedDateTime;
 import java.util.Objects;

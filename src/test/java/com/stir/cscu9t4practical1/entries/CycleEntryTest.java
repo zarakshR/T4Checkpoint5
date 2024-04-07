@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.stir.cscu9t4practical1;
+package com.stir.cscu9t4practical1.entries;
 
 import org.junit.jupiter.api.Test;
 

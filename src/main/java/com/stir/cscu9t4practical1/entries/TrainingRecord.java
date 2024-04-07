@@ -1,10 +1,10 @@
-package com.stir.cscu9t4practical1;
+package com.stir.cscu9t4practical1.entries;
 
 
-import java.time.ZoneId;
+import com.stir.cscu9t4practical1.entries.Entry;
+
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TimeZone;
 
 
 public class TrainingRecord {
