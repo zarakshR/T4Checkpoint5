@@ -31,11 +31,14 @@ public class TrainingRecordGUITest {
             2003, 2, 1, 0, 16, 7, 0, TimeZone.getTimeZone("GMT").toZoneId());
     final static RunEntry alice = new RunEntry("Alice", aliceZonedDateTime, 3);
 
+    static TrainingRecordGUI instance;
+
     public TrainingRecordGUITest() {
     }
 
     @BeforeAll
     public static void setUpClass() throws Exception {
+        instance = new TrainingRecordGUI();
     }
 
     @AfterAll
@@ -77,7 +80,6 @@ public class TrainingRecordGUITest {
     @Test
     public void testBlankDisplay() {
         System.out.println("blankDisplay");
-        TrainingRecordGUI instance = new TrainingRecordGUI();
         instance.blankDisplay();
     }
 
@@ -87,7 +89,6 @@ public class TrainingRecordGUITest {
     @Test
     public void testAddEntry() {
         System.out.println("addEntry");
-        TrainingRecordGUI instance = new TrainingRecordGUI();
         Entry entry = alice;
         instance.fillDisplay(entry);
         String message = instance.addEntry("generic");
@@ -101,7 +102,6 @@ public class TrainingRecordGUITest {
     @Test
     public void testButtonsPresentInGUI() throws IllegalAccessException, IllegalArgumentException {
         System.out.println("Check if you have added the buttons");
-        TrainingRecordGUI instance = new TrainingRecordGUI();
         Class<?> instanceClass = instance.getClass();
         String[] expectedFields = {"lookUpAllOnDate", "lookUpByDate"}; // TODO: add RemoveEntry when it is ready
         Field[] fields = instanceClass.getDeclaredFields();
