@@ -7,9 +7,9 @@ public class Entry {
 
     private final String name;
     private final Calendar dateAndTime;
-    private final float distance;
+    private final double distance;
 
-    public Entry(String n, int d, int m, int y, int h, int min, int s, float dist) {
+    public Entry(String n, int d, int m, int y, int h, int min, int s, double dist) {
         name = n;
         Calendar inst = Calendar.getInstance();
         inst.set(y, m - 1, d, h, min, s);
@@ -46,7 +46,7 @@ public class Entry {
         return dateAndTime.get(Calendar.SECOND);
     } //getSec
 
-    public float getDistance() {
+    public double getDistance() {
         return distance;
     } //getYear
 

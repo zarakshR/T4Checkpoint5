@@ -123,9 +123,9 @@ public class SprintEntryTest {
     public void testGetDistance() {
         System.out.println("getDistance");
         Entry instance = new SprintEntry("Alice", 1, 2, 2003, 0, 16, 7, 300, 4, 2);
-        float expResult = 3.0F;
-        float result = instance.getDistance();
-        assertEquals(expResult, result, 0.0);
+        double expResult = 3.0;
+        double result = instance.getDistance();
+        assertEquals(result, expResult, 0.0);
     }
 
     /**

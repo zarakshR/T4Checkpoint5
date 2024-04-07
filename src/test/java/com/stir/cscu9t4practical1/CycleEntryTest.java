@@ -123,9 +123,9 @@ public class CycleEntryTest {
     public void testGetDistance() {
         System.out.println("getDistance");
         Entry instance = new CycleEntry("Alice", 1, 2, 2003, 0, 16, 7, 3, "asphalt", "moderate");
-        float expResult = 3.0F;
-        float result = instance.getDistance();
-        assertEquals(expResult, result);
+        double expResult = 3.0;
+        double result = instance.getDistance();
+        assertEquals(result, expResult, 0.0);
     }
 
     /**
