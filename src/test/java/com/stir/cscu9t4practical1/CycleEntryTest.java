@@ -5,7 +5,7 @@
  */
 package com.stir.cscu9t4practical1;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.TimeZone;
 
@@ -19,25 +19,6 @@ public class CycleEntryTest {
     final static TimeZone tz = TimeZone.getTimeZone("GMT");
     final CycleEntry instance = new CycleEntry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3, CycleEntry.Terrain.ASPHALT,
             CycleEntry.Tempo.MODERATE);
-
-    public CycleEntryTest() {
-    }
-
-    @BeforeAll
-    public static void setUpClass() {
-    }
-
-    @AfterAll
-    public static void tearDownClass() {
-    }
-
-    @BeforeEach
-    public void setUp() {
-    }
-
-    @AfterEach
-    public void tearDown() {
-    }
 
     /**
      Test of getTerrain method, of class CycleEntry.

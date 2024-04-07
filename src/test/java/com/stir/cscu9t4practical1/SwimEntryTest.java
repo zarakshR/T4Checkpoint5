@@ -5,7 +5,7 @@
  */
 package com.stir.cscu9t4practical1;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.TimeZone;
 
@@ -18,25 +18,6 @@ public class SwimEntryTest {
     // use a fixed time zone for tests
     final static TimeZone tz = TimeZone.getTimeZone("GMT");
     final static SwimEntry outdoorSwimEntry = new SwimEntry("Alice", 1, 2, 2003, 0, 16, 7, 3, tz, SwimEntry.LOCATION.OUTDOORS);
-
-    public SwimEntryTest() {
-    }
-
-    @BeforeAll
-    public static void setUpClass() {
-    }
-
-    @AfterAll
-    public static void tearDownClass() {
-    }
-
-    @BeforeEach
-    public void setUp() {
-    }
-
-    @AfterEach
-    public void tearDown() {
-    }
 
     /**
      Test of getLocation method, of class SwimEntry
