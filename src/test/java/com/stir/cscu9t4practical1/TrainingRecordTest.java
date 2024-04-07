@@ -22,18 +22,18 @@ public class TrainingRecordTest {
     final static TimeZone tz = TimeZone.getTimeZone("GMT");
     final static ZonedDateTime aliceZonedDateTime = ZonedDateTime.of(
             2003, 2, 1, 0, 16, 7, 0, tz.toZoneId());
-    final static Entry alice = new Entry("Alice", aliceZonedDateTime, 3);
+    final static RunEntry alice = new RunEntry("Alice", aliceZonedDateTime, 3);
     final static ZonedDateTime bobZonedDateTime = ZonedDateTime.of(
             2003, 2, 1, 0, 14, 15, 0, tz.toZoneId());
-    final static Entry bob = new Entry("Bob", bobZonedDateTime, 3);
+    final static RunEntry bob = new RunEntry("Bob", bobZonedDateTime, 3);
     final static ZonedDateTime claireZonedDateTime1 = ZonedDateTime.of(
             2010, 3, 7, 0, 26, 20, 0, tz.toZoneId()
     );
-    final static Entry claire1 = new Entry("Claire", claireZonedDateTime1, 7);
+    final static RunEntry claire1 = new RunEntry("Claire", claireZonedDateTime1, 7);
     final static ZonedDateTime claireZonedDateTime2 = ZonedDateTime.of(
             2010, 3, 11, 0, 24, 55, 0, tz.toZoneId()
     );
-    final static Entry claire2 = new Entry("Claire", claireZonedDateTime2, 7);
+    final static RunEntry claire2 = new RunEntry("Claire", claireZonedDateTime2, 7);
 
     static TrainingRecord instance;
 

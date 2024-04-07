@@ -22,15 +22,9 @@ public class SprintEntry extends Entry {
         return recovery;
     }
 
-    // We need this because sprint entries are stores as metre-distances while Entry assumes kilometre distances
-    @Override
-    protected String formattedDistance() {
-        return getDistance() + "m";
-    }
-
     @Override
     public String formattedEntry() {
-        return getName() + " sprinted " + getRepetitions() + " x " + formattedDistance() + " in " + formattedTime() + " with " + getRecovery() + " minutes recovery on " + formattedDate() + "\n";
+        return getName() + " sprinted " + getRepetitions() + " x " + getDistance() + "m in " + formattedTime() + " with " + getRecovery() + " minutes recovery on " + formattedDate() + "\n";
     }
 
     @Override

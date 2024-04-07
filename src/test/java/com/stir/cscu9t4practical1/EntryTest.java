@@ -20,7 +20,7 @@ public class EntryTest {
     final static TimeZone tz = TimeZone.getTimeZone("GMT");
     final static ZonedDateTime zonedDateTime = ZonedDateTime.of(
             2003, 2, 1, 0, 16, 7, 0, TimeZone.getTimeZone("GMT").toZoneId());
-    final static Entry instance = new Entry("Alice", zonedDateTime, 3);
+    final static RunEntry instance = new RunEntry("Alice", zonedDateTime, 3);
 
     /**
      Test of getName method, of class Entry.
@@ -84,15 +84,6 @@ public class EntryTest {
     @Test
     public void testGetDistance() {
         assertEquals(3.0, instance.getDistance(), 0.0);
-    }
-
-    /**
-     Test of getEntry method, of class Entry.
-     */
-    @Test
-    public void testGetEntry() {
-        String expResult = "Alice ran 3.0 km in 0:16:7 on 1/2/2003\n";
-        assertEquals(expResult, instance.formattedEntry());
     }
 
 }

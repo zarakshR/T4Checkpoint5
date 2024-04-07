@@ -99,7 +99,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         float km = java.lang.Float.parseFloat(dist.getText());
         // TODO: This is temporary until we get `TrainingRecord` to use time zones properly
         ZonedDateTime zonedDateTime = ZonedDateTime.now();
-        Entry e = new Entry(n, zonedDateTime, km);
+        RunEntry e = new RunEntry(n, zonedDateTime, km);
         myAthletes.addEntry(e);
         return message;
     }

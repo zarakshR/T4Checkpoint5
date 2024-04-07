@@ -27,7 +27,7 @@ public class TrainingRecordGUITest {
     final static TimeZone tz = TimeZone.getTimeZone("GMT");
     final static ZonedDateTime aliceZonedDateTime = ZonedDateTime.of(
             2003, 2, 1, 0, 16, 7, 0, TimeZone.getTimeZone("GMT").toZoneId());
-    final static Entry alice = new Entry("Alice", aliceZonedDateTime, 3);
+    final static RunEntry alice = new RunEntry("Alice", aliceZonedDateTime, 3);
 
     public TrainingRecordGUITest() {
     }

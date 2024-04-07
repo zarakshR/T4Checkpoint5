@@ -4,7 +4,7 @@ package com.stir.cscu9t4practical1;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
-public class Entry {
+public abstract class Entry {
 
     private final String name;
     private final ZonedDateTime dateAndTime;
@@ -56,14 +56,7 @@ public class Entry {
         return getDay() + "/" + getMonth() + "/" + getYear();
     }
 
-    protected String formattedDistance() {
-        return getDistance() + " km";
-    }
-
-    public String formattedEntry() {
-        return getName() + " ran " + formattedDistance() + " in " + formattedTime() + " " +
-                "on " + formattedDate() + "\n";
-    }
+    public abstract String formattedEntry();
 
     @Override
     public boolean equals(Object o) {
