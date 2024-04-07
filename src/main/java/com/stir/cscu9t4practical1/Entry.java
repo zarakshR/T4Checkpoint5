@@ -52,11 +52,20 @@ public class Entry {
         return distance;
     } //getYear
 
-    public String getEntry() {
-        String result = getName() + " ran " + getDistance() + " km in "
-                + getHour() + ":" + getMin() + ":" + getSec() + " on "
-                + getDay() + "/" + getMonth() + "/" + getYear() + "\n";
-        return result;
-    } //getEntry
+    protected String formattedTime() {
+        return getHour() + ":" + getMin() + ":" + getSec();
+    }
 
+    protected String formattedDate() {
+        return getDay() + "/" + getMonth() + "/" + getYear();
+    }
+
+    protected String formattedDistance() {
+        return getDistance() + " km";
+    }
+
+    public String getEntry() {
+        return getName() + " had a training session, achieving distance " + formattedDistance() + " in " + formattedTime() + " " +
+                "on " + formattedDate() + "\n";
+    }
 } // Entry

@@ -10,6 +10,12 @@ public class SwimEntry extends Entry {
 
     public SwimEntry(String n, int d, int m, int y, int h, int min, int s, float dist, String where) {
         super(n, d, m, y, h, min, s, dist);
-        this.where = where;
+        this.where = where.equals("pool") ? "in a pool" : "outdoors";
+    }
+
+    @Override
+    public String getEntry() {
+        return getName() + " swam " + formattedDistance() + " " + getWhere() + " in " + formattedTime() + " " +
+                "on " + formattedDate() + "\n";
     }
 }

@@ -18,4 +18,14 @@ public class SprintEntry extends Entry {
         this.repetitions = repetitions;
         this.recovery = recovery;
     }
+
+    @Override
+    protected String formattedDistance() {
+        return getDistance() + "m";
+    }
+
+    @Override
+    public String getEntry() {
+        return getName() + " sprinted " + getRepetitions() + " x " + formattedDistance() + " in " + formattedTime() + " with " + getRecovery() + " minutes recovery on " + formattedDate() + "\n";
+    }
 }

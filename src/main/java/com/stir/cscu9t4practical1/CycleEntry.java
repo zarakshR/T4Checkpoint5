@@ -19,4 +19,10 @@ public class CycleEntry extends Entry {
         this.terrain = terraim;
         this.tempo = tempo;
     }
+
+    @Override
+    public String getEntry() {
+        return getName() + " cycled " + formattedDistance() + " in " + formattedTime() + " " +
+                "on " + formattedDate() + " on " + getTerrain() + " at " + getTempo() + " tempo\n";
+    }
 }
