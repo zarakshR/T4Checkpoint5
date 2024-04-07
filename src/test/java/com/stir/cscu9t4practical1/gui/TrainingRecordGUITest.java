@@ -6,7 +6,6 @@
  */
 package com.stir.cscu9t4practical1.gui;
 
-import com.stir.cscu9t4practical1.entries.Entry;
 import com.stir.cscu9t4practical1.entries.RunEntry;
 import org.junit.jupiter.api.*;
 
@@ -33,75 +32,34 @@ public class TrainingRecordGUITest {
 
     static TrainingRecordGUI instance;
 
-    public TrainingRecordGUITest() {
-    }
-
     @BeforeAll
-    public static void setUpClass() throws Exception {
+    public static void setUpClass() {
         instance = new TrainingRecordGUI();
     }
 
-    @AfterAll
-    public static void tearDownClass() throws Exception {
-    }
-
-    @BeforeEach
-    public void setUp() throws Exception {
-    }
-
-    @AfterEach
-    public void tearDown() throws Exception {
-    }
-
-    /**
-     Test of main method, of class TrainingRecordGUI.
-     just tests if the class can be initialised without errors
-     */
     @Test
     public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        TrainingRecordGUI.main(args);
+        TrainingRecordGUI.main(null);
     }
 
-    /**
-     Test of actionPerformed method, of class TrainingRecordGUI.
-     This doesn't test anything but might be used in evaluations
-     */
     @Test
     public void testActionPerformed() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        System.out.println("Action not performed");
     }
 
-    /**
-     Test of blankDisplay method, of class TrainingRecordGUI.
-     It just executes the method to see if it doesn't throw an exception
-     */
     @Test
     public void testBlankDisplay() {
-        System.out.println("blankDisplay");
         instance.blankDisplay();
     }
 
-    /**
-     Test of addEntry method, of class TrainingRecordGUI
-     */
     @Test
     public void testAddEntry() {
-        System.out.println("addEntry");
-        Entry entry = alice;
-        instance.fillDisplay(entry);
+        instance.fillDisplay(alice);
         String message = instance.addEntry("generic");
-        System.out.println(message);
         assertEquals(message, "Record added\n");
     }
 
-    /**
-     Test to see if all display requirements have been met
-     */
     @Test
     public void testButtonsPresentInGUI() throws IllegalAccessException, IllegalArgumentException {
-        System.out.println("Check if you have added the buttons");
         Class<?> instanceClass = instance.getClass();
         String[] expectedFields = {"lookUpAllOnDate", "lookUpByDate"}; // TODO: add RemoveEntry when it is ready
         Field[] fields = instanceClass.getDeclaredFields();
