@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.ZonedDateTime;
+import java.util.TimeZone;
 
 public class TrainingRecordGUI extends JFrame implements ActionListener {
 
@@ -28,7 +29,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     private final JButton addR = new JButton("Add");
     private final JButton lookUpByDate = new JButton("Look Up");
 
-    private final TrainingRecord myAthletes = new TrainingRecord();
+    private final TrainingRecord myAthletes = new TrainingRecord(TimeZone.getDefault());
 
     private final JTextArea outputArea = new JTextArea(5, 50);
 
