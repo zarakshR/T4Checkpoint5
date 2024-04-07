@@ -1,20 +1,23 @@
 // This class holds information about a single training session
 package com.stir.cscu9t4practical1;
 
-import java.util.Calendar;
+import java.time.ZonedDateTime;
+import java.util.TimeZone;
 
 public class Entry {
 
     private final String name;
-    private final Calendar dateAndTime;
+    private final ZonedDateTime dateAndTime;
     private final double distance;
 
-    public Entry(String n, int d, int m, int y, int h, int min, int s, double dist) {
+    public Entry(String n, ZonedDateTime zonedDateTime, double dist) {
         name = n;
-        Calendar inst = Calendar.getInstance();
-        inst.set(y, m - 1, d, h, min, s);
-        dateAndTime = inst;
+        dateAndTime = zonedDateTime;
         distance = dist;
+    } //constructor
+
+    public Entry(String n, int d, int m, int y, int h, int min, int s, double dist) {
+        this(n, ZonedDateTime.of(y,m,d,h,min,s,0, TimeZone.getDefault().toZoneId()), dist);
     } //constructor
 
     public String getName() {
@@ -22,28 +25,27 @@ public class Entry {
     } //getName
 
     public int getDay() {
-        return dateAndTime.get(Calendar.DATE);
+        return dateAndTime.getDayOfMonth();
     } //getDay
 
     public int getMonth() {
-        int month = dateAndTime.get(Calendar.MONTH) + 1;
-        return month;
+        return dateAndTime.getMonthValue();
     } //getMonth
 
     public int getYear() {
-        return dateAndTime.get(Calendar.YEAR);
+        return dateAndTime.getYear();
     } //getYear
 
     public int getHour() {
-        return dateAndTime.get(Calendar.HOUR);
+        return dateAndTime.getHour();
     } //getHour
 
     public int getMin() {
-        return dateAndTime.get(Calendar.MINUTE);
+        return dateAndTime.getMinute();
     } //getMin
 
     public int getSec() {
-        return dateAndTime.get(Calendar.SECOND);
+        return dateAndTime.getSecond();
     } //getSec
 
     public double getDistance() {
