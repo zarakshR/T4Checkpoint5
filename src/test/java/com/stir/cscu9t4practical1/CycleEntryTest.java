@@ -5,40 +5,35 @@
  */
 package com.stir.cscu9t4practical1;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- *
- * @author saemundur
- */
+ @author saemundur */
 public class CycleEntryTest {
-    
+
     public CycleEntryTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
 
     /**
-     * Test of getName method, of class CycleEntry.
+     Test of getName method, of class CycleEntry.
      */
     @Test
     public void testGetName() {
@@ -50,7 +45,7 @@ public class CycleEntryTest {
     }
 
     /**
-     * Test of getDay method, of class CycleEntry.
+     Test of getDay method, of class CycleEntry.
      */
     @Test
     public void testGetDay() {
@@ -62,7 +57,7 @@ public class CycleEntryTest {
     }
 
     /**
-     * Test of getMonth method, of class CycleEntry.
+     Test of getMonth method, of class CycleEntry.
      */
     @Test
     public void testGetMonth() {
@@ -74,7 +69,7 @@ public class CycleEntryTest {
     }
 
     /**
-     * Test of getYear method, of class CycleEntry.
+     Test of getYear method, of class CycleEntry.
      */
     @Test
     public void testGetYear() {
@@ -86,7 +81,7 @@ public class CycleEntryTest {
     }
 
     /**
-     * Test of getHour method, of class CycleEntry.
+     Test of getHour method, of class CycleEntry.
      */
     @Test
     public void testGetHour() {
@@ -98,7 +93,7 @@ public class CycleEntryTest {
     }
 
     /**
-     * Test of getMin method, of class CycleEntry.
+     Test of getMin method, of class CycleEntry.
      */
     @Test
     public void testGetMin() {
@@ -110,7 +105,7 @@ public class CycleEntryTest {
     }
 
     /**
-     * Test of getSec method, of class CycleEntry.
+     Test of getSec method, of class CycleEntry.
      */
     @Test
     public void testGetSec() {
@@ -122,7 +117,7 @@ public class CycleEntryTest {
     }
 
     /**
-     * Test of getDistance method, of class CycleEntry.
+     Test of getDistance method, of class CycleEntry.
      */
     @Test
     public void testGetDistance() {
@@ -132,9 +127,9 @@ public class CycleEntryTest {
         float result = instance.getDistance();
         assertEquals(expResult, result);
     }
-    
+
     /**
-     * Test of getTerrain method, of class CycleEntry.
+     Test of getTerrain method, of class CycleEntry.
      */
     @Test
     public void testGetTerrain() {
@@ -146,7 +141,7 @@ public class CycleEntryTest {
     }
 
     /**
-     * Test of getTempo method, of class CycleEntry.
+     Test of getTempo method, of class CycleEntry.
      */
     @Test
     public void testGetTempo() {
@@ -156,9 +151,9 @@ public class CycleEntryTest {
         String result = instance.getTempo();
         assertEquals(expResult, result);
     }
-    
+
     /**
-     * Test of getEntry method, of class CycleEntry.
+     Test of getEntry method, of class CycleEntry.
      */
     @Test
     public void testGetEntry() {
@@ -168,5 +163,5 @@ public class CycleEntryTest {
         String result = instance.getEntry();
         assertEquals(expResult, result);
     }
-    
+
 }

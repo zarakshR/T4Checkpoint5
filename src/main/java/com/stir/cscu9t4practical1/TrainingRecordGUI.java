@@ -1,42 +1,37 @@
 // GUI and main program for the Training Record
 package com.stir.cscu9t4practical1;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
-import java.lang.Number;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TrainingRecordGUI extends JFrame implements ActionListener {
 
-    private JTextField name = new JTextField(30);
-    private JTextField day = new JTextField(2);
-    private JTextField month = new JTextField(2);
-    private JTextField year = new JTextField(4);
-    private JTextField hours = new JTextField(2);
-    private JTextField mins = new JTextField(2);
-    private JTextField secs = new JTextField(2);
-    private JTextField dist = new JTextField(4);
-    private JLabel labn = new JLabel(" Name:");
-    private JLabel labd = new JLabel(" Day:");
-    private JLabel labm = new JLabel(" Month:");
-    private JLabel laby = new JLabel(" Year:");
-    private JLabel labh = new JLabel(" Hours:");
-    private JLabel labmm = new JLabel(" Mins:");
-    private JLabel labs = new JLabel(" Secs:");
-    private JLabel labdist = new JLabel(" Distance (km):");
-    private JButton addR = new JButton("Add");
-    private JButton lookUpByDate = new JButton("Look Up");
+    private final JTextField name = new JTextField(30);
+    private final JTextField day = new JTextField(2);
+    private final JTextField month = new JTextField(2);
+    private final JTextField year = new JTextField(4);
+    private final JTextField hours = new JTextField(2);
+    private final JTextField mins = new JTextField(2);
+    private final JTextField secs = new JTextField(2);
+    private final JTextField dist = new JTextField(4);
+    private final JLabel labn = new JLabel(" Name:");
+    private final JLabel labd = new JLabel(" Day:");
+    private final JLabel labm = new JLabel(" Month:");
+    private final JLabel laby = new JLabel(" Year:");
+    private final JLabel labh = new JLabel(" Hours:");
+    private final JLabel labmm = new JLabel(" Mins:");
+    private final JLabel labs = new JLabel(" Secs:");
+    private final JLabel labdist = new JLabel(" Distance (km):");
+    private final JButton addR = new JButton("Add");
+    private final JButton lookUpByDate = new JButton("Look Up");
 
-    private TrainingRecord myAthletes = new TrainingRecord();
+    private final TrainingRecord myAthletes = new TrainingRecord();
 
-    private JTextArea outputArea = new JTextArea(5, 50);
+    private final JTextArea outputArea = new JTextArea(5, 50);
 
-    public static void main(String[] args) {
-        TrainingRecordGUI applic = new TrainingRecordGUI();
-    } // main
-
-    // set up the GUI 
+    // set up the GUI
     public TrainingRecordGUI() {
         super("Training Record");
         setLayout(new FlowLayout());
@@ -76,10 +71,14 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 
         // To save typing in new entries while testing, uncomment
         // the following lines (or add your own test cases)
-        
+
     } // constructor
 
-    // listen for and respond to GUI events 
+    public static void main(String[] args) {
+        TrainingRecordGUI applic = new TrainingRecordGUI();
+    } // main
+
+    // listen for and respond to GUI events
     public void actionPerformed(ActionEvent event) {
         String message = "";
         if (event.getSource() == addR) {
@@ -94,7 +93,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 
     public String addEntry(String what) {
         String message = "Record added\n";
-        System.out.println("Adding "+what+" entry to the records");
+        System.out.println("Adding " + what + " entry to the records");
         String n = name.getText();
         int m = Integer.parseInt(month.getText());
         int d = Integer.parseInt(day.getText());
@@ -107,7 +106,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         myAthletes.addEntry(e);
         return message;
     }
-    
+
     public String lookupEntry() {
         int m = Integer.parseInt(month.getText());
         int d = Integer.parseInt(day.getText());
@@ -128,6 +127,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         dist.setText("");
 
     }// blankDisplay
+
     // Fills the input fields on the display for testing purposes only
     public void fillDisplay(Entry ent) {
         name.setText(ent.getName());
@@ -141,4 +141,3 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     }
 
 } // TrainingRecordGUI
-

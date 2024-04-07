@@ -5,39 +5,35 @@
  */
 package com.stir.cscu9t4practical1;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
- *
- * @author saemundur
- */
+ @author saemundur */
 public class SprintEntryTest {
-    
+
     public SprintEntryTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
 
     /**
-     * Test of getName method, of class SprintEntry.
+     Test of getName method, of class SprintEntry.
      */
     @Test
     public void testGetName() {
@@ -49,7 +45,7 @@ public class SprintEntryTest {
     }
 
     /**
-     * Test of getDay method, of class SprintEntry.
+     Test of getDay method, of class SprintEntry.
      */
     @Test
     public void testGetDay() {
@@ -61,7 +57,7 @@ public class SprintEntryTest {
     }
 
     /**
-     * Test of getMonth method, of class SprintEntry.
+     Test of getMonth method, of class SprintEntry.
      */
     @Test
     public void testGetMonth() {
@@ -73,7 +69,7 @@ public class SprintEntryTest {
     }
 
     /**
-     * Test of getYear method, of class SprintEntry.
+     Test of getYear method, of class SprintEntry.
      */
     @Test
     public void testGetYear() {
@@ -85,7 +81,7 @@ public class SprintEntryTest {
     }
 
     /**
-     * Test of getHour method, of class SprintEntry.
+     Test of getHour method, of class SprintEntry.
      */
     @Test
     public void testGetHour() {
@@ -97,7 +93,7 @@ public class SprintEntryTest {
     }
 
     /**
-     * Test of getMin method, of class SprintEntry.
+     Test of getMin method, of class SprintEntry.
      */
     @Test
     public void testGetMin() {
@@ -109,7 +105,7 @@ public class SprintEntryTest {
     }
 
     /**
-     * Test of getSec method, of class SprintEntry.
+     Test of getSec method, of class SprintEntry.
      */
     @Test
     public void testGetSec() {
@@ -121,7 +117,7 @@ public class SprintEntryTest {
     }
 
     /**
-     * Test of getDistance method, of class SprintEntry.
+     Test of getDistance method, of class SprintEntry.
      */
     @Test
     public void testGetDistance() {
@@ -131,9 +127,9 @@ public class SprintEntryTest {
         float result = instance.getDistance();
         assertEquals(expResult, result, 0.0);
     }
-    
+
     /**
-     * Test of getRepetitions method of class SprintEntry
+     Test of getRepetitions method of class SprintEntry
      */
     @Test
     public void testGetRepetitions() {
@@ -143,9 +139,9 @@ public class SprintEntryTest {
         int result = instance.getRepetitions();
         assertEquals(expResult, result);
     }
-    
+
     /**
-     * Test of getRecovery method of class SprintEntry
+     Test of getRecovery method of class SprintEntry
      */
     @Test
     public void testGetRecovery() {
@@ -157,7 +153,7 @@ public class SprintEntryTest {
     }
 
     /**
-     * Test of getEntry method, of class SprintEntry.
+     Test of getEntry method, of class SprintEntry.
      */
     @Test
     public void testGetEntry() {
@@ -167,5 +163,5 @@ public class SprintEntryTest {
         String result = instance.getEntry();
         assertEquals(expResult, result);
     }
-    
+
 }

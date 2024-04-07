@@ -5,40 +5,35 @@
  */
 package com.stir.cscu9t4practical1;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- *
- * @author saemundur
- */
+ @author saemundur */
 public class EntryTest {
-    
+
     public EntryTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
 
     /**
-     * Test of getName method, of class Entry.
+     Test of getName method, of class Entry.
      */
     @Test
     public void testGetName() {
@@ -50,7 +45,7 @@ public class EntryTest {
     }
 
     /**
-     * Test of getDay method, of class Entry.
+     Test of getDay method, of class Entry.
      */
     @Test
     public void testGetDay() {
@@ -62,7 +57,7 @@ public class EntryTest {
     }
 
     /**
-     * Test of getMonth method, of class Entry.
+     Test of getMonth method, of class Entry.
      */
     @Test
     public void testGetMonth() {
@@ -74,7 +69,7 @@ public class EntryTest {
     }
 
     /**
-     * Test of getYear method, of class Entry.
+     Test of getYear method, of class Entry.
      */
     @Test
     public void testGetYear() {
@@ -86,7 +81,7 @@ public class EntryTest {
     }
 
     /**
-     * Test of getHour method, of class Entry.
+     Test of getHour method, of class Entry.
      */
     @Test
     public void testGetHour() {
@@ -98,7 +93,7 @@ public class EntryTest {
     }
 
     /**
-     * Test of getMin method, of class Entry.
+     Test of getMin method, of class Entry.
      */
     @Test
     public void testGetMin() {
@@ -110,7 +105,7 @@ public class EntryTest {
     }
 
     /**
-     * Test of getSec method, of class Entry.
+     Test of getSec method, of class Entry.
      */
     @Test
     public void testGetSec() {
@@ -122,7 +117,7 @@ public class EntryTest {
     }
 
     /**
-     * Test of getDistance method, of class Entry.
+     Test of getDistance method, of class Entry.
      */
     @Test
     public void testGetDistance() {
@@ -134,7 +129,7 @@ public class EntryTest {
     }
 
     /**
-     * Test of getEntry method, of class Entry.
+     Test of getEntry method, of class Entry.
      */
     @Test
     public void testGetEntry() {
@@ -144,5 +139,5 @@ public class EntryTest {
         String result = instance.getEntry();
         assertEquals(expResult, result);
     }
-    
+
 }
