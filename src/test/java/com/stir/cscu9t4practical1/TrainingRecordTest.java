@@ -39,7 +39,7 @@ public class TrainingRecordTest {
 
     @BeforeAll
     public static void setUp() {
-        instance = new TrainingRecord(tz);
+        instance = new TrainingRecord();
     }
 
     @AfterEach

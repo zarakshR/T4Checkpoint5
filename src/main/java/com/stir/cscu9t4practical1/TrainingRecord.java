@@ -1,6 +1,7 @@
 package com.stir.cscu9t4practical1;
 
 
+import java.time.ZoneId;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TimeZone;
@@ -11,13 +12,9 @@ public class TrainingRecord {
     // Use a Set because the primary use of TrainingRecord will be lookups.
     private final Set<Entry> store;
 
-    // This is the time zone used for lookups when a TimeZone is not provided by the user
-    private final TimeZone tz;
-
-    public TrainingRecord(TimeZone tz) {
+    public TrainingRecord() {
         // Use a HashSet because its fast
         this.store = new HashSet<Entry>();
-        this.tz = tz;
     }
 
     public void addEntry(Entry e) {
