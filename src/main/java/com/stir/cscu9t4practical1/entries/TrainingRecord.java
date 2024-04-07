@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class TrainingRecord {
 
-    // Use a Set because the primary use of TrainingRecord will be lookups.
+    // Use a Set because the primary use of TrainingRecordApp will be lookups.
     private final Set<Entry> store;
 
     public TrainingRecord() {

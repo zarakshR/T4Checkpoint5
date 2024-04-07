@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  @author saemundur */
-public class TrainingRecordTest {
+public class TrainingRecordAppTest {
 
     // use a fixed time zone for tests
     final static TimeZone tz = TimeZone.getTimeZone("GMT");

@@ -72,10 +72,7 @@ public class MainFrame extends JFrame implements ActionListener {
         lookUpAllOnDate.addActionListener(this);
         add(outputArea);
         outputArea.setEditable(false);
-        setSize(720, 200);
-        setVisible(true);
         blankDisplay();
-
     }
 
     public static void main(String[] args) {
