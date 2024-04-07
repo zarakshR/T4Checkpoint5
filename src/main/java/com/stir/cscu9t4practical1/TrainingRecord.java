@@ -1,45 +1,44 @@
-// An implementation of a Training Record as an ArrayList
 package com.stir.cscu9t4practical1;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 
 public class TrainingRecord {
 
-    private final List<Entry> tr;
+    // Use a Set because the primary use of TrainingRecord will be lookups.
+    private final Set<Entry> store;
 
-    public TrainingRecord() {
-        tr = new ArrayList<Entry>();
-    } //constructor
+    // This is the time zone used for lookups when a TimeZone is not provided by the user
+    private final TimeZone tz;
 
-    // add a record to the list
+    public TrainingRecord(TimeZone tz) {
+        // Use a HashSet because its fast
+        this.store = new HashSet<Entry>();
+        this.tz = tz;
+    }
+
     public void addEntry(Entry e) {
-        tr.add(e);
-    } // addClass
+        store.add(e);
+    }
 
-    // look up the entry of a given day and month
-    public String lookupEntry(int d, int m, int y) {
-        ListIterator<Entry> iter = tr.listIterator();
-        String result = "No entries found";
-        while (iter.hasNext()) {
-            Entry current = iter.next();
-            if (current.getDay() == d && current.getMonth() == m && current.getYear() == y)
-                result = current.formattedEntry();
+    // currently just looks up the first entry in a given day for compatibility with the GUI implementations
+    @Deprecated
+    public String lookupEntry(int day, int month, int year) {
+        for (Entry entry : store) {
+            if (entry.getYear() == year && entry.getMonth() == month && entry.getDay() == day) {
+                return entry.formattedEntry();
+            }
         }
-        return result;
-    } // lookupEntry
+        return null;
+    }
 
-    // Count the number of entries
     public int getNumberOfEntries() {
-        return tr.size();
+        return store.size();
     }
 
-    // Clear all entries
     public void clearAllEntries() {
-        tr.clear();
+        store.clear();
     }
 
-} // TrainingRecord
+}

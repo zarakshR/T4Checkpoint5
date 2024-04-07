@@ -19,130 +19,75 @@ public class TrainingRecordTest {
     // use a fixed time zone for tests
     final static TimeZone tz = TimeZone.getTimeZone("GMT");
     final static ZonedDateTime aliceZonedDateTime = ZonedDateTime.of(
-            2003, 2, 1, 0, 16, 7, 0, TimeZone.getTimeZone("GMT").toZoneId());
+            2003, 2, 1, 0, 16, 7, 0, tz.toZoneId());
     final static Entry alice = new Entry("Alice", aliceZonedDateTime, 3);
     final static ZonedDateTime bobZonedDateTime = ZonedDateTime.of(
-            2003, 2, 1, 0, 14, 15, 0, TimeZone.getTimeZone("GMT").toZoneId());
+            2003, 2, 1, 0, 14, 15, 0, tz.toZoneId());
     final static Entry bob = new Entry("Bob", bobZonedDateTime, 3);
     final static ZonedDateTime claireZonedDateTime1 = ZonedDateTime.of(
-            2010, 3, 7, 0, 26, 20, 0, TimeZone.getTimeZone("GMT").toZoneId()
+            2010, 3, 7, 0, 26, 20, 0, tz.toZoneId()
     );
     final static Entry claire1 = new Entry("Claire", claireZonedDateTime1, 7);
     final static ZonedDateTime claireZonedDateTime2 = ZonedDateTime.of(
-            2010, 3, 11, 0, 24, 55, 0, TimeZone.getTimeZone("GMT").toZoneId()
+            2010, 3, 11, 0, 24, 55, 0, tz.toZoneId()
     );
-    final static Entry claire2 = new Entry("Claire", claireZonedDateTime1, 7);
+    final static Entry claire2 = new Entry("Claire", claireZonedDateTime2, 7);
 
-    public TrainingRecordTest() {
-    }
+    static TrainingRecord instance;
 
     @BeforeAll
-    public static void setUpClass() {
-    }
-
-    @AfterAll
-    public static void tearDownClass() {
-    }
-
-    @BeforeEach
-    public void setUp() {
+    public static void setUp() {
+        instance = new TrainingRecord(tz);
     }
 
     @AfterEach
     public void tearDown() {
+        instance.clearAllEntries();
     }
 
-    /**
-     Test of addEntry method, of class TrainingRecord.
-     You might want to extend this test when you implement the other
-     Entry types
-     */
     @Test
     public void testAddEntry() {
-        System.out.println("addEntry");
-        Entry a = alice;
-        TrainingRecord instance = new TrainingRecord();
-        instance.addEntry(a);
-        assertEquals(instance.getNumberOfEntries(), 1);
+        instance.addEntry(alice);
+        assertEquals(1, instance.getNumberOfEntries());
     }
 
-    /**
-     Test of addEntry with a repeat
-     Adding another entry for the same person on the same day should fail
-     */
     @Test
     public void testAddEntryUnique() {
-        System.out.println("addEntry -- fail");
-        Entry a = alice;
-        Entry b = alice;
-        TrainingRecord instance = new TrainingRecord();
-        instance.addEntry(a);
-        instance.addEntry(b);
-        assertEquals(instance.getNumberOfEntries(), 1);
-        // You might also consider using assertThrows() and let
-        // TrainingRecord instance take care of when you're trying to add
-        // a none-unique entry
+        instance.addEntry(alice);
+        instance.addEntry(alice);
+        assertEquals(1, instance.getNumberOfEntries());
     }
 
-    /**
-     Test of lookupEntry method, of class TrainingRecord.
-     */
     @Test
     public void testLookupEntry() {
-        System.out.println("lookupEntry");
-        TrainingRecord instance = new TrainingRecord();
-        String expResult = "No entries found";
-        Entry a = alice;
-        Entry b = bob;
-        Entry c1 = claire1;
-        Entry c2 = claire2;
-        instance.addEntry(a);
-        instance.addEntry(b);
-        instance.addEntry(c1);
-        instance.addEntry(c2);
-        int d = 7;
-        int m = 3;
-        int y = 2010;
-        String result = instance.lookupEntry(d, m, y);
-        assertNotEquals(expResult, result, "expecting to find the entry");
-        result = instance.lookupEntry(1, 2, 1999);
-        assertEquals(expResult, result, "expecting to not find the entry");
+        instance.addEntry(alice);
+        instance.addEntry(bob);
+        instance.addEntry(claire1);
+        instance.addEntry(claire2);
+
+        assertNotNull(instance.lookupEntry(7, 3, 2010));
+        assertNull(instance.lookupEntry(1, 2, 1999));
     }
 
-    /**
-     Test of getNumberOfEntries, of class TrainingRecord
-     */
     @Test
     public void testGetNumberOfEntries() {
-        System.out.println("GetNumberOfEntries");
-        TrainingRecord instance = new TrainingRecord();
-        Entry a = alice;
-        Entry b = bob;
-        Entry c1 = claire1;
-        Entry c2 = claire2;
         assertEquals(instance.getNumberOfEntries(), 0);
-        instance.addEntry(a);
+        instance.addEntry(alice);
         assertEquals(instance.getNumberOfEntries(), 1);
-        instance.addEntry(b);
+        instance.addEntry(bob);
         assertEquals(instance.getNumberOfEntries(), 2);
-        instance.addEntry(c1);
+        instance.addEntry(claire1);
         assertEquals(instance.getNumberOfEntries(), 3);
-        instance.addEntry(c2);
-        assertEquals(instance.getNumberOfEntries(), 4);
+        instance.addEntry(claire2);
+        assertEquals(4, instance.getNumberOfEntries());
     }
 
-    /**
-     Test of yet to be implemented lookupEntries, of class TrainingRecord
-     Implement the method and then remove the "fail" line below and
-     un-comment call to the method and the assertion line
-     */
+
     @Test
     public void testLookupEntries() {
-        System.out.println("lookupEntries");
         String expectResultsNone = "Sorry couldn't find anything for this date";
         String expectResults = "Alice ran 3.0 km in 0:16:7 on 1/2/2003\n" +
                 "Bob ran 3.0 km in 0:14:15 on 1/2/2003\n";
-        TrainingRecord instance = new TrainingRecord();
         Entry a = alice;
         Entry b = bob;
         instance.addEntry(a);

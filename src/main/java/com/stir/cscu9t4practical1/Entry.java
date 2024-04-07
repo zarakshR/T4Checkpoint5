@@ -2,6 +2,7 @@
 package com.stir.cscu9t4practical1;
 
 import java.time.ZonedDateTime;
+import java.util.Objects;
 
 public class Entry {
 
@@ -62,5 +63,23 @@ public class Entry {
     public String formattedEntry() {
         return getName() + " had a training session, achieving distance " + formattedDistance() + " in " + formattedTime() + " " +
                 "on " + formattedDate() + "\n";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Entry entry = (Entry) o;
+
+        // two Entrys are considered equal if the training session occurred at the same time and by the same person
+        if (!Objects.equals(name, entry.name)) return false;
+        return Objects.equals(dateAndTime, entry.dateAndTime);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        return  31 * result + (dateAndTime != null ? dateAndTime.hashCode() : 0);
     }
 }
