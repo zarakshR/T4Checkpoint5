@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.ZonedDateTime;
+import java.util.TimeZone;
 
 public class TrainingRecordGUI extends JFrame implements ActionListener {
 
@@ -86,7 +87,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
             message = lookupEntry();
         }
         if (event.getSource() == lookUpAllOnDate) {
-            message = lookupEntry();
+            message = lookupEntries();
         }
         outputArea.setText(message);
         blankDisplay();
@@ -97,9 +98,16 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         System.out.println("Adding " + what + " entry to the records");
         String n = name.getText();
         float km = java.lang.Float.parseFloat(dist.getText());
-        // TODO: This is temporary until we get `TrainingRecord` to use time zones properly
-        ZonedDateTime zonedDateTime = ZonedDateTime.now();
+        int yearN = Integer.parseInt(year.getText());
+        int monthN = Integer.parseInt(month.getText());
+        int dayN = Integer.parseInt(day.getText());
+        int hourN = Integer.parseInt(hours.getText());
+        int minuteN = Integer.parseInt(mins.getText());
+        int secondN = Integer.parseInt(secs.getText());
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(yearN, monthN, dayN, hourN, minuteN, secondN, 0,
+                TimeZone.getDefault().toZoneId());
         RunEntry e = new RunEntry(n, zonedDateTime, km);
+        System.out.println("e.formattedEntry() = " + e.formattedEntry());
         myAthletes.addEntry(e);
         return message;
     }
@@ -109,8 +117,15 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         int d = Integer.parseInt(day.getText());
         int y = Integer.parseInt(year.getText());
         outputArea.setText("looking up record ...");
-        String message = myAthletes.lookupEntry(d, m, y);
-        return message;
+        return myAthletes.lookupEntry(d, m, y);
+    }
+
+    public String lookupEntries() {
+        int m = Integer.parseInt(month.getText());
+        int d = Integer.parseInt(day.getText());
+        int y = Integer.parseInt(year.getText());
+        outputArea.setText("looking up record ...");
+        return myAthletes.lookupEntries(d, m, y);
     }
 
     public void blankDisplay() {
