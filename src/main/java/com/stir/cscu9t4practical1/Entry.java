@@ -13,39 +13,39 @@ public class Entry {
         name = n;
         dateAndTime = zonedDateTime;
         distance = dist;
-    } //constructor
+    }
 
     public String getName() {
         return name;
-    } //getName
+    }
 
     public int getDay() {
         return dateAndTime.getDayOfMonth();
-    } //getDay
+    }
 
     public int getMonth() {
         return dateAndTime.getMonthValue();
-    } //getMonth
+    }
 
     public int getYear() {
         return dateAndTime.getYear();
-    } //getYear
+    }
 
     public int getHour() {
         return dateAndTime.getHour();
-    } //getHour
+    }
 
     public int getMin() {
         return dateAndTime.getMinute();
-    } //getMin
+    }
 
     public int getSec() {
         return dateAndTime.getSecond();
-    } //getSec
+    }
 
     public double getDistance() {
         return distance;
-    } //getYear
+    }
 
     protected String formattedTime() {
         return getHour() + ":" + getMin() + ":" + getSec();
@@ -63,4 +63,4 @@ public class Entry {
         return getName() + " had a training session, achieving distance " + formattedDistance() + " in " + formattedTime() + " " +
                 "on " + formattedDate() + "\n";
     }
-} // Entry
+}
