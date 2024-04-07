@@ -7,6 +7,7 @@ package com.stir.cscu9t4practical1;
 
 import org.junit.jupiter.api.*;
 
+import java.time.ZonedDateTime;
 import java.util.TimeZone;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,6 +18,20 @@ public class TrainingRecordTest {
 
     // use a fixed time zone for tests
     final static TimeZone tz = TimeZone.getTimeZone("GMT");
+    final static ZonedDateTime aliceZonedDateTime = ZonedDateTime.of(
+            2003, 2, 1, 0, 16, 7, 0, TimeZone.getTimeZone("GMT").toZoneId());
+    final static Entry alice = new Entry("Alice", aliceZonedDateTime, 3);
+    final static ZonedDateTime bobZonedDateTime = ZonedDateTime.of(
+            2003, 2, 1, 0, 14, 15, 0, TimeZone.getTimeZone("GMT").toZoneId());
+    final static Entry bob = new Entry("Bob", bobZonedDateTime, 3);
+    final static ZonedDateTime claireZonedDateTime1 = ZonedDateTime.of(
+            2010, 3, 7, 0, 26, 20, 0, TimeZone.getTimeZone("GMT").toZoneId()
+    );
+    final static Entry claire1 = new Entry("Claire", claireZonedDateTime1, 7);
+    final static ZonedDateTime claireZonedDateTime2 = ZonedDateTime.of(
+            2010, 3, 11, 0, 24, 55, 0, TimeZone.getTimeZone("GMT").toZoneId()
+    );
+    final static Entry claire2 = new Entry("Claire", claireZonedDateTime1, 7);
 
     public TrainingRecordTest() {
     }
@@ -45,7 +60,7 @@ public class TrainingRecordTest {
     @Test
     public void testAddEntry() {
         System.out.println("addEntry");
-        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3);
+        Entry a = alice;
         TrainingRecord instance = new TrainingRecord();
         instance.addEntry(a);
         assertEquals(instance.getNumberOfEntries(), 1);
@@ -58,8 +73,8 @@ public class TrainingRecordTest {
     @Test
     public void testAddEntryUnique() {
         System.out.println("addEntry -- fail");
-        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3);
-        Entry b = new Entry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3);
+        Entry a = alice;
+        Entry b = alice;
         TrainingRecord instance = new TrainingRecord();
         instance.addEntry(a);
         instance.addEntry(b);
@@ -77,10 +92,10 @@ public class TrainingRecordTest {
         System.out.println("lookupEntry");
         TrainingRecord instance = new TrainingRecord();
         String expResult = "No entries found";
-        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3);
-        Entry b = new Entry("Bob", 1, 2, 2003, 0, 14, 15, tz, 3);
-        Entry c1 = new Entry("Claire", 7, 3, 2010, 0, 26, 20, tz, 7);
-        Entry c2 = new Entry("Claire", 11, 3, 2010, 0, 24, 55, tz, 7);
+        Entry a = alice;
+        Entry b = bob;
+        Entry c1 = claire1;
+        Entry c2 = claire2;
         instance.addEntry(a);
         instance.addEntry(b);
         instance.addEntry(c1);
@@ -101,10 +116,10 @@ public class TrainingRecordTest {
     public void testGetNumberOfEntries() {
         System.out.println("GetNumberOfEntries");
         TrainingRecord instance = new TrainingRecord();
-        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3);
-        Entry b = new Entry("Bob", 1, 2, 2003, 0, 14, 15, tz, 3);
-        Entry c1 = new Entry("Claire", 7, 3, 2010, 0, 26, 20, tz, 7);
-        Entry c2 = new Entry("Claire", 11, 3, 2010, 0, 24, 55, tz, 7);
+        Entry a = alice;
+        Entry b = bob;
+        Entry c1 = claire1;
+        Entry c2 = claire2;
         assertEquals(instance.getNumberOfEntries(), 0);
         instance.addEntry(a);
         assertEquals(instance.getNumberOfEntries(), 1);
@@ -128,8 +143,8 @@ public class TrainingRecordTest {
         String expectResults = "Alice ran 3.0 km in 0:16:7 on 1/2/2003\n" +
                 "Bob ran 3.0 km in 0:14:15 on 1/2/2003\n";
         TrainingRecord instance = new TrainingRecord();
-        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3);
-        Entry b = new Entry("Bob", 1, 2, 2003, 0, 14, 15, tz, 3);
+        Entry a = alice;
+        Entry b = bob;
         instance.addEntry(a);
         instance.addEntry(b);
         fail("This method cannot be tested as it does not exist yet");

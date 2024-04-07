@@ -11,6 +11,7 @@ import org.junit.jupiter.api.*;
 import javax.swing.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.TimeZone;
 
@@ -24,6 +25,9 @@ public class TrainingRecordGUITest {
 
     // use a fixed time zone for tests
     final static TimeZone tz = TimeZone.getTimeZone("GMT");
+    final static ZonedDateTime aliceZonedDateTime = ZonedDateTime.of(
+            2003, 2, 1, 0, 16, 7, 0, TimeZone.getTimeZone("GMT").toZoneId());
+    final static Entry alice = new Entry("Alice", aliceZonedDateTime, 3);
 
     public TrainingRecordGUITest() {
     }
@@ -82,7 +86,7 @@ public class TrainingRecordGUITest {
     public void testAddEntry() {
         System.out.println("addEntry");
         TrainingRecordGUI instance = new TrainingRecordGUI();
-        Entry entry = new Entry("Alice", 1, 2, 2003, 0, 16, 7, tz, 3);
+        Entry entry = alice;
         instance.fillDisplay(entry);
         String message = instance.addEntry("generic");
         System.out.println(message);
