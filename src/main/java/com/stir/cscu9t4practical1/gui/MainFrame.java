@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.time.ZonedDateTime;
 import java.util.TimeZone;
 
-public class TrainingRecordGUI extends JFrame implements ActionListener {
+public class MainFrame extends JFrame implements ActionListener {
 
     private final JTextField name = new JTextField(30);
     private final JTextField day = new JTextField(2);
@@ -37,7 +37,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 
     private final JTextArea outputArea = new JTextArea(5, 50);
 
-    public TrainingRecordGUI() {
+    public MainFrame() {
         super("Training Record");
         setLayout(new FlowLayout());
         add(labn);
@@ -79,7 +79,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        TrainingRecordGUI applic = new TrainingRecordGUI();
+        MainFrame applic = new MainFrame();
     }
 
     public void actionPerformed(ActionEvent event) {

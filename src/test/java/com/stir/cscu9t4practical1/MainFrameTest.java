@@ -7,6 +7,7 @@
 package com.stir.cscu9t4practical1.gui;
 
 import com.stir.cscu9t4practical1.entries.RunEntry;
+import com.stir.cscu9t4practical1.gui.MainFrame;
 import org.junit.jupiter.api.*;
 
 import javax.swing.*;
@@ -22,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  @author saemundur */
-public class TrainingRecordGUITest {
+public class MainFrameTest {
 
     // use a fixed time zone for tests
     final static TimeZone tz = TimeZone.getTimeZone("GMT");
@@ -30,16 +31,16 @@ public class TrainingRecordGUITest {
             2003, 2, 1, 0, 16, 7, 0, TimeZone.getTimeZone("GMT").toZoneId());
     final static RunEntry alice = new RunEntry("Alice", aliceZonedDateTime, 3);
 
-    static TrainingRecordGUI instance;
+    static MainFrame instance;
 
     @BeforeAll
     public static void setUpClass() {
-        instance = new TrainingRecordGUI();
+        instance = new MainFrame();
     }
 
     @Test
     public void testMain() {
-        TrainingRecordGUI.main(null);
+        MainFrame.main(null);
     }
 
     @Test
