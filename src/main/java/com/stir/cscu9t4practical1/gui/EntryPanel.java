@@ -46,6 +46,16 @@ public class EntryPanel extends JPanel {
         }
     }
 
+    public void clearFields() {
+        switch (currentlyShowing) {
+            case "RUN": runEntryPanel.clearFields(); break;
+            case "CYCLE": cycleEntryPanel.clearFields(); break;
+            case "SWIM": swimEntryPanel.clearFields(); break;
+            case "SPRINT": sprintEntryPanel.clearFields(); break;
+            default: throw new RuntimeException("Attempted to clear fields for unknown entry key: " + currentlyShowing);
+        }
+    }
+
     // TODO: all the classes return dummy value for testing purposes. change them to parse from the date field
     // TODO: add error checking with exceptions
     private abstract static class EntryTypePanel extends JPanel {
@@ -65,6 +75,11 @@ public class EntryPanel extends JPanel {
         }
 
         abstract Entry emitEntry();
+        void clearFields() {
+            this.nameField.getTextField().setText(null);
+            this.dateField.getTextField().setText(null);
+            this.distanceField.getTextField().setText(null);
+        }
     }
 
     private final static class RunTypePanel extends EntryTypePanel {
@@ -80,6 +95,11 @@ public class EntryPanel extends JPanel {
                     ZonedDateTime.now(),
                     Double.parseDouble(distanceField.getTextField().getText())
             );
+        }
+
+        @Override
+        void clearFields() {
+            super.clearFields();
         }
     }
 
@@ -106,6 +126,13 @@ public class EntryPanel extends JPanel {
                     CycleEntry.Tempo.MODERATE
             );
         }
+
+        @Override
+        void clearFields() {
+            super.clearFields();
+            this.terrainField.getTextField().setText(null);
+            this.tempoField.getTextField().setText(null);
+        }
     }
 
     private final static class SwimTypePanel extends EntryTypePanel {
@@ -126,6 +153,12 @@ public class EntryPanel extends JPanel {
                     Double.parseDouble(distanceField.getTextField().getText()),
                     SwimEntry.LOCATION.OUTDOORS
             );
+        }
+
+        @Override
+        void clearFields() {
+            super.clearFields();
+            this.locationField.getTextField().setText(null);
         }
     }
 
@@ -151,6 +184,13 @@ public class EntryPanel extends JPanel {
                     Integer.parseInt(repetitionsField.getTextField().getText()),
                     Integer.parseInt(recoveryField.getTextField().getText())
             );
+        }
+
+        @Override
+        void clearFields() {
+            super.clearFields();
+            this.repetitionsField.getTextField().setText(null);
+            this.recoveryField.getTextField().setText(null);
         }
     }
 }

@@ -67,6 +67,7 @@ public class AddEntryPanel extends JPanel implements ActionListener {
         }
         if (e.getSource() == addButton) {
             mainFrame.addEntry(entryPanel.emitEntry());
+            entryPanel.clearFields();
         }
     }
 }
