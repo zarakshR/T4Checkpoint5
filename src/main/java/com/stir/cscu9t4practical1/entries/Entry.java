@@ -20,6 +20,10 @@ public abstract class Entry {
         return name;
     }
 
+    public ZonedDateTime getDateAndTime() {
+        return dateAndTime;
+    }
+
     public int getDay() {
         return dateAndTime.getDayOfMonth();
     }

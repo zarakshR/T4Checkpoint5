@@ -1,6 +1,8 @@
 package com.stir.cscu9t4practical1.entries;
 
 
+import java.time.ZonedDateTime;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
@@ -31,6 +33,10 @@ public final class TrainingRecord {
         return null;
     }
 
+    public Collection<Entry> lookupEntriesByName(String name) {
+        return store.stream().filter(e -> e.getName().equals(name)).toList();
+    }
+
     @Deprecated
     public String lookupEntries(final int day, final int month, final int year) {
         StringBuilder sb = new StringBuilder();
@@ -42,6 +48,10 @@ public final class TrainingRecord {
         String str = sb.toString();
         // this is what the tests expect
         return str.isEmpty() ? "Sorry couldn't find anything for this date" : str;
+    }
+
+    public Collection<Entry> lookupEntriesByDay(ZonedDateTime dateTime) {
+        return store.stream().filter(e -> e.getDateAndTime().equals(dateTime)).toList();
     }
 
     public int getNumberOfEntries() {
