@@ -27,7 +27,7 @@ public class RecordsListPanel extends JList<String> {
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
                     setSelectedIndex(locationToIndex(e.getPoint()));
-                    menu.show(RecordsListPanel.this, 0,0 );
+                    menu.show(RecordsListPanel.this, e.getX(), e.getY());
                 }
             }
         });
