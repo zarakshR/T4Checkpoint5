@@ -8,8 +8,8 @@ import java.time.ZonedDateTime;
 
 public class TrainingRecordApp {
 
-    private static MainFrame mainFrame;
     private static final TrainingRecord trainingRecord = new TrainingRecord();
+    private static MainFrame mainFrame;
 
     public static void main(String[] args) {
 

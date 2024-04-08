@@ -36,7 +36,7 @@ public class TrainingRecord {
         StringBuilder sb = new StringBuilder();
         for (Entry entry : store) {
             if (entry.getYear() == year && entry.getMonth() == month && entry.getDay() == day) {
-                sb.append(entry.toString());
+                sb.append(entry);
             }
         }
         String str = sb.toString();

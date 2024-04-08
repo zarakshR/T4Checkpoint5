@@ -15,7 +15,7 @@ public class AddEntryPanel extends JPanel implements ActionListener {
     private final JRadioButton runEntrySelector = new JRadioButton("Run");
     private final JRadioButton cycleEntrySelector = new JRadioButton("Cycle");
     private final JRadioButton swimEntrySelector = new JRadioButton("Swim");
-    private final JRadioButton sprintEntrySelector= new JRadioButton("Sprint");
+    private final JRadioButton sprintEntrySelector = new JRadioButton("Sprint");
 
     private final JButton addButton = new JButton("Add Entry");
 

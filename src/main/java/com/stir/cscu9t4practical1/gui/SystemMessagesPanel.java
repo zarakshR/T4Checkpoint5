@@ -4,6 +4,7 @@ import javax.swing.*;
 
 // TODO: Write tests for this
 public class SystemMessagesPanel extends JScrollPane {
+
     private static final JTextArea messageConsole = new JTextArea();
 
     public SystemMessagesPanel() {

@@ -3,7 +3,8 @@ package com.stir.cscu9t4practical1.gui;
 import com.stir.cscu9t4practical1.entries.Entry;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 // TODO: Write tests for this
 public class RecordsListPanel extends JList<Entry> {

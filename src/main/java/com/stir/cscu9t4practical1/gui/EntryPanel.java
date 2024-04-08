@@ -38,21 +38,35 @@ public class EntryPanel extends JPanel {
     //  exception will alert us early in case something goes wrong.
     public Entry emitEntry() {
         switch (currentlyShowing) {
-            case "RUN": return runEntryPanel.emitEntry();
-            case "CYCLE": return cycleEntryPanel.emitEntry();
-            case "SWIM": return swimEntryPanel.emitEntry();
-            case "SPRINT": return sprintEntryPanel.emitEntry();
-            default: throw new RuntimeException("Attempted to emit entry for unknown entry key: " + currentlyShowing);
+            case "RUN":
+                return runEntryPanel.emitEntry();
+            case "CYCLE":
+                return cycleEntryPanel.emitEntry();
+            case "SWIM":
+                return swimEntryPanel.emitEntry();
+            case "SPRINT":
+                return sprintEntryPanel.emitEntry();
+            default:
+                throw new RuntimeException("Attempted to emit entry for unknown entry key: " + currentlyShowing);
         }
     }
 
     public void clearFields() {
         switch (currentlyShowing) {
-            case "RUN": runEntryPanel.clearFields(); break;
-            case "CYCLE": cycleEntryPanel.clearFields(); break;
-            case "SWIM": swimEntryPanel.clearFields(); break;
-            case "SPRINT": sprintEntryPanel.clearFields(); break;
-            default: throw new RuntimeException("Attempted to clear fields for unknown entry key: " + currentlyShowing);
+            case "RUN":
+                runEntryPanel.clearFields();
+                break;
+            case "CYCLE":
+                cycleEntryPanel.clearFields();
+                break;
+            case "SWIM":
+                swimEntryPanel.clearFields();
+                break;
+            case "SPRINT":
+                sprintEntryPanel.clearFields();
+                break;
+            default:
+                throw new RuntimeException("Attempted to clear fields for unknown entry key: " + currentlyShowing);
         }
     }
 
@@ -75,6 +89,7 @@ public class EntryPanel extends JPanel {
         }
 
         abstract Entry emitEntry();
+
         void clearFields() {
             this.nameField.getTextField().setText(null);
             this.dateField.getTextField().setText(null);
