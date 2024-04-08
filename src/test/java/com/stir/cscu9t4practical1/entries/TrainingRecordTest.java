@@ -78,13 +78,13 @@ public class TrainingRecordTest {
 
     @Test
     public void testGetNumberOfEntries() {
-        assertEquals(instance.getNumberOfEntries(), 0);
+        assertEquals(0, instance.getNumberOfEntries());
         instance.addEntry(alice);
-        assertEquals(instance.getNumberOfEntries(), 1);
+        assertEquals(1, instance.getNumberOfEntries());
         instance.addEntry(bob);
-        assertEquals(instance.getNumberOfEntries(), 2);
+        assertEquals(2, instance.getNumberOfEntries());
         instance.addEntry(claire1);
-        assertEquals(instance.getNumberOfEntries(), 3);
+        assertEquals(3, instance.getNumberOfEntries());
         instance.addEntry(claire2);
         assertEquals(4, instance.getNumberOfEntries());
     }
