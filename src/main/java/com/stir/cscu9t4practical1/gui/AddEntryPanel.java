@@ -11,10 +11,10 @@ public class AddEntryPanel extends JPanel implements ActionListener {
     private final EntryPanel entryPanel;
 
     private final ButtonGroup entryType;
-    private final JRadioButton runEntryType;
-    private final JRadioButton cycleEntryType;
-    private final JRadioButton swimEntryType;
-    private final JRadioButton sprintEntryType;
+    private final JRadioButton runEntrySelector;
+    private final JRadioButton cycleEntrySelector;
+    private final JRadioButton swimEntrySelector;
+    private final JRadioButton sprintEntrySelector;
 
     private final JButton addButton;
 
@@ -22,28 +22,28 @@ public class AddEntryPanel extends JPanel implements ActionListener {
         entryPanel = new EntryPanel();
 
         entryType = new ButtonGroup();
-        runEntryType = new JRadioButton("Run");
-        runEntryType.addActionListener(this);
-        cycleEntryType = new JRadioButton("Cycle");
-        cycleEntryType.addActionListener(this);
-        swimEntryType = new JRadioButton("Swim");
-        swimEntryType.addActionListener(this);
-        sprintEntryType = new JRadioButton("Sprint");
-        sprintEntryType.addActionListener(this);
+        runEntrySelector = new JRadioButton("Run");
+        runEntrySelector.addActionListener(this);
+        cycleEntrySelector = new JRadioButton("Cycle");
+        cycleEntrySelector.addActionListener(this);
+        swimEntrySelector = new JRadioButton("Swim");
+        swimEntrySelector.addActionListener(this);
+        sprintEntrySelector = new JRadioButton("Sprint");
+        sprintEntrySelector.addActionListener(this);
 
-        entryType.add(runEntryType);
-        entryType.add(cycleEntryType);
-        entryType.add(swimEntryType);
-        entryType.add(sprintEntryType);
+        entryType.add(runEntrySelector);
+        entryType.add(cycleEntrySelector);
+        entryType.add(swimEntrySelector);
+        entryType.add(sprintEntrySelector);
 
         addButton = new JButton("Add");
 
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         add(entryPanel);
-        add(runEntryType);
-        add(cycleEntryType);
-        add(swimEntryType);
-        add(sprintEntryType);
+        add(runEntrySelector);
+        add(cycleEntrySelector);
+        add(swimEntrySelector);
+        add(sprintEntrySelector);
         add(addButton);
     }
 
@@ -51,16 +51,16 @@ public class AddEntryPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         CardLayout cardLayout = (CardLayout) entryPanel.getLayout();
 
-        if (e.getSource() == runEntryType) {
+        if (e.getSource() == runEntrySelector) {
             cardLayout.show(entryPanel, "RUN");
         }
-        if (e.getSource() == cycleEntryType) {
+        if (e.getSource() == cycleEntrySelector) {
             cardLayout.show(entryPanel, "CYCLE");
         }
-        if (e.getSource() == swimEntryType) {
+        if (e.getSource() == swimEntrySelector) {
             cardLayout.show(entryPanel, "SWIM");
         }
-        if (e.getSource() == sprintEntryType) {
+        if (e.getSource() == sprintEntrySelector) {
             cardLayout.show(entryPanel, "SPRINT");
         }
     }
