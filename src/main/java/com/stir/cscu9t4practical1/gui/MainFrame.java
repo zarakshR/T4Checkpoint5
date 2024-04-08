@@ -8,13 +8,13 @@ import java.awt.event.ActionListener;
 // TODO: Write tests for this
 public class MainFrame extends JFrame implements ActionListener {
 
-    private final SearchEntryPanel searchEntryPanel;
+    private final SearchPanel searchPanel;
     private final RecordsListPanel recordsListPanel;
     private final AddEntryPanel addEntryPanel;
     private final SystemMessagesPanel systemMessagesPanel;
 
     public MainFrame() {
-        searchEntryPanel = new SearchEntryPanel();
+        searchPanel = new SearchPanel();
         recordsListPanel = new RecordsListPanel();
         addEntryPanel = new AddEntryPanel();
         systemMessagesPanel = new SystemMessagesPanel();
@@ -27,7 +27,7 @@ public class MainFrame extends JFrame implements ActionListener {
         c.gridy = 0;
         c.weightx = 0.5;
         c.weighty = 1.0;
-        add(searchEntryPanel, c);
+        add(searchPanel, c);
 
         c.gridx = 1;
         c.gridy = 0;

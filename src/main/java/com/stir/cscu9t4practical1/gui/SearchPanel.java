@@ -4,14 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 // TODO: Write tests for this
-public class SearchEntryPanel extends JPanel {
+public class SearchPanel extends JPanel {
 
     // TODO: Remove this: our search panel won't need an EntryDefinitionPanel
     private EntryPanel entryPanel;
     private JButton searchByEntryButton;
     private JButton searchByDateButton;
 
-    public SearchEntryPanel() {
+    public SearchPanel() {
         entryPanel = new EntryPanel();
         searchByEntryButton = new JButton("Search Entry");
         searchByDateButton = new JButton("Search By Date");
