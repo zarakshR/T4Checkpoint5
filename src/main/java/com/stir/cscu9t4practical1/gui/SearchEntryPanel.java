@@ -7,11 +7,37 @@ import java.awt.*;
 public class SearchEntryPanel extends JPanel {
 
     private EntryDefinitionPanel entryDefinitionPanel;
+    private JButton searchByEntryButton;
+    private JButton searchByDateButton;
 
     public SearchEntryPanel() {
         entryDefinitionPanel = new EntryDefinitionPanel();
+        searchByEntryButton = new JButton("Search Entry");
+        searchByDateButton = new JButton("Search By Date");
 
-        setLayout(new BorderLayout());
-        add(entryDefinitionPanel, BorderLayout.CENTER);
+        setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+
+        c.gridx = 0;
+        c.gridy = 0;
+        c.gridwidth = 2;
+        c.weightx = 1.0;
+        c.weighty = 1.0;
+        add(entryDefinitionPanel, c);
+
+        c.gridx = 0;
+        c.gridy = 1;
+        c.gridwidth = 1;
+        c.weightx = 1.0;
+        c.weighty = 0.01;
+        add(searchByEntryButton, c);
+
+        c.gridx = 1;
+        c.gridy = 1;
+        c.gridwidth = 1;
+        c.weightx = 1.0;
+        c.weighty = 0.01;
+        add(searchByDateButton, c);
     }
 }
