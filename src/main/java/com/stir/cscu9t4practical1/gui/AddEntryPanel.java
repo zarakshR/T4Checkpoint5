@@ -37,6 +37,7 @@ public class AddEntryPanel extends JPanel implements ActionListener {
         entryType.add(sprintEntrySelector);
 
         addButton = new JButton("Add");
+        addButton.addActionListener(this);
 
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         add(entryPanel);
@@ -47,21 +48,29 @@ public class AddEntryPanel extends JPanel implements ActionListener {
         add(addButton);
     }
 
+    // refer to EntryPanel.java for an explanation of why we have to manually keep track of the currently shown card
     @Override
     public void actionPerformed(ActionEvent e) {
         CardLayout cardLayout = (CardLayout) entryPanel.getLayout();
 
         if (e.getSource() == runEntrySelector) {
             cardLayout.show(entryPanel, "RUN");
+            entryPanel.setCurrentlyShowing("RUN");
         }
         if (e.getSource() == cycleEntrySelector) {
             cardLayout.show(entryPanel, "CYCLE");
+            entryPanel.setCurrentlyShowing("CYCLE");
         }
         if (e.getSource() == swimEntrySelector) {
             cardLayout.show(entryPanel, "SWIM");
+            entryPanel.setCurrentlyShowing("SWIM");
         }
         if (e.getSource() == sprintEntrySelector) {
             cardLayout.show(entryPanel, "SPRINT");
+            entryPanel.setCurrentlyShowing("SPRINT");
+        }
+        if (e.getSource() == addButton) {
+            System.out.println("entryPanel = " + entryPanel.emitEntry());
         }
     }
 }

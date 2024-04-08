@@ -15,14 +15,35 @@ public class EntryPanel extends JPanel {
     private final SwimTypePanel swimEntryPanel = new SwimTypePanel();
     private final SprintTypePanel sprintEntryPanel = new SprintTypePanel();
 
+    // CardLayout does not have an API for determining what the currently showing card is so we have to manually keep track of it
+    private String currentlyShowing;
+
     public EntryPanel() {
         setLayout(new CardLayout());
 
-        add(blankPanel, "BLANK");
+        // CardLayout shows the first added card by default, so this will show a blank panel until the user selects one.
+        // do not add a string key to the blank panel to ensure that it cannot be shown once the user has selected any entry panel
+        add(blankPanel);
         add(runEntryPanel, "RUN");
         add(cycleEntryPanel, "CYCLE");
         add(swimEntryPanel, "SWIM");
         add(sprintEntryPanel, "SPRINT");
+    }
+
+    public void setCurrentlyShowing(String currentlyShowing) {
+        this.currentlyShowing = currentlyShowing;
+    }
+
+    // this is really hacky, but we have no choice since CardLayout doesn't do this for us. hopefully failing early with an
+    //  exception will alert us early in case something goes wrong.
+    public Entry emitEntry() {
+        switch (currentlyShowing) {
+            case "RUN": return runEntryPanel.emitEntry();
+            case "CYCLE": return cycleEntryPanel.emitEntry();
+            case "SWIM": return swimEntryPanel.emitEntry();
+            case "SPRINT": return sprintEntryPanel.emitEntry();
+            default: throw new RuntimeException("Attempted to emit entry for unknown entry key: " + currentlyShowing);
+        }
     }
 
     // TODO: all the classes return dummy value for testing purposes. change them to parse from the date field
