@@ -6,6 +6,7 @@ import java.awt.*;
 // TODO: Write tests for this
 public class SearchEntryPanel extends JPanel {
 
+    // TODO: Remove this: our search panel won't need an EntryDefinitionPanel
     private EntryDefinitionPanel entryDefinitionPanel;
     private JButton searchByEntryButton;
     private JButton searchByDateButton;

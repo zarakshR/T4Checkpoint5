@@ -1,20 +1,41 @@
 package com.stir.cscu9t4practical1.gui;
 
 import javax.swing.*;
-import java.awt.*;
 
 // TODO: Write tests for this
 public class AddEntryPanel extends JPanel {
 
     private final EntryDefinitionPanel entryDefinitionPanel;
+
+    private final ButtonGroup entryType;
+    private final JRadioButton runEntryType;
+    private final JRadioButton cycleEntryType;
+    private final JRadioButton swimEntryType;
+    private final JRadioButton sprintEntryType;
+
     private final JButton addButton;
 
     public AddEntryPanel() {
         entryDefinitionPanel = new EntryDefinitionPanel();
+
+        entryType = new ButtonGroup();
+        runEntryType = new JRadioButton("Run");
+        cycleEntryType = new JRadioButton("Cycle");
+        swimEntryType = new JRadioButton("Swim");
+        sprintEntryType = new JRadioButton("Sprint");
+        entryType.add(runEntryType);
+        entryType.add(cycleEntryType);
+        entryType.add(swimEntryType);
+        entryType.add(sprintEntryType);
+
         addButton = new JButton("Add");
 
-        setLayout(new BorderLayout());
-        add(entryDefinitionPanel, BorderLayout.CENTER);
-        add(addButton, BorderLayout.SOUTH);
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        add(entryDefinitionPanel);
+        add(runEntryType);
+        add(cycleEntryType);
+        add(swimEntryType);
+        add(sprintEntryType);
+        add(addButton);
     }
 }
