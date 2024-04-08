@@ -25,7 +25,7 @@ public class TrainingRecord {
     public String lookupEntry(int day, int month, int year) {
         for (Entry entry : store) {
             if (entry.getYear() == year && entry.getMonth() == month && entry.getDay() == day) {
-                return entry.formattedEntry();
+                return entry.toString();
             }
         }
         return null;
@@ -36,7 +36,7 @@ public class TrainingRecord {
         StringBuilder sb = new StringBuilder();
         for (Entry entry : store) {
             if (entry.getYear() == year && entry.getMonth() == month && entry.getDay() == day) {
-                sb.append(entry.formattedEntry());
+                sb.append(entry.toString());
             }
         }
         String str = sb.toString();

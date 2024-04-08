@@ -23,14 +23,9 @@ public class CycleEntry extends Entry {
     }
 
     @Override
-    public String formattedEntry() {
+    public String toString() {
         return getName() + " cycled " + getDistance() + " km in " + formattedTime() + " " +
                 "on " + formattedDate() + " on " + getTerrain() + " at " + getTempo() + " tempo\n";
-    }
-
-    @Override
-    public String toString() {
-        return formattedEntry();
     }
 
     @Override

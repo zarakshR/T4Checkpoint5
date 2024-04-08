@@ -9,13 +9,8 @@ public class RunEntry extends Entry {
     }
 
     @Override
-    public String formattedEntry() {
+    public String toString() {
         return getName() + " ran " + getDistance() + " km in " + formattedTime() + " " +
                 "on " + formattedDate() + "\n";
-    }
-
-    @Override
-    public String toString() {
-        return formattedEntry();
     }
 }

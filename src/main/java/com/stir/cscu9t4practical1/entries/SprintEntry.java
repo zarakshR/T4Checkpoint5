@@ -23,13 +23,9 @@ public class SprintEntry extends Entry {
     }
 
     @Override
-    public String formattedEntry() {
-        return getName() + " sprinted " + getRepetitions() + " x " + getDistance() + "m in " + formattedTime() + " with " + getRecovery() + " minutes recovery on " + formattedDate() + "\n";
-    }
-
-    @Override
     public String toString() {
-        return formattedEntry();
+        return getName() + " sprinted " + getRepetitions() + " x " + getDistance() + "m in " + formattedTime() + " with "
+                + getRecovery() + " minutes recovery on " + formattedDate() + "\n";
     }
 
     @Override

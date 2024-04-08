@@ -56,8 +56,6 @@ public abstract class Entry {
         return getDay() + "/" + getMonth() + "/" + getYear();
     }
 
-    public abstract String formattedEntry();
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
