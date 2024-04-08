@@ -15,7 +15,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
     public MainFrame() {
         searchPanel = new SearchPanel();
-        recordsListPanel = new RecordsListPanel();
+        recordsListPanel = new RecordsListPanel(new DefaultComboBoxModel<String>(new String[] {"record", "list", "model"}));
         addEntryPanel = new AddEntryPanel();
         systemMessagesPanel = new SystemMessagesPanel();
 
