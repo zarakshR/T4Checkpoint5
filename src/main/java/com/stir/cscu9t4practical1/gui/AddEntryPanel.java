@@ -8,35 +8,27 @@ import java.awt.event.ActionListener;
 // TODO: Write tests for this
 public class AddEntryPanel extends JPanel implements ActionListener {
 
-    private final EntryPanel entryPanel;
+    private final EntryPanel entryPanel = new EntryPanel();
 
-    private final ButtonGroup entryType;
-    private final JRadioButton runEntrySelector;
-    private final JRadioButton cycleEntrySelector;
-    private final JRadioButton swimEntrySelector;
-    private final JRadioButton sprintEntrySelector;
+    private final JRadioButton runEntrySelector = new JRadioButton("Run");
+    private final JRadioButton cycleEntrySelector = new JRadioButton("Cycle");
+    private final JRadioButton swimEntrySelector = new JRadioButton("Swim");
+    private final JRadioButton sprintEntrySelector= new JRadioButton("Sprint");
 
-    private final JButton addButton;
+    private final JButton addButton = new JButton("Add Entry");
 
     public AddEntryPanel() {
-        entryPanel = new EntryPanel();
-
-        entryType = new ButtonGroup();
-        runEntrySelector = new JRadioButton("Run");
-        runEntrySelector.addActionListener(this);
-        cycleEntrySelector = new JRadioButton("Cycle");
-        cycleEntrySelector.addActionListener(this);
-        swimEntrySelector = new JRadioButton("Swim");
-        swimEntrySelector.addActionListener(this);
-        sprintEntrySelector = new JRadioButton("Sprint");
-        sprintEntrySelector.addActionListener(this);
-
+        ButtonGroup entryType = new ButtonGroup();
         entryType.add(runEntrySelector);
         entryType.add(cycleEntrySelector);
         entryType.add(swimEntrySelector);
         entryType.add(sprintEntrySelector);
 
-        addButton = new JButton("Add");
+        runEntrySelector.addActionListener(this);
+        cycleEntrySelector.addActionListener(this);
+        swimEntrySelector.addActionListener(this);
+        sprintEntrySelector.addActionListener(this);
+
         addButton.addActionListener(this);
 
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
