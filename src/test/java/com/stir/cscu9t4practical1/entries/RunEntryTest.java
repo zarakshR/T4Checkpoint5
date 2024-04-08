@@ -17,8 +17,8 @@ public class RunEntryTest {
 
 
     @Test
-    public void testGetEntry() {
+    public void testToString() {
         String expResult = "Alice ran 3.0 km in 0:16:7 on 1/2/2003\n";
-        assertEquals(expResult, instance.formattedEntry());
+        assertEquals(expResult, instance.toString());
     }
 }

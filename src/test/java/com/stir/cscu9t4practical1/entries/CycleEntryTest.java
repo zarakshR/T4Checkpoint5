@@ -47,10 +47,9 @@ public class CycleEntryTest {
      Test of getEntry method, of class CycleEntry.
      */
     @Test
-    public void testGetEntry() {
+    public void testToString() {
         String expResult = "Alice cycled 3.0 km in 0:16:7 on 1/2/2003 on asphalt at moderate tempo\n";
-        String result = instance.formattedEntry();
-        assertEquals(expResult, result);
+        assertEquals(expResult, instance.toString());
     }
 
 }

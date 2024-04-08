@@ -37,10 +37,9 @@ public class SwimEntryTest {
      Test of getEntry method, of class SwimEntry.
      */
     @Test
-    public void testGetEntry() {
-        System.out.println("getEntry");
+    public void testToString() {
         String expResult = "Alice swam 3.0 km outdoors in 0:16:7 on 1/2/2003\n";
-        assertEquals(expResult, outdoorSwimEntry.formattedEntry());
+        assertEquals(expResult, outdoorSwimEntry.toString());
     }
 
 }

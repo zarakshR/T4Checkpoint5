@@ -42,9 +42,9 @@ public class SprintEntryTest {
      Test of getEntry method, of class SprintEntry.
      */
     @Test
-    public void testGetEntry() {
+    public void testToString() {
         String expResult = "Alice sprinted 4 x 300.0m in 0:16:7 with 2 minutes recovery on 1/2/2003\n";
-        assertEquals(expResult, instance.formattedEntry());
+        assertEquals(expResult, instance.toString());
     }
 
 }
