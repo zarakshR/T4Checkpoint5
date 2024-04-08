@@ -6,7 +6,7 @@ public class SwimEntry extends Entry {
 
     private final LOCATION location;
 
-    public SwimEntry(String n, ZonedDateTime zonedDateTime, float dist, LOCATION location) {
+    public SwimEntry(String n, ZonedDateTime zonedDateTime, double dist, LOCATION location) {
         super(n, zonedDateTime, dist);
         this.location = location;
     }

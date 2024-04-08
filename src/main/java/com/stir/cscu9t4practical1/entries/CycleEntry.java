@@ -7,7 +7,7 @@ public class CycleEntry extends Entry {
     private final Terrain terrain;
     private final Tempo tempo;
 
-    public CycleEntry(String n, ZonedDateTime zonedDateTime, float dist, Terrain terrain,
+    public CycleEntry(String n, ZonedDateTime zonedDateTime, double dist, Terrain terrain,
                       Tempo tempo) {
         super(n, zonedDateTime, dist);
         this.terrain = terrain;

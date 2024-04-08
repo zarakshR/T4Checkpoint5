@@ -7,7 +7,7 @@ public class SprintEntry extends Entry {
     private final Integer repetitions;
     private final Integer recovery;
 
-    public SprintEntry(String n, ZonedDateTime zonedDateTime, float dist, Integer repetitions,
+    public SprintEntry(String n, ZonedDateTime zonedDateTime, double dist, Integer repetitions,
                        Integer recovery) {
         super(n, zonedDateTime, dist);
         this.repetitions = repetitions;
