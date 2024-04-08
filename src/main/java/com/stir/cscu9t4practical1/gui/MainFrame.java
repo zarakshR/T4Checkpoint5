@@ -33,7 +33,12 @@ public class MainFrame extends JFrame implements ActionListener {
         c.gridy = 0;
         c.weightx = 1.0;
         c.weighty = 1.0;
+        // the records panel cannot be extended vertically or it can misinterpret click events. if it is extended vertically
+        //  and the user clicks somewhere in the blank space below the last list entry, it registers as a click on the last list
+        //  entry. TODO: find a fix?
+        c.fill = GridBagConstraints.HORIZONTAL;
         add(recordsListPanel, c);
+        c.fill = GridBagConstraints.BOTH;
 
         c.gridx = 2;
         c.gridy = 0;
