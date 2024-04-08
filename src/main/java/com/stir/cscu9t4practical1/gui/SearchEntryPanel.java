@@ -7,12 +7,12 @@ import java.awt.*;
 public class SearchEntryPanel extends JPanel {
 
     // TODO: Remove this: our search panel won't need an EntryDefinitionPanel
-    private EntryDefinitionPanel entryDefinitionPanel;
+    private EntryPanel entryPanel;
     private JButton searchByEntryButton;
     private JButton searchByDateButton;
 
     public SearchEntryPanel() {
-        entryDefinitionPanel = new EntryDefinitionPanel();
+        entryPanel = new EntryPanel();
         searchByEntryButton = new JButton("Search Entry");
         searchByDateButton = new JButton("Search By Date");
 
@@ -25,7 +25,7 @@ public class SearchEntryPanel extends JPanel {
         c.gridwidth = 2;
         c.weightx = 1.0;
         c.weighty = 1.0;
-        add(entryDefinitionPanel, c);
+        add(entryPanel, c);
 
         c.gridx = 0;
         c.gridy = 1;

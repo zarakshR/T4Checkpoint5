@@ -5,7 +5,7 @@ import javax.swing.*;
 // TODO: Write tests for this
 public class AddEntryPanel extends JPanel {
 
-    private final EntryDefinitionPanel entryDefinitionPanel;
+    private final EntryPanel entryPanel;
 
     private final ButtonGroup entryType;
     private final JRadioButton runEntryType;
@@ -16,7 +16,7 @@ public class AddEntryPanel extends JPanel {
     private final JButton addButton;
 
     public AddEntryPanel() {
-        entryDefinitionPanel = new EntryDefinitionPanel();
+        entryPanel = new EntryPanel();
 
         entryType = new ButtonGroup();
         runEntryType = new JRadioButton("Run");
@@ -31,7 +31,7 @@ public class AddEntryPanel extends JPanel {
         addButton = new JButton("Add");
 
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        add(entryDefinitionPanel);
+        add(entryPanel);
         add(runEntryType);
         add(cycleEntryType);
         add(swimEntryType);

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 // TODO: Write tests for this
-public class EntryDefinitionPanel extends JPanel {
+public class EntryPanel extends JPanel {
 
     private final JPanel blankPanel = new JPanel();
     private final RunTypePanel runEntryPanel = new RunTypePanel();
@@ -12,7 +12,7 @@ public class EntryDefinitionPanel extends JPanel {
     private final SwimTypePanel swimEntryPanel = new SwimTypePanel();
     private final SprintTypePanel sprintEntryPanel = new SprintTypePanel();
 
-    public EntryDefinitionPanel() {
+    public EntryPanel() {
         setLayout(new CardLayout());
 
         add(blankPanel, "BLANK");
