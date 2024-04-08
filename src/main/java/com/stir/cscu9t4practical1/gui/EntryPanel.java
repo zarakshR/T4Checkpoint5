@@ -9,10 +9,10 @@ import java.time.ZonedDateTime;
 // TODO: Write tests for this
 final class EntryPanel extends JPanel {
 
-    private final RunTypePanel runEntryPanel = new RunTypePanel();
-    private final CycleTypePanel cycleEntryPanel = new CycleTypePanel();
-    private final SwimTypePanel swimEntryPanel = new SwimTypePanel();
-    private final SprintTypePanel sprintEntryPanel = new SprintTypePanel();
+    private final RunFieldsPanel runEntryPanel = new RunFieldsPanel();
+    private final CycleFieldsPanel cycleEntryPanel = new CycleFieldsPanel();
+    private final SwimFieldsPanel swimEntryPanel = new SwimFieldsPanel();
+    private final SprintFieldsPanel sprintEntryPanel = new SprintFieldsPanel();
 
     // CardLayout does not have an API for determining what the currently showing card is so we have to manually keep track of it
     private String currentlyShowing;
@@ -38,49 +38,33 @@ final class EntryPanel extends JPanel {
 
     // this is really hacky, but we have no choice since CardLayout doesn't do this for us. hopefully failing early with an
     //  exception will alert us early in case something goes wrong.
+    private EntryFieldsPanel getActivePanel() {
+        return switch (currentlyShowing) {
+            case "RUN" -> runEntryPanel;
+            case "CYCLE"-> cycleEntryPanel;
+            case "SWIM" -> swimEntryPanel;
+            case "SPRINT" -> sprintEntryPanel;
+            default -> throw new RuntimeException("Attempted to access entry panel for unknown entry key: " + currentlyShowing);
+        };
+    }
+
     public Entry emitEntry() {
-        switch (currentlyShowing) {
-            case "RUN":
-                return runEntryPanel.emitEntry();
-            case "CYCLE":
-                return cycleEntryPanel.emitEntry();
-            case "SWIM":
-                return swimEntryPanel.emitEntry();
-            case "SPRINT":
-                return sprintEntryPanel.emitEntry();
-            default:
-                throw new RuntimeException("Attempted to emit entry for unknown entry key: " + currentlyShowing);
-        }
+        return getActivePanel().emitEntry();
     }
 
     public void clearFields() {
-        switch (currentlyShowing) {
-            case "RUN":
-                runEntryPanel.clearFields();
-                break;
-            case "CYCLE":
-                cycleEntryPanel.clearFields();
-                break;
-            case "SWIM":
-                swimEntryPanel.clearFields();
-                break;
-            case "SPRINT":
-                sprintEntryPanel.clearFields();
-                break;
-            default:
-                throw new RuntimeException("Attempted to clear fields for unknown entry key: " + currentlyShowing);
-        }
+        getActivePanel().clearFields();
     }
 
     // TODO: all the classes return dummy value for testing purposes. change them to parse from the date field
     // TODO: add error checking with exceptions
-    private abstract static class EntryTypePanel extends JPanel {
+    private abstract static class EntryFieldsPanel extends JPanel {
 
         protected final LabelledTextPanel nameField;
         protected final LabelledTextPanel dateField;
         protected final LabelledTextPanel distanceField;
 
-        private EntryTypePanel() {
+        private EntryFieldsPanel() {
             setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
             this.nameField = new LabelledTextPanel("Name");
             this.dateField = new LabelledTextPanel("Date");
@@ -99,9 +83,9 @@ final class EntryPanel extends JPanel {
         }
     }
 
-    private static final class RunTypePanel extends EntryTypePanel {
+    private static final class RunFieldsPanel extends EntryFieldsPanel {
 
-        private RunTypePanel() {
+        private RunFieldsPanel() {
             super();
         }
 
@@ -115,12 +99,12 @@ final class EntryPanel extends JPanel {
         }
     }
 
-    private static final class CycleTypePanel extends EntryTypePanel {
+    private static final class CycleFieldsPanel extends EntryFieldsPanel {
 
         private final LabelledTextPanel terrainField;
         private final LabelledTextPanel tempoField;
 
-        private CycleTypePanel() {
+        private CycleFieldsPanel() {
             super();
             this.terrainField = new LabelledTextPanel("Terrain");
             this.tempoField = new LabelledTextPanel("Tempo");
@@ -147,11 +131,11 @@ final class EntryPanel extends JPanel {
         }
     }
 
-    private static final class SwimTypePanel extends EntryTypePanel {
+    private static final class SwimFieldsPanel extends EntryFieldsPanel {
 
         private final LabelledTextPanel locationField;
 
-        private SwimTypePanel() {
+        private SwimFieldsPanel() {
             super();
             this.locationField = new LabelledTextPanel("Location");
             add(locationField);
@@ -174,12 +158,12 @@ final class EntryPanel extends JPanel {
         }
     }
 
-    private static final class SprintTypePanel extends EntryTypePanel {
+    private static final class SprintFieldsPanel extends EntryFieldsPanel {
 
         private final LabelledTextPanel repetitionsField;
         private final LabelledTextPanel recoveryField;
 
-        private SprintTypePanel() {
+        private SprintFieldsPanel() {
             super();
             this.repetitionsField = new LabelledTextPanel("Terrain");
             this.recoveryField = new LabelledTextPanel("Tempo");
