@@ -1,5 +1,8 @@
 package com.stir.cscu9t4practical1.gui;
 
+import com.stir.cscu9t4practical1.entries.Entry;
+import com.stir.cscu9t4practical1.entries.TrainingRecord;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,10 +16,10 @@ public class MainFrame extends JFrame implements ActionListener {
     private final AddEntryPanel addEntryPanel;
     private final SystemMessagesPanel systemMessagesPanel;
 
-    public MainFrame() {
-        searchPanel = new SearchPanel();
-        recordsListPanel = new RecordsListPanel(new DefaultComboBoxModel<String>(new String[] {"record", "list", "model"}));
+    public MainFrame(TrainingRecord trainingRecord) {
+        recordsListPanel = new RecordsListPanel(new DefaultComboBoxModel<Entry>(trainingRecord.getEntries()));
         addEntryPanel = new AddEntryPanel();
+        searchPanel = new SearchPanel();
         systemMessagesPanel = new SystemMessagesPanel();
 
         setLayout(new GridBagLayout());

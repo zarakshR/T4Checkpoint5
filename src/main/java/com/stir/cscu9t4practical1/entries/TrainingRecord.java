@@ -1,10 +1,9 @@
 package com.stir.cscu9t4practical1.entries;
 
 
-import com.stir.cscu9t4practical1.entries.Entry;
-
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
 
 
 public class TrainingRecord {
@@ -53,4 +52,7 @@ public class TrainingRecord {
         store.clear();
     }
 
+    public Vector<Entry> getEntries() {
+        return new Vector<Entry>(store);
+    }
 }

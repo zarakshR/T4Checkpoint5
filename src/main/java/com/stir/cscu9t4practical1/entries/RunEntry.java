@@ -13,4 +13,9 @@ public class RunEntry extends Entry {
         return getName() + " ran " + getDistance() + " km in " + formattedTime() + " " +
                 "on " + formattedDate() + "\n";
     }
+
+    @Override
+    public String toString() {
+        return formattedEntry();
+    }
 }

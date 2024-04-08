@@ -28,6 +28,11 @@ public class SprintEntry extends Entry {
     }
 
     @Override
+    public String toString() {
+        return formattedEntry();
+    }
+
+    @Override
     public boolean equals(Object o) {
         return super.equals(o);
     }
