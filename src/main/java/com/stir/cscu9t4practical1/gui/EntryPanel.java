@@ -22,16 +22,6 @@ public class EntryPanel extends JPanel {
         add(sprintEntryPanel, "SPRINT");
     }
 
-    private final static class LabelledTextPanel extends JPanel {
-
-        private final JTextField textField = new JTextField(30);
-
-        public LabelledTextPanel(String labelText) {
-            add(new JLabel(labelText));
-            add(textField);
-        }
-    }
-
     private abstract static class EntryTypePanel extends JPanel {
 
         protected final LabelledTextPanel nameField;
