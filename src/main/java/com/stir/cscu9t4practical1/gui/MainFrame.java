@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 public final class MainFrame extends JFrame implements ActionListener {
 
     private final DefaultComboBoxModel<Entry> recordsModel;
+    private final SystemMessagesPanel systemMessagesPanel;
 
     // MainFrame acts as the controller + model combined. It is passed to the child panels so they don't have to concern
     //  themselves with the data representation
@@ -21,10 +22,10 @@ public final class MainFrame extends JFrame implements ActionListener {
     public MainFrame(final TrainingRecord trainingRecord) {
         recordsModel = new DefaultComboBoxModel<Entry>(trainingRecord.getEntries());
 
-        RecordsListPanel recordsListPanel = new RecordsListPanel(recordsModel);
+        RecordsListPanel recordsListPanel = new RecordsListPanel(this, recordsModel);
         AddEntryPanel addEntryPanel = new AddEntryPanel(this);
         SearchPanel searchPanel = new SearchPanel();
-        SystemMessagesPanel systemMessagesPanel = new SystemMessagesPanel();
+        systemMessagesPanel = new SystemMessagesPanel();
 
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -66,6 +67,10 @@ public final class MainFrame extends JFrame implements ActionListener {
 
     void addEntry(Entry e) {
         recordsModel.addElement(e);
+    }
+
+    void log(String s) {
+        systemMessagesPanel.println(s);
     }
 
     @Override
