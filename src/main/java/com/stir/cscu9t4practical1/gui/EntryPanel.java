@@ -1,7 +1,10 @@
 package com.stir.cscu9t4practical1.gui;
 
+import com.stir.cscu9t4practical1.entries.*;
+
 import javax.swing.*;
 import java.awt.*;
+import java.time.ZonedDateTime;
 
 // TODO: Write tests for this
 public class EntryPanel extends JPanel {
@@ -22,6 +25,8 @@ public class EntryPanel extends JPanel {
         add(sprintEntryPanel, "SPRINT");
     }
 
+    // TODO: all the classes return dummy value for testing purposes. change them to parse from the date field
+    // TODO: add error checking with exceptions
     private abstract static class EntryTypePanel extends JPanel {
 
         protected final LabelledTextPanel nameField;
@@ -37,12 +42,23 @@ public class EntryPanel extends JPanel {
             add(dateField);
             add(distanceField);
         }
+
+        abstract Entry emitEntry();
     }
 
     private final static class RunTypePanel extends EntryTypePanel {
 
         private RunTypePanel() {
             super();
+        }
+
+        @Override
+        Entry emitEntry() {
+            return new RunEntry(
+                    nameField.getTextField().getText(),
+                    ZonedDateTime.now(),
+                    Double.parseDouble(distanceField.getTextField().getText())
+            );
         }
     }
 
@@ -58,6 +74,17 @@ public class EntryPanel extends JPanel {
             add(terrainField);
             add(tempoField);
         }
+
+        @Override
+        Entry emitEntry() {
+            return new CycleEntry(
+                    nameField.getTextField().getText(),
+                    ZonedDateTime.now(),
+                    Double.parseDouble(distanceField.getTextField().getText()),
+                    CycleEntry.Terrain.ASPHALT,
+                    CycleEntry.Tempo.MODERATE
+            );
+        }
     }
 
     private final static class SwimTypePanel extends EntryTypePanel {
@@ -68,6 +95,16 @@ public class EntryPanel extends JPanel {
             super();
             this.locationField = new LabelledTextPanel("Location");
             add(locationField);
+        }
+
+        @Override
+        Entry emitEntry() {
+            return new SwimEntry(
+                    nameField.getTextField().getText(),
+                    ZonedDateTime.now(),
+                    Double.parseDouble(distanceField.getTextField().getText()),
+                    SwimEntry.LOCATION.OUTDOORS
+            );
         }
     }
 
@@ -82,6 +119,17 @@ public class EntryPanel extends JPanel {
             this.recoveryField = new LabelledTextPanel("Tempo");
             add(repetitionsField);
             add(recoveryField);
+        }
+
+        @Override
+        Entry emitEntry() {
+            return new SprintEntry(
+                    nameField.getTextField().getText(),
+                    ZonedDateTime.now(),
+                    Double.parseDouble(distanceField.getTextField().getText()),
+                    Integer.parseInt(repetitionsField.getTextField().getText()),
+                    Integer.parseInt(recoveryField.getTextField().getText())
+            );
         }
     }
 }

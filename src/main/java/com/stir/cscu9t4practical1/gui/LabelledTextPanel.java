@@ -10,4 +10,8 @@ final class LabelledTextPanel extends JPanel {
         add(new JLabel(labelText));
         add(textField);
     }
+
+    public JTextField getTextField() {
+        return textField;
+    }
 }
