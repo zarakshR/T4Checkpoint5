@@ -3,11 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.stir.cscu9t4practical1;
+package com.stir.cscu9t4practical1.entries;
 
-import com.stir.cscu9t4practical1.entries.Entry;
-import com.stir.cscu9t4practical1.entries.RunEntry;
-import com.stir.cscu9t4practical1.entries.TrainingRecord;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
