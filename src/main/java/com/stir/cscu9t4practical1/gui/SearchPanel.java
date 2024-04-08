@@ -6,39 +6,57 @@ import java.awt.*;
 // TODO: Write tests for this
 public class SearchPanel extends JPanel {
 
-    // TODO: Remove this: our search panel won't need an EntryDefinitionPanel
-    private EntryPanel entryPanel;
-    private JButton searchByEntryButton;
-    private JButton searchByDateButton;
+    private final NameSearchPanel nameSearchPanel = new NameSearchPanel();
+    private final DateSearchPanel dateSearchPanel = new DateSearchPanel();
 
     public SearchPanel() {
-        entryPanel = new EntryPanel();
-        searchByEntryButton = new JButton("Search Entry");
-        searchByDateButton = new JButton("Search By Date");
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        add(nameSearchPanel);
+        add(dateSearchPanel);
+    }
 
-        setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.BOTH;
+    // We need these two to be separate panels, otherwise the layout looks horrible
+    private static final class NameSearchPanel extends JPanel {
+        private final LabelledTextPanel nameField = new LabelledTextPanel("Name");
+        private final JButton searchByNameButton = new JButton("Search By Name");
+        private final JButton weeklyDistanceButton = new JButton("Calculate Weekly Distance");
 
-        c.gridx = 0;
-        c.gridy = 0;
-        c.gridwidth = 2;
-        c.weightx = 1.0;
-        c.weighty = 1.0;
-        add(entryPanel, c);
+        public NameSearchPanel() {
+            setLayout(new GridBagLayout());
+            GridBagConstraints c = new GridBagConstraints();
 
-        c.gridx = 0;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.weightx = 1.0;
-        c.weighty = 0.01;
-        add(searchByEntryButton, c);
+            c.gridx = 0;
+            c.gridy = 0;
+            c.gridwidth = 2;
+            add(nameField, c);
 
-        c.gridx = 1;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.weightx = 1.0;
-        c.weighty = 0.01;
-        add(searchByDateButton, c);
+            c.gridx = 0;
+            c.gridy = 1;
+            c.gridwidth = 1;
+            add(searchByNameButton, c);
+
+            c.gridx = 1;
+            c.gridy = 1;
+            c.gridwidth = 1;
+            add(weeklyDistanceButton, c);
+        }
+    }
+
+    private static final class DateSearchPanel extends JPanel {
+        private final LabelledTextPanel dateField = new LabelledTextPanel("Date");
+        private final JButton searchByDateButton = new JButton("Search By Date");
+
+        private DateSearchPanel() {
+            setLayout(new GridBagLayout());
+            GridBagConstraints c = new GridBagConstraints();
+
+            c.gridx = 0;
+            c.gridy = 0;
+            add(dateField, c);
+
+            c.gridx = 0;
+            c.gridy = 1;
+            add(searchByDateButton, c);
+        }
     }
 }
