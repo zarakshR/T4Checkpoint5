@@ -28,13 +28,10 @@ public final class SwimEntry extends Entry {
         // these are what the tests expect
         @Override
         public String toString() {
-            if (this.equals(OUTDOORS)) {
-                return "outdoors";
-            } else if (this.equals(POOL)) {
-                return "in a pool";
-            } else {
-                return super.toString();
-            }
+            return switch (this) {
+                case OUTDOORS -> "outdoors";
+                case POOL -> "in a pool";
+            };
         }
     }
 }

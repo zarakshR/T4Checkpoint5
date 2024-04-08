@@ -11,6 +11,7 @@ import java.time.ZonedDateTime;
 import java.util.TimeZone;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  @author saemundur */
@@ -86,4 +87,14 @@ public class EntryTest {
         assertEquals(3.0, instance.getDistance(), 0.0);
     }
 
+    @Test
+    public void testEquality() {
+        assertTrue(instance.equals(instance));
+    }
+
+    @Test
+    public void testNameAndDateEquality() {
+        RunEntry instance2 = new RunEntry("Alice", zonedDateTime, 10);
+        assertEquals(instance, instance2);
+    }
 }

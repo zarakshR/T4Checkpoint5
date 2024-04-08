@@ -13,13 +13,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.TimeZone;
+import java.util.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  @author saemundur */
-public class TrainingRecordAppTest {
+public class TrainingRecordTest {
 
     // use a fixed time zone for tests
     final static TimeZone tz = TimeZone.getTimeZone("GMT");
@@ -104,4 +106,15 @@ public class TrainingRecordAppTest {
         assertEquals(expectResults, resultSuccess);
     }
 
+    @Test
+    public void testGetEntries() {
+        instance.addEntry(alice);
+        instance.addEntry(bob);
+        instance.addEntry(claire1);
+        instance.addEntry(claire2);
+        Vector<Entry> expected = new Vector<Entry>(List.of(alice, bob, claire1, claire2));
+        assertTrue(instance.getEntries().containsAll(expected));
+        expected.removeAll(instance.getEntries());
+        assertEquals(new Vector<Entry>(), expected);
+    }
 }
