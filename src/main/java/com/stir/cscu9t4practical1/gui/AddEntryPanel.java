@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 // TODO: Write tests for this
 public class AddEntryPanel extends JPanel implements ActionListener {
 
+    private final MainFrame mainFrame;
+
     private final EntryPanel entryPanel = new EntryPanel();
 
     private final JRadioButton runEntrySelector = new JRadioButton("Run");
@@ -17,7 +19,9 @@ public class AddEntryPanel extends JPanel implements ActionListener {
 
     private final JButton addButton = new JButton("Add Entry");
 
-    public AddEntryPanel() {
+    public AddEntryPanel(MainFrame parentFrame) {
+        mainFrame = parentFrame;
+
         ButtonGroup entryType = new ButtonGroup();
         entryType.add(runEntrySelector);
         entryType.add(cycleEntrySelector);
@@ -62,7 +66,7 @@ public class AddEntryPanel extends JPanel implements ActionListener {
             entryPanel.setCurrentlyShowing("SPRINT");
         }
         if (e.getSource() == addButton) {
-            System.out.println("entryPanel = " + entryPanel.emitEntry());
+            mainFrame.addEntry(entryPanel.emitEntry());
         }
     }
 }

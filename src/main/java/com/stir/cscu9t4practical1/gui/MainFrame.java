@@ -15,10 +15,15 @@ public class MainFrame extends JFrame implements ActionListener {
     private final RecordsListPanel recordsListPanel;
     private final AddEntryPanel addEntryPanel;
     private final SystemMessagesPanel systemMessagesPanel;
+    private final DefaultComboBoxModel<Entry> recordsModel;
 
+    // MainFrame acts as the controller + model combined. It is passed to the child panels so they don't have to concern
+    //  themselves with the data representation
     public MainFrame(TrainingRecord trainingRecord) {
-        recordsListPanel = new RecordsListPanel(new DefaultComboBoxModel<Entry>(trainingRecord.getEntries()));
-        addEntryPanel = new AddEntryPanel();
+        recordsModel = new DefaultComboBoxModel<Entry>(trainingRecord.getEntries());
+
+        recordsListPanel = new RecordsListPanel(recordsModel);
+        addEntryPanel = new AddEntryPanel(this);
         searchPanel = new SearchPanel();
         systemMessagesPanel = new SystemMessagesPanel();
 
@@ -50,6 +55,10 @@ public class MainFrame extends JFrame implements ActionListener {
         add(systemMessagesPanel, c);
 
         pack();
+    }
+
+    protected void addEntry(Entry e) {
+        recordsModel.addElement(e);
     }
 
     @Override
