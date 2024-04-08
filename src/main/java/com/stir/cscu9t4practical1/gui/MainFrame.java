@@ -9,23 +9,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 // TODO: Write tests for this
-public class MainFrame extends JFrame implements ActionListener {
+public final class MainFrame extends JFrame implements ActionListener {
 
-    private final SearchPanel searchPanel;
-    private final RecordsListPanel recordsListPanel;
-    private final AddEntryPanel addEntryPanel;
-    private final SystemMessagesPanel systemMessagesPanel;
     private final DefaultComboBoxModel<Entry> recordsModel;
 
     // MainFrame acts as the controller + model combined. It is passed to the child panels so they don't have to concern
     //  themselves with the data representation
-    public MainFrame(TrainingRecord trainingRecord) {
+    // This has the drawback that the child panels now depend on MainFrame, ideally this would be fixed by defining an
+    //  controller interface that MainFrame implements and which the subpanels depend on, but this project is already overkill
+    //  for a checkpoint
+    public MainFrame(final TrainingRecord trainingRecord) {
         recordsModel = new DefaultComboBoxModel<Entry>(trainingRecord.getEntries());
 
-        recordsListPanel = new RecordsListPanel(recordsModel);
-        addEntryPanel = new AddEntryPanel(this);
-        searchPanel = new SearchPanel();
-        systemMessagesPanel = new SystemMessagesPanel();
+        RecordsListPanel recordsListPanel = new RecordsListPanel(recordsModel);
+        AddEntryPanel addEntryPanel = new AddEntryPanel(this);
+        SearchPanel searchPanel = new SearchPanel();
+        SystemMessagesPanel systemMessagesPanel = new SystemMessagesPanel();
 
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -65,7 +64,7 @@ public class MainFrame extends JFrame implements ActionListener {
         pack();
     }
 
-    protected void addEntry(Entry e) {
+    void addEntry(Entry e) {
         recordsModel.addElement(e);
     }
 

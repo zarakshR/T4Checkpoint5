@@ -10,7 +10,7 @@ public abstract class Entry {
     private final ZonedDateTime dateAndTime;
     private final double distance;
 
-    public Entry(String n, ZonedDateTime zonedDateTime, double dist) {
+    public Entry(final String n, final ZonedDateTime zonedDateTime, final double dist) {
         name = n;
         dateAndTime = zonedDateTime;
         distance = dist;
@@ -48,11 +48,11 @@ public abstract class Entry {
         return distance;
     }
 
-    protected String formattedTime() {
+    protected String getFormattedTime() {
         return getHour() + ":" + getMin() + ":" + getSec();
     }
 
-    protected String formattedDate() {
+    protected String getFormattedDate() {
         return getDay() + "/" + getMonth() + "/" + getYear();
     }
 

@@ -2,13 +2,13 @@ package com.stir.cscu9t4practical1.entries;
 
 import java.time.ZonedDateTime;
 
-public class CycleEntry extends Entry {
+public final class CycleEntry extends Entry {
 
     private final Terrain terrain;
     private final Tempo tempo;
 
-    public CycleEntry(String n, ZonedDateTime zonedDateTime, double dist, Terrain terrain,
-                      Tempo tempo) {
+    public CycleEntry(final String n, final ZonedDateTime zonedDateTime, final double dist, final Terrain terrain,
+                      final Tempo tempo) {
         super(n, zonedDateTime, dist);
         this.terrain = terrain;
         this.tempo = tempo;
@@ -24,18 +24,8 @@ public class CycleEntry extends Entry {
 
     @Override
     public String toString() {
-        return getName() + " cycled " + getDistance() + " km in " + formattedTime() + " " +
-                "on " + formattedDate() + " on " + getTerrain() + " at " + getTempo() + " tempo\n";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
+        return getName() + " cycled " + getDistance() + " km in " + getFormattedTime() + " "
+                + "on " + getFormattedDate() + " on " + getTerrain() + " at " + getTempo() + " tempo\n";
     }
 
     public enum Terrain {

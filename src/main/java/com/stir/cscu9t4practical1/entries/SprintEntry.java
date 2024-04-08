@@ -2,13 +2,13 @@ package com.stir.cscu9t4practical1.entries;
 
 import java.time.ZonedDateTime;
 
-public class SprintEntry extends Entry {
+public final class SprintEntry extends Entry {
 
     private final Integer repetitions;
     private final Integer recovery;
 
-    public SprintEntry(String n, ZonedDateTime zonedDateTime, double dist, Integer repetitions,
-                       Integer recovery) {
+    public SprintEntry(final String n, final ZonedDateTime zonedDateTime, final double dist, final Integer repetitions,
+                       final Integer recovery) {
         super(n, zonedDateTime, dist);
         this.repetitions = repetitions;
         this.recovery = recovery;
@@ -24,17 +24,7 @@ public class SprintEntry extends Entry {
 
     @Override
     public String toString() {
-        return getName() + " sprinted " + getRepetitions() + " x " + getDistance() + "m in " + formattedTime() + " with "
-                + getRecovery() + " minutes recovery on " + formattedDate() + "\n";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
+        return getName() + " sprinted " + getRepetitions() + " x " + getDistance() + "m in " + getFormattedTime() + " with "
+                + getRecovery() + " minutes recovery on " + getFormattedDate() + "\n";
     }
 }

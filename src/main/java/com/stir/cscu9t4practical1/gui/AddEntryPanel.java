@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 // TODO: Write tests for this
-public class AddEntryPanel extends JPanel implements ActionListener {
+final class AddEntryPanel extends JPanel implements ActionListener {
 
     private final MainFrame mainFrame;
 
@@ -19,7 +19,7 @@ public class AddEntryPanel extends JPanel implements ActionListener {
 
     private final JButton addButton = new JButton("Add Entry");
 
-    public AddEntryPanel(MainFrame parentFrame) {
+    public AddEntryPanel(final MainFrame parentFrame) {
         mainFrame = parentFrame;
 
         ButtonGroup entryType = new ButtonGroup();
@@ -46,7 +46,7 @@ public class AddEntryPanel extends JPanel implements ActionListener {
 
     // refer to EntryPanel.java for an explanation of why we have to manually keep track of the currently shown card
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(final ActionEvent e) {
         CardLayout cardLayout = (CardLayout) entryPanel.getLayout();
 
         if (e.getSource() == runEntrySelector) {

@@ -7,9 +7,8 @@ import java.awt.*;
 import java.time.ZonedDateTime;
 
 // TODO: Write tests for this
-public class EntryPanel extends JPanel {
+final class EntryPanel extends JPanel {
 
-    private final JPanel blankPanel = new JPanel();
     private final RunTypePanel runEntryPanel = new RunTypePanel();
     private final CycleTypePanel cycleEntryPanel = new CycleTypePanel();
     private final SwimTypePanel swimEntryPanel = new SwimTypePanel();
@@ -21,16 +20,19 @@ public class EntryPanel extends JPanel {
     public EntryPanel() {
         setLayout(new CardLayout());
 
+
         // CardLayout shows the first added card by default, so this will show a blank panel until the user selects one.
         // do not add a string key to the blank panel to ensure that it cannot be shown once the user has selected any entry panel
+        JPanel blankPanel = new JPanel();
         add(blankPanel);
+
         add(runEntryPanel, "RUN");
         add(cycleEntryPanel, "CYCLE");
         add(swimEntryPanel, "SWIM");
         add(sprintEntryPanel, "SPRINT");
     }
 
-    public void setCurrentlyShowing(String currentlyShowing) {
+    public void setCurrentlyShowing(final String currentlyShowing) {
         this.currentlyShowing = currentlyShowing;
     }
 
@@ -97,7 +99,7 @@ public class EntryPanel extends JPanel {
         }
     }
 
-    private final static class RunTypePanel extends EntryTypePanel {
+    private static final class RunTypePanel extends EntryTypePanel {
 
         private RunTypePanel() {
             super();
@@ -111,14 +113,9 @@ public class EntryPanel extends JPanel {
                     Double.parseDouble(distanceField.getTextField().getText())
             );
         }
-
-        @Override
-        void clearFields() {
-            super.clearFields();
-        }
     }
 
-    private final static class CycleTypePanel extends EntryTypePanel {
+    private static final class CycleTypePanel extends EntryTypePanel {
 
         private final LabelledTextPanel terrainField;
         private final LabelledTextPanel tempoField;
@@ -150,7 +147,7 @@ public class EntryPanel extends JPanel {
         }
     }
 
-    private final static class SwimTypePanel extends EntryTypePanel {
+    private static final class SwimTypePanel extends EntryTypePanel {
 
         private final LabelledTextPanel locationField;
 
@@ -177,7 +174,7 @@ public class EntryPanel extends JPanel {
         }
     }
 
-    private final static class SprintTypePanel extends EntryTypePanel {
+    private static final class SprintTypePanel extends EntryTypePanel {
 
         private final LabelledTextPanel repetitionsField;
         private final LabelledTextPanel recoveryField;

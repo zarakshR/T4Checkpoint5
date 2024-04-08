@@ -9,16 +9,16 @@ import java.time.ZonedDateTime;
 public class TrainingRecordApp {
 
     private static final TrainingRecord trainingRecord = new TrainingRecord();
-    private static MainFrame mainFrame;
 
     public static void main(String[] args) {
 
+        // dummy data while testing
         trainingRecord.addEntry(new RunEntry("Alice", ZonedDateTime.now(), 10.0));
         trainingRecord.addEntry(new RunEntry("Bob", ZonedDateTime.now(), 10.0));
         trainingRecord.addEntry(new RunEntry("Charlie", ZonedDateTime.now(), 10.0));
         trainingRecord.addEntry(new RunEntry("David", ZonedDateTime.now(), 10.0));
 
-        mainFrame = new MainFrame(trainingRecord);
+        MainFrame mainFrame = new MainFrame(trainingRecord);
         mainFrame.setVisible(true);
     }
 }

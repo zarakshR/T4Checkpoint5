@@ -93,10 +93,8 @@ public class TrainingRecordAppTest {
         String expectResultsNone = "Sorry couldn't find anything for this date";
         String expectResults = "Alice ran 3.0 km in 0:16:7 on 1/2/2003\n" +
                 "Bob ran 3.0 km in 0:14:15 on 1/2/2003\n";
-        Entry a = alice;
-        Entry b = bob;
-        instance.addEntry(a);
-        instance.addEntry(b);
+        instance.addEntry(alice);
+        instance.addEntry(bob);
         int d = 1;
         int m = 2;
         int y = 2003;

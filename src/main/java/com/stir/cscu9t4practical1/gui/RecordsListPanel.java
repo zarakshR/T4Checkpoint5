@@ -7,12 +7,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 // TODO: Write tests for this
-public class RecordsListPanel extends JList<Entry> {
+final class RecordsListPanel extends JList<Entry> {
 
     private final JPopupMenu menu = new JPopupMenu();
     private final JMenuItem deleteButton = new JMenuItem("Delete");
 
-    public RecordsListPanel(DefaultComboBoxModel<Entry> listModel) {
+    public RecordsListPanel(final DefaultComboBoxModel<Entry> listModel) {
         super(listModel);
 
         menu.add(deleteButton);

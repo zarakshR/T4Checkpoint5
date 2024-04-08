@@ -6,7 +6,7 @@ final class LabelledTextPanel extends JPanel {
 
     private final JTextField textField = new JTextField(30);
 
-    public LabelledTextPanel(String labelText) {
+    LabelledTextPanel(final String labelText) {
         add(new JLabel(labelText));
         add(textField);
     }

@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.Vector;
 
 
-public class TrainingRecord {
+public final class TrainingRecord {
 
     // Use a Set because the primary use of TrainingRecordApp will be lookups.
     private final Set<Entry> store;
@@ -16,13 +16,13 @@ public class TrainingRecord {
         this.store = new HashSet<Entry>();
     }
 
-    public void addEntry(Entry e) {
+    public void addEntry(final Entry e) {
         store.add(e);
     }
 
     // currently just looks up the first entry in a given day for compatibility with the GUI implementations
     @Deprecated
-    public String lookupEntry(int day, int month, int year) {
+    public String lookupEntry(final int day, final int month, final int year) {
         for (Entry entry : store) {
             if (entry.getYear() == year && entry.getMonth() == month && entry.getDay() == day) {
                 return entry.toString();
@@ -32,7 +32,7 @@ public class TrainingRecord {
     }
 
     @Deprecated
-    public String lookupEntries(int day, int month, int year) {
+    public String lookupEntries(final int day, final int month, final int year) {
         StringBuilder sb = new StringBuilder();
         for (Entry entry : store) {
             if (entry.getYear() == year && entry.getMonth() == month && entry.getDay() == day) {

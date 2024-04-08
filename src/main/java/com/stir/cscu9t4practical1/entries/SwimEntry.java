@@ -2,11 +2,11 @@ package com.stir.cscu9t4practical1.entries;
 
 import java.time.ZonedDateTime;
 
-public class SwimEntry extends Entry {
+public final class SwimEntry extends Entry {
 
     private final LOCATION location;
 
-    public SwimEntry(String n, ZonedDateTime zonedDateTime, double dist, LOCATION location) {
+    public SwimEntry(final String n, final ZonedDateTime zonedDateTime, final double dist, final LOCATION location) {
         super(n, zonedDateTime, dist);
         this.location = location;
     }
@@ -17,18 +17,8 @@ public class SwimEntry extends Entry {
 
     @Override
     public String toString() {
-        return getName() + " swam " + getDistance() + " km " + getLocation() + " in " + formattedTime() + " " +
-                "on " + formattedDate() + "\n";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
+        return getName() + " swam " + getDistance() + " km " + getLocation() + " in " + getFormattedTime() + " "
+                + "on " + getFormattedDate() + "\n";
     }
 
     public enum LOCATION {
