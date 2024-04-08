@@ -38,26 +38,29 @@ final class EntryPanel extends JPanel {
 
     // this is really hacky, but we have no choice since CardLayout doesn't do this for us. hopefully failing early with an
     //  exception will alert us early in case something goes wrong.
-    private EntryFieldsPanel getActivePanel() {
+    // NullPointerException can be thrown iff blank panel is still being shown
+    private EntryFieldsPanel getActivePanel() throws NullPointerException {
         return switch (currentlyShowing) {
             case "RUN" -> runEntryPanel;
-            case "CYCLE"-> cycleEntryPanel;
+            case "CYCLE" -> cycleEntryPanel;
             case "SWIM" -> swimEntryPanel;
             case "SPRINT" -> sprintEntryPanel;
             default -> throw new RuntimeException("Attempted to access entry panel for unknown entry key: " + currentlyShowing);
         };
     }
 
-    public Entry emitEntry() {
+    public Entry emitEntry() throws InvalidFieldsException, NullPointerException {
         return getActivePanel().emitEntry();
     }
 
-    public void clearFields() {
+    public void clearFields() throws NullPointerException {
         getActivePanel().clearFields();
     }
 
-    // TODO: all the classes return dummy value for testing purposes. change them to parse from the date field
-    // TODO: add error checking with exceptions
+    // TODO: all the classes return dummy ZonedDateTime value for testing purposes. change them to parse from the date field
+    // There is some ugly and repetitive (but robust) error handling code in the emitEntry implementations below. We could have
+    // had simpler code by just throwing the exceptions upward and letting AddEntryPanel handle it, but we get much nicer error
+    //  messages this way
     private abstract static class EntryFieldsPanel extends JPanel {
 
         protected final LabelledTextPanel nameField;
@@ -74,9 +77,9 @@ final class EntryPanel extends JPanel {
             add(distanceField);
         }
 
-        abstract Entry emitEntry();
+        abstract Entry emitEntry() throws InvalidFieldsException;
 
-        void clearFields() {
+        void clearFields() throws NullPointerException {
             this.nameField.getTextField().setText(null);
             this.dateField.getTextField().setText(null);
             this.distanceField.getTextField().setText(null);
@@ -90,12 +93,32 @@ final class EntryPanel extends JPanel {
         }
 
         @Override
-        Entry emitEntry() {
-            return new RunEntry(
-                    nameField.getTextField().getText(),
-                    ZonedDateTime.now(),
-                    Double.parseDouble(distanceField.getTextField().getText())
-            );
+        Entry emitEntry() throws InvalidFieldsException {
+            String name = nameField.getTextField().getText();
+            String dateTimeText = dateField.getTextField().getText();
+            ZonedDateTime dateTime;
+            String distanceText = distanceField.getTextField().getText();
+            double distance;
+
+            if (name.isEmpty()) {
+                throw new InvalidFieldsException("Name", name);
+            }
+
+            // TODO: parse properly
+            dateTime = ZonedDateTime.now();
+
+            try {
+                distance = Double.parseDouble(distanceText);
+            } catch (NumberFormatException e) {
+                throw new InvalidFieldsException("Distance", distanceText);
+            }
+
+            return new RunEntry(name, dateTime, distance);
+        }
+
+        @Override
+        void clearFields() throws NullPointerException {
+            super.clearFields();
         }
     }
 
@@ -113,18 +136,31 @@ final class EntryPanel extends JPanel {
         }
 
         @Override
-        Entry emitEntry() {
-            return new CycleEntry(
-                    nameField.getTextField().getText(),
-                    ZonedDateTime.now(),
-                    Double.parseDouble(distanceField.getTextField().getText()),
-                    CycleEntry.Terrain.ASPHALT,
-                    CycleEntry.Tempo.MODERATE
-            );
+        Entry emitEntry() throws InvalidFieldsException {
+            String name = nameField.getTextField().getText();
+            String dateTimeText = dateField.getTextField().getText();
+            ZonedDateTime dateTime;
+            String distanceText = distanceField.getTextField().getText();
+            double distance;
+
+            if (name.isEmpty()) {
+                throw new InvalidFieldsException("Name", name);
+            }
+
+            // TODO: parse properly
+            dateTime = ZonedDateTime.now();
+
+            try {
+                distance = Double.parseDouble(distanceText);
+            } catch (NumberFormatException e) {
+                throw new InvalidFieldsException("Distance", distanceText);
+            }
+
+            return new CycleEntry(name, dateTime, distance, CycleEntry.Terrain.ASPHALT, CycleEntry.Tempo.MODERATE);
         }
 
         @Override
-        void clearFields() {
+        void clearFields() throws NullPointerException {
             super.clearFields();
             this.terrainField.getTextField().setText(null);
             this.tempoField.getTextField().setText(null);
@@ -142,17 +178,30 @@ final class EntryPanel extends JPanel {
         }
 
         @Override
-        Entry emitEntry() {
-            return new SwimEntry(
-                    nameField.getTextField().getText(),
-                    ZonedDateTime.now(),
-                    Double.parseDouble(distanceField.getTextField().getText()),
-                    SwimEntry.LOCATION.OUTDOORS
-            );
+        Entry emitEntry() throws InvalidFieldsException {
+            String name = nameField.getTextField().getText();
+            String dateTimeText = dateField.getTextField().getText();
+            ZonedDateTime dateTime;
+            String distanceText = distanceField.getTextField().getText();
+            double distance;
+
+            if (name.isEmpty()) {
+                throw new InvalidFieldsException("Name", name);
+            }
+
+            // TODO: parse properly
+            dateTime = ZonedDateTime.now();
+
+            try {
+                distance = Double.parseDouble(distanceText);
+                return new SwimEntry(name, dateTime, distance, SwimEntry.LOCATION.OUTDOORS);
+            } catch (NumberFormatException e) {
+                throw new InvalidFieldsException("Double", distanceText);
+            }
         }
 
         @Override
-        void clearFields() {
+        void clearFields() throws NullPointerException {
             super.clearFields();
             this.locationField.getTextField().setText(null);
         }
@@ -172,21 +221,71 @@ final class EntryPanel extends JPanel {
         }
 
         @Override
-        Entry emitEntry() {
-            return new SprintEntry(
-                    nameField.getTextField().getText(),
-                    ZonedDateTime.now(),
-                    Double.parseDouble(distanceField.getTextField().getText()),
-                    Integer.parseInt(repetitionsField.getTextField().getText()),
-                    Integer.parseInt(recoveryField.getTextField().getText())
-            );
+        Entry emitEntry() throws InvalidFieldsException {
+            String name;
+            String dateTimeText = dateField.getTextField().getText();
+            ZonedDateTime dateTime;
+            String distanceText = distanceField.getTextField().getText();
+            double distance;
+            String repetitionsText = repetitionsField.getTextField().getText();
+            int repetitions;
+            String recoveryText = recoveryField.getTextField().getText();
+            int recovery;
+
+            name = nameField.getTextField().getText();
+            if (name.isEmpty()) {
+                throw new InvalidFieldsException("Name", name);
+            }
+
+            // TODO: parse properly
+            dateTime = ZonedDateTime.now();
+
+            try {
+                distance = Double.parseDouble(distanceText);
+            } catch (NumberFormatException e) {
+                throw new InvalidFieldsException("Distance", distanceText);
+            }
+
+            try {
+                repetitions = Integer.parseInt(repetitionsText);
+            } catch (NumberFormatException e) {
+                throw new InvalidFieldsException("Repetitions", repetitionsText);
+            }
+
+            try {
+                recovery = Integer.parseInt(recoveryText);
+            } catch (NumberFormatException e) {
+                throw new InvalidFieldsException("Recovery", recoveryText);
+            }
+
+            return new SprintEntry(name, dateTime, distance, repetitions, recovery);
         }
 
         @Override
-        void clearFields() {
+        void clearFields() throws NullPointerException {
             super.clearFields();
             this.repetitionsField.getTextField().setText(null);
             this.recoveryField.getTextField().setText(null);
+        }
+    }
+
+    // An exception that indicates that the user has entered invalid values for a field.
+    static final class InvalidFieldsException extends Exception {
+
+        private final String fieldName;
+        private final String badValue;
+
+        public InvalidFieldsException(final String fieldName, final String badValue) {
+            this.fieldName = fieldName;
+            this.badValue = badValue;
+        }
+
+        public String getFieldName() {
+            return fieldName;
+        }
+
+        public String getBadValue() {
+            return badValue;
         }
     }
 }
