@@ -20,13 +20,28 @@ final class SearchPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == nameSearchPanel.searchByNameButton) {
-            System.out.println("name search = " + nameSearchPanel.nameField.getText());
+            try {
+                System.out.println("name search = " + nameSearchPanel.getValidatedName());
+            } catch (InvalidFieldsException ex) {
+                JOptionPane.showMessageDialog(this,
+                        "Invalid value: \"" + ex.getBadValue() + "\" in field " + ex.getFieldName());
+            }
         }
         if (e.getSource() == nameSearchPanel.weeklyDistanceButton) {
-            System.out.println("weekly distance = " + nameSearchPanel.nameField.getText());
+            try {
+                System.out.println("weekly distance = " + nameSearchPanel.getValidatedName());
+            } catch (InvalidFieldsException ex) {
+                JOptionPane.showMessageDialog(this,
+                        "Invalid value: \"" + ex.getBadValue() + "\" in field " + ex.getFieldName());
+            }
         }
         if (e.getSource() == dateSearchPanel.searchByDateButton) {
-            System.out.println("date search = " + dateSearchPanel.dateField.getText());
+            try {
+                System.out.println("date search = " + dateSearchPanel.dateEntryPanel.getDate());
+            } catch (InvalidFieldsException ex) {
+                JOptionPane.showMessageDialog(this,
+                        "Invalid value: \"" + ex.getBadValue() + "\" in field " + ex.getFieldName());
+            }
         }
     }
 
@@ -58,13 +73,20 @@ final class SearchPanel extends JPanel implements ActionListener {
             add(weeklyDistanceButton, c);
             weeklyDistanceButton.addActionListener(controller);
         }
+
+        public String getValidatedName() throws InvalidFieldsException {
+            String name = nameField.getText();
+            if (name.isEmpty()) {
+                throw new InvalidFieldsException("Name", name);
+            }
+
+            return name;
+        }
     }
 
     private static final class DateSearchPanel extends JPanel {
 
-        private final LabelledTextPanel yearField = new LabelledTextPanel("Year", 4);
-        private final LabelledTextPanel monthField = new LabelledTextPanel("Month", 2);
-        private final LabelledTextPanel dayField = new LabelledTextPanel("Day", 2);
+        private final DateEntryPanel dateEntryPanel = new DateEntryPanel();
         private final JButton searchByDateButton = new JButton("Search By Date");
 
         DateSearchPanel(ActionListener controller) {
@@ -73,15 +95,7 @@ final class SearchPanel extends JPanel implements ActionListener {
 
             c.gridx = 0;
             c.gridy = 0;
-            add(yearField, c);
-
-            c.gridx = 1;
-            c.gridy = 0;
-            add(monthField, c);
-
-            c.gridx = 2;
-            c.gridy = 0;
-            add(dayField, c);
+            add(dateEntryPanel, c);
 
             c.gridx = 0;
             c.gridy = 1;
