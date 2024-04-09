@@ -70,6 +70,7 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
 
     @Override
     public void addEntry(final Entry e) {
+        trainingRecord.addEntry(e);
         recordsModel.addElement(e);
     }
 
