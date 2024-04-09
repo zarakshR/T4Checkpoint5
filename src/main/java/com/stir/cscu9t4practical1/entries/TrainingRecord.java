@@ -22,32 +22,8 @@ public final class TrainingRecord {
         store.add(e);
     }
 
-    // currently just looks up the first entry in a given day for compatibility with the GUI implementations
-    @Deprecated
-    public String lookupEntry(final int day, final int month, final int year) {
-        for (Entry entry : store) {
-            if (entry.getYear() == year && entry.getMonth() == month && entry.getDay() == day) {
-                return entry.toString();
-            }
-        }
-        return null;
-    }
-
     public Collection<Entry> lookupEntriesByName(String name) {
         return store.stream().filter(e -> e.getName().equals(name)).toList();
-    }
-
-    @Deprecated
-    public String lookupEntries(final int day, final int month, final int year) {
-        StringBuilder sb = new StringBuilder();
-        for (Entry entry : store) {
-            if (entry.getYear() == year && entry.getMonth() == month && entry.getDay() == day) {
-                sb.append(entry);
-            }
-        }
-        String str = sb.toString();
-        // this is what the tests expect
-        return str.isEmpty() ? "Sorry couldn't find anything for this date" : str;
     }
 
     public Collection<Entry> lookupEntriesByDay(ZonedDateTime dateTime) {
