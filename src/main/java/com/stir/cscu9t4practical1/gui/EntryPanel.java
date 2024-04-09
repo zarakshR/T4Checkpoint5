@@ -4,7 +4,7 @@ import com.stir.cscu9t4practical1.entries.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 // TODO: Write tests for this
 final class EntryPanel extends JPanel {
@@ -96,7 +96,7 @@ final class EntryPanel extends JPanel {
         Entry emitEntry() throws InvalidFieldsException {
             String name = nameField.getTextField().getText();
             String dateTimeText = dateField.getTextField().getText();
-            ZonedDateTime dateTime;
+            LocalDateTime dateTime;
             String distanceText = distanceField.getTextField().getText();
             double distance;
 
@@ -105,7 +105,7 @@ final class EntryPanel extends JPanel {
             }
 
             // TODO: parse properly
-            dateTime = ZonedDateTime.now();
+            dateTime = LocalDateTime.now();
 
             try {
                 distance = Double.parseDouble(distanceText);
@@ -139,7 +139,7 @@ final class EntryPanel extends JPanel {
         Entry emitEntry() throws InvalidFieldsException {
             String name = nameField.getTextField().getText();
             String dateTimeText = dateField.getTextField().getText();
-            ZonedDateTime dateTime;
+            LocalDateTime dateTime;
             String distanceText = distanceField.getTextField().getText();
             double distance;
 
@@ -148,7 +148,7 @@ final class EntryPanel extends JPanel {
             }
 
             // TODO: parse properly
-            dateTime = ZonedDateTime.now();
+            dateTime = LocalDateTime.now();
 
             try {
                 distance = Double.parseDouble(distanceText);
@@ -181,7 +181,7 @@ final class EntryPanel extends JPanel {
         Entry emitEntry() throws InvalidFieldsException {
             String name = nameField.getTextField().getText();
             String dateTimeText = dateField.getTextField().getText();
-            ZonedDateTime dateTime;
+            LocalDateTime dateTime;
             String distanceText = distanceField.getTextField().getText();
             double distance;
 
@@ -190,7 +190,7 @@ final class EntryPanel extends JPanel {
             }
 
             // TODO: parse properly
-            dateTime = ZonedDateTime.now();
+            dateTime = LocalDateTime.now();
 
             try {
                 distance = Double.parseDouble(distanceText);
@@ -224,7 +224,7 @@ final class EntryPanel extends JPanel {
         Entry emitEntry() throws InvalidFieldsException {
             String name;
             String dateTimeText = dateField.getTextField().getText();
-            ZonedDateTime dateTime;
+            LocalDateTime dateTime;
             String distanceText = distanceField.getTextField().getText();
             double distance;
             String repetitionsText = repetitionsField.getTextField().getText();
@@ -238,7 +238,7 @@ final class EntryPanel extends JPanel {
             }
 
             // TODO: parse properly
-            dateTime = ZonedDateTime.now();
+            dateTime = LocalDateTime.now();
 
             try {
                 distance = Double.parseDouble(distanceText);

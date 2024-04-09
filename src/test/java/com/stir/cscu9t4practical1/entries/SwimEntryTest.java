@@ -7,8 +7,7 @@ package com.stir.cscu9t4practical1.entries;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.ZonedDateTime;
-import java.util.TimeZone;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,12 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  @author saemundur */
 public class SwimEntryTest {
 
-    // use a fixed time zone for tests
-    final static TimeZone tz = TimeZone.getTimeZone("GMT");
-    final static ZonedDateTime zonedDateTime = ZonedDateTime.of(
-            2003, 2, 1, 0, 16, 7, 0, TimeZone.getTimeZone("GMT").toZoneId());
-    final static SwimEntry outdoorSwimEntry = new SwimEntry("Alice", zonedDateTime, 3, SwimEntry.LOCATION.OUTDOORS);
-    final static SwimEntry poolSwimEntry = new SwimEntry("Alice", zonedDateTime, 3, SwimEntry.LOCATION.POOL);
+    final static LocalDateTime dateTime = LocalDateTime.of(
+            2003, 2, 1, 0, 16, 7, 0
+    );
+    final static SwimEntry outdoorSwimEntry = new SwimEntry("Alice", dateTime, 3, SwimEntry.LOCATION.OUTDOORS);
+    final static SwimEntry poolSwimEntry = new SwimEntry("Alice", dateTime, 3, SwimEntry.LOCATION.POOL);
 
     /**
      Test of getLocation method, of class SwimEntry
@@ -30,7 +28,7 @@ public class SwimEntryTest {
     public void testGetLocation() {
         assertEquals(SwimEntry.LOCATION.OUTDOORS, outdoorSwimEntry.getLocation());
 
-        SwimEntry poolSwimEntry = new SwimEntry("Alice", zonedDateTime, 3, SwimEntry.LOCATION.POOL);
+        SwimEntry poolSwimEntry = new SwimEntry("Alice", dateTime, 3, SwimEntry.LOCATION.POOL); // TODO
         assertEquals(SwimEntry.LOCATION.POOL, poolSwimEntry.getLocation());
     }
 

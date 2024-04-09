@@ -70,11 +70,11 @@ public abstract class Entry {
     }
 
     protected String getFormattedTime() {
-        return getHour() + ":" + getMin() + ":" + getSec();
+        return dateAndTime.getHour() + ":" + dateAndTime.getMinute() + ":" + dateAndTime.getSecond();
     }
 
     protected String getFormattedDate() {
-        return getDay() + "/" + getMonth() + "/" + getYear();
+        return dateAndTime.getDayOfMonth() + "/" + dateAndTime.getMonthValue() + "/" + dateAndTime.getYear();
     }
 
     @Override

@@ -7,8 +7,7 @@ package com.stir.cscu9t4practical1.entries;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.ZonedDateTime;
-import java.util.TimeZone;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,66 +16,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  @author saemundur */
 public class EntryTest {
 
-    // use a fixed time zone for tests
-    final static TimeZone tz = TimeZone.getTimeZone("GMT");
-    final static ZonedDateTime zonedDateTime = ZonedDateTime.of(
-            2003, 2, 1, 0, 16, 7, 0, TimeZone.getTimeZone("GMT").toZoneId());
-    final static RunEntry instance = new RunEntry("Alice", zonedDateTime, 3);
+    final static LocalDateTime dateTime = LocalDateTime.of(
+            2003, 2, 1, 0, 16, 7, 0
+    );
+    final static RunEntry instance = new RunEntry("Alice", dateTime, 3);
 
-    /**
-     Test of getName method, of class Entry.
-     */
     @Test
-    public void testGetName() {
-        assertEquals("Alice", instance.getName());
-    }
-
-    /**
-     Test of getDay method, of class Entry.
-     */
-    @Test
-    public void testGetDay() {
-        assertEquals(1, instance.getDay());
-    }
-
-    /**
-     Test of getMonth method, of class Entry.
-     */
-    @Test
-    public void testGetMonth() {
-        assertEquals(2, instance.getMonth());
-    }
-
-    /**
-     Test of getYear method, of class Entry.
-     */
-    @Test
-    public void testGetYear() {
-        assertEquals(2003, instance.getYear());
-    }
-
-    /**
-     Test of getHour method, of class Entry.
-     */
-    @Test
-    public void testGetHour() {
-        assertEquals(0, instance.getHour());
-    }
-
-    /**
-     Test of getMin method, of class Entry.
-     */
-    @Test
-    public void testGetMin() {
-        assertEquals(16, instance.getMin());
-    }
-
-    /**
-     Test of getSec method, of class Entry.
-     */
-    @Test
-    public void testGetSec() {
-        assertEquals(7, instance.getSec());
+    public void testGetDateTime() {
+        assertEquals(dateTime, instance.getLocalDateAndTime());
     }
 
     /**
@@ -94,7 +41,7 @@ public class EntryTest {
 
     @Test
     public void testNameAndDateEquality() {
-        RunEntry instance2 = new RunEntry("Alice", zonedDateTime, 10);
+        RunEntry instance2 = new RunEntry("Alice", dateTime, 10);
         assertEquals(instance, instance2);
     }
 }

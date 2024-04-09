@@ -9,10 +9,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
-import java.util.TimeZone;
 import java.util.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,22 +21,22 @@ import static org.junit.jupiter.api.Assertions.*;
  @author saemundur */
 public class TrainingRecordTest {
 
-    // use a fixed time zone for tests
-    final static TimeZone tz = TimeZone.getTimeZone("GMT");
-    final static ZonedDateTime aliceZonedDateTime = ZonedDateTime.of(
-            2003, 2, 1, 0, 16, 7, 0, tz.toZoneId());
-    final static RunEntry alice = new RunEntry("Alice", aliceZonedDateTime, 3);
-    final static ZonedDateTime bobZonedDateTime = ZonedDateTime.of(
-            2003, 2, 1, 0, 14, 15, 0, tz.toZoneId());
-    final static RunEntry bob = new RunEntry("Bob", bobZonedDateTime, 3);
-    final static ZonedDateTime claireZonedDateTime1 = ZonedDateTime.of(
-            2010, 3, 7, 0, 26, 20, 0, tz.toZoneId()
+    final static LocalDateTime aliceDateTime = LocalDateTime.of(
+            2003, 2, 1, 0, 16, 7, 0
     );
-    final static RunEntry claire1 = new RunEntry("Claire", claireZonedDateTime1, 7);
-    final static ZonedDateTime claireZonedDateTime2 = ZonedDateTime.of(
-            2010, 3, 11, 0, 24, 55, 0, tz.toZoneId()
+    final static RunEntry alice = new RunEntry("Alice", aliceDateTime, 3);
+    final static LocalDateTime bobDateTime = LocalDateTime.of(
+            2003, 2, 1, 0, 14, 15, 0
     );
-    final static RunEntry claire2 = new RunEntry("Claire", claireZonedDateTime2, 7);
+    final static RunEntry bob = new RunEntry("Bob", bobDateTime, 3);
+    final static LocalDateTime claireDateTime1 = LocalDateTime.of(
+            2010, 3, 7, 0, 26, 20, 0
+    );
+    final static RunEntry claire1 = new RunEntry("Claire", claireDateTime1, 7);
+    final static LocalDateTime claireDateTime2 = LocalDateTime.of(
+            2010, 3, 11, 0, 24, 55, 0
+    );
+    final static RunEntry claire2 = new RunEntry("Claire", claireDateTime2, 7);
 
     static TrainingRecord instance;
 
@@ -83,8 +83,8 @@ public class TrainingRecordTest {
         instance.addEntry(claire1);
         instance.addEntry(claire2);
         Vector<Entry> expected = new Vector<Entry>(List.of(alice, bob));
-        Collection<Entry> result = instance.lookupEntriesByDay(ZonedDateTime.of(
-                2003, 2, 1, 0, 0, 0, 0, tz.toZoneId()));
+        Collection<Entry> result = instance.lookupEntriesByDay(LocalDate.of(
+                2003, 2, 1));
         assertIterableEquals(expected, result);
     }
 

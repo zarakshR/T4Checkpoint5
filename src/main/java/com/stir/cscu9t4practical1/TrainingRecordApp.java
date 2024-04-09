@@ -4,7 +4,7 @@ import com.stir.cscu9t4practical1.entries.RunEntry;
 import com.stir.cscu9t4practical1.entries.TrainingRecord;
 import com.stir.cscu9t4practical1.gui.MainFrame;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 public class TrainingRecordApp {
 
@@ -13,10 +13,10 @@ public class TrainingRecordApp {
     public static void main(String[] args) {
 
         // dummy data while testing
-        trainingRecord.addEntry(new RunEntry("Alice", ZonedDateTime.now(), 10.0));
-        trainingRecord.addEntry(new RunEntry("Bob", ZonedDateTime.now(), 10.0));
-        trainingRecord.addEntry(new RunEntry("Charlie", ZonedDateTime.now(), 10.0));
-        trainingRecord.addEntry(new RunEntry("David", ZonedDateTime.now(), 10.0));
+        trainingRecord.addEntry(new RunEntry("Alice", LocalDateTime.now(), 10.0));
+        trainingRecord.addEntry(new RunEntry("Bob", LocalDateTime.now(), 10.0));
+        trainingRecord.addEntry(new RunEntry("Charlie", LocalDateTime.now(), 10.0));
+        trainingRecord.addEntry(new RunEntry("David", LocalDateTime.now(), 10.0));
 
         MainFrame mainFrame = new MainFrame(trainingRecord);
         mainFrame.setVisible(true);
