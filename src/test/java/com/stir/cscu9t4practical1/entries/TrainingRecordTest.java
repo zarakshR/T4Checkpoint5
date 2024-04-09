@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.time.ZonedDateTime;
+import java.util.Collection;
 import java.util.List;
 import java.util.TimeZone;
 import java.util.Vector;
@@ -63,17 +64,6 @@ public class TrainingRecordTest {
     }
 
     @Test
-    public void testLookupEntry() {
-        instance.addEntry(alice);
-        instance.addEntry(bob);
-        instance.addEntry(claire1);
-        instance.addEntry(claire2);
-
-        assertNotNull(instance.lookupEntry(7, 3, 2010));
-        assertNull(instance.lookupEntry(1, 2, 1999));
-    }
-
-    @Test
     public void testGetNumberOfEntries() {
         assertEquals(0, instance.getNumberOfEntries());
         instance.addEntry(alice);
@@ -86,21 +76,25 @@ public class TrainingRecordTest {
         assertEquals(4, instance.getNumberOfEntries());
     }
 
-
     @Test
-    public void testLookupEntries() {
-        String expectResultsNone = "Sorry couldn't find anything for this date";
-        String expectResults = "Alice ran 3.0 km in 0:16:7 on 1/2/2003\n" +
-                "Bob ran 3.0 km in 0:14:15 on 1/2/2003\n";
+    public void testLookupEntriesByDate() {
         instance.addEntry(alice);
         instance.addEntry(bob);
-        int d = 1;
-        int m = 2;
-        int y = 2003;
-        String resultSuccess = instance.lookupEntries(d, m, y);
-        String resultNone = instance.lookupEntries(d, m, 1999);
-        assertEquals(expectResultsNone, resultNone);
-        assertEquals(expectResults, resultSuccess);
+        instance.addEntry(claire1);
+        instance.addEntry(claire2);
+        Vector<Entry> expected = new Vector<Entry>(List.of(alice, bob));
+        Collection<Entry> result = instance.lookupEntriesByDay(ZonedDateTime.of(
+                2003, 2, 1, 0, 0, 0, 0, tz.toZoneId()));
+        assertIterableEquals(expected, result);
+    }
+
+    @Test
+    public void testLookupEntriesByName() {
+        instance.addEntry(claire1);
+        instance.addEntry(claire2);
+        Vector<Entry> expected = new Vector<Entry>(List.of(claire1, claire2));
+        Collection<Entry> result = instance.lookupEntriesByName(claire1.getName());
+        assertIterableEquals(expected, result);
     }
 
     @Test
