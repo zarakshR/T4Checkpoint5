@@ -62,7 +62,9 @@ final class SearchPanel extends JPanel implements ActionListener {
 
     private static final class DateSearchPanel extends JPanel {
 
-        private final LabelledTextPanel dateField = new LabelledTextPanel("Date", 30);
+        private final LabelledTextPanel yearField = new LabelledTextPanel("Year", 4);
+        private final LabelledTextPanel monthField = new LabelledTextPanel("Month", 2);
+        private final LabelledTextPanel dayField = new LabelledTextPanel("Day", 2);
         private final JButton searchByDateButton = new JButton("Search By Date");
 
         DateSearchPanel(ActionListener controller) {
@@ -71,10 +73,19 @@ final class SearchPanel extends JPanel implements ActionListener {
 
             c.gridx = 0;
             c.gridy = 0;
-            add(dateField, c);
+            add(yearField, c);
+
+            c.gridx = 1;
+            c.gridy = 0;
+            add(monthField, c);
+
+            c.gridx = 2;
+            c.gridy = 0;
+            add(dayField, c);
 
             c.gridx = 0;
             c.gridy = 1;
+            c.gridwidth = 3;
             add(searchByDateButton, c);
             searchByDateButton.addActionListener(controller);
         }
