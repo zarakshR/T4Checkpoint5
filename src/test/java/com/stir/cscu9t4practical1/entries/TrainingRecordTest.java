@@ -5,7 +5,6 @@
  */
 package com.stir.cscu9t4practical1.entries;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -66,11 +65,6 @@ public class TrainingRecordTest {
     @BeforeAll
     public static void setUp() {
         instance = new TrainingRecord();
-    }
-
-    @AfterEach
-    public void tearDown() {
-        instance.clearAllEntries();
     }
 
     @Test
