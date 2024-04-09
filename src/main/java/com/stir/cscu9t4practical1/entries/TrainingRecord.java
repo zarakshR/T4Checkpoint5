@@ -51,7 +51,11 @@ public final class TrainingRecord {
     }
 
     public Collection<Entry> lookupEntriesByDay(ZonedDateTime dateTime) {
-        return store.stream().filter(e -> e.getDateAndTime().equals(dateTime)).toList();
+        return store.stream().filter(e ->
+                (e.getDay() == dateTime.getDayOfMonth())
+                        && (e.getMonth() == dateTime.getMonthValue())
+                        && (e.getYear() == dateTime.getYear())
+        ).toList();
     }
 
     public int getNumberOfEntries() {
