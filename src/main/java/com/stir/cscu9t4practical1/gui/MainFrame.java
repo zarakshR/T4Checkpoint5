@@ -18,9 +18,6 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
 
     // MainFrame acts as the controller + model combined. It is passed to the child panels so they don't have to concern
     //  themselves with the data representation
-    // This has the drawback that the child panels now depend on MainFrame, ideally this would be fixed by defining an
-    //  controller interface that MainFrame implements and which the subpanels depend on, but this project is already overkill
-    //  for a checkpoint
     public MainFrame(final TrainingRecord initialTrainingRecord) {
         trainingRecord = initialTrainingRecord;
 
