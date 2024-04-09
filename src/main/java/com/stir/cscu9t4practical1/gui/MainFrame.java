@@ -79,6 +79,7 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
 
     @Override
     public void removeEntryAtIndex(int index) {
+        trainingRecord.removeEntry(recordsModel.getElementAt(index));
         recordsModel.removeElementAt(index);
     }
 
