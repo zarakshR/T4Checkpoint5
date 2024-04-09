@@ -82,9 +82,9 @@ final class EntryPanel extends JPanel {
         abstract Entry emitEntry() throws InvalidFieldsException;
 
         void clearFields() throws NullPointerException {
-            this.nameField.getTextField().setText(null);
-            this.dateField.getTextField().setText(null);
-            this.distanceField.getTextField().setText(null);
+            this.nameField.setText(null);
+            this.dateField.setText(null);
+            this.distanceField.setText(null);
         }
     }
 
@@ -96,10 +96,10 @@ final class EntryPanel extends JPanel {
 
         @Override
         Entry emitEntry() throws InvalidFieldsException {
-            String name = nameField.getTextField().getText();
-            String dateTimeText = dateField.getTextField().getText();
+            String name = nameField.getText();
+            String dateTimeText = dateField.getText();
             LocalDateTime dateTime;
-            String distanceText = distanceField.getTextField().getText();
+            String distanceText = distanceField.getText();
             double distance;
 
             if (name.isEmpty()) {
@@ -137,10 +137,10 @@ final class EntryPanel extends JPanel {
 
         @Override
         Entry emitEntry() throws InvalidFieldsException {
-            String name = nameField.getTextField().getText();
-            String dateTimeText = dateField.getTextField().getText();
+            String name = nameField.getText();
+            String dateTimeText = dateField.getText();
             LocalDateTime dateTime;
-            String distanceText = distanceField.getTextField().getText();
+            String distanceText = distanceField.getText();
             double distance;
 
             if (name.isEmpty()) {
@@ -178,10 +178,10 @@ final class EntryPanel extends JPanel {
 
         @Override
         Entry emitEntry() throws InvalidFieldsException {
-            String name = nameField.getTextField().getText();
-            String dateTimeText = dateField.getTextField().getText();
+            String name = nameField.getText();
+            String dateTimeText = dateField.getText();
             LocalDateTime dateTime;
-            String distanceText = distanceField.getTextField().getText();
+            String distanceText = distanceField.getText();
             double distance;
 
             if (name.isEmpty()) {
@@ -221,16 +221,16 @@ final class EntryPanel extends JPanel {
         @Override
         Entry emitEntry() throws InvalidFieldsException {
             String name;
-            String dateTimeText = dateField.getTextField().getText();
+            String dateTimeText = dateField.getText();
             LocalDateTime dateTime;
-            String distanceText = distanceField.getTextField().getText();
+            String distanceText = distanceField.getText();
             double distance;
-            String repetitionsText = repetitionsField.getTextField().getText();
+            String repetitionsText = repetitionsField.getText();
             int repetitions;
-            String recoveryText = recoveryField.getTextField().getText();
+            String recoveryText = recoveryField.getText();
             int recovery;
 
-            name = nameField.getTextField().getText();
+            name = nameField.getText();
             if (name.isEmpty()) {
                 throw new InvalidFieldsException("Name", name);
             }
@@ -262,8 +262,8 @@ final class EntryPanel extends JPanel {
         @Override
         void clearFields() throws NullPointerException {
             super.clearFields();
-            this.repetitionsField.getTextField().setText(null);
-            this.recoveryField.getTextField().setText(null);
+            this.repetitionsField.setText(null);
+            this.recoveryField.setText(null);
         }
     }
 

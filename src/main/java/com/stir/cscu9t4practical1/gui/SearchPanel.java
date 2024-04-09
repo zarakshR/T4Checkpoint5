@@ -20,13 +20,13 @@ final class SearchPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == nameSearchPanel.searchByNameButton) {
-            System.out.println("name search = " + nameSearchPanel.nameField.getTextField().getText());
+            System.out.println("name search = " + nameSearchPanel.nameField.getText());
         }
         if (e.getSource() == nameSearchPanel.weeklyDistanceButton) {
-            System.out.println("weekly distance = " + nameSearchPanel.nameField.getTextField().getText());
+            System.out.println("weekly distance = " + nameSearchPanel.nameField.getText());
         }
         if (e.getSource() == dateSearchPanel.searchByDateButton) {
-            System.out.println("date search = " + dateSearchPanel.dateField.getTextField().getText());
+            System.out.println("date search = " + dateSearchPanel.dateField.getText());
         }
     }
 

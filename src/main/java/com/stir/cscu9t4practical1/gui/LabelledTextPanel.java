@@ -11,7 +11,7 @@ final class LabelledTextPanel extends JPanel {
         add(textField);
     }
 
-    public JTextField getTextField() {
-        return textField;
-    }
+    public String getText() { return textField.getText(); }
+
+    public void setText(String s) { textField.setText(s); }
 }
