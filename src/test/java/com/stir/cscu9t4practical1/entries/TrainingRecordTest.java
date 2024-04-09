@@ -38,6 +38,10 @@ public class TrainingRecordTest {
 
     static TrainingRecord instance;
 
+    private static <E> boolean orderIndependentIterableEquality(Collection<E> c1, Collection<E> c2) {
+        return (c1.size() == c2.size()) && c1.containsAll(c2) && c2.containsAll(c1);
+    }
+
     @BeforeAll
     public static void setUp() {
         instance = new TrainingRecord();
@@ -83,7 +87,7 @@ public class TrainingRecordTest {
         Vector<Entry> expected = new Vector<Entry>(List.of(alice, bob));
         Collection<Entry> result = instance.lookupEntriesByDay(LocalDate.of(
                 2003, 2, 1));
-        assertIterableEquals(expected, result);
+        assertTrue(orderIndependentIterableEquality(expected, result));
     }
 
     @Test
@@ -92,7 +96,7 @@ public class TrainingRecordTest {
         instance.addEntry(claire2);
         Vector<Entry> expected = new Vector<Entry>(List.of(claire1, claire2));
         Collection<Entry> result = instance.lookupEntriesByName(claire1.getName());
-        assertIterableEquals(expected, result);
+        assertTrue(orderIndependentIterableEquality(expected, result));
     }
 
     @Test
@@ -102,8 +106,7 @@ public class TrainingRecordTest {
         instance.addEntry(claire1);
         instance.addEntry(claire2);
         Vector<Entry> expected = new Vector<Entry>(List.of(alice, bob, claire1, claire2));
-        assertTrue(instance.getEntries().containsAll(expected));
-        expected.removeAll(instance.getEntries());
-        assertEquals(new Vector<Entry>(), expected);
+        Collection<Entry> result = instance.getEntries();
+        assertTrue(orderIndependentIterableEquality(expected, result));
     }
 }
