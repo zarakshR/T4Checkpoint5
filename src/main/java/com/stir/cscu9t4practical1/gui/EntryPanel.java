@@ -125,10 +125,10 @@ final class EntryPanel extends JPanel {
         abstract Entry emitEntry() throws InvalidFieldsException;
 
         void clearFields() {
-            this.nameField.setText(null);
+            this.nameField.clearText();
             this.dateEntryPanel.clearFields();
             this.timeEntryPanel.clearFields();
-            this.distanceField.setText(null);
+            this.distanceField.clearText();
         }
     }
 
@@ -300,8 +300,8 @@ final class EntryPanel extends JPanel {
         @Override
         void clearFields() throws NullPointerException {
             super.clearFields();
-            this.repetitionsField.setText(null);
-            this.recoveryField.setText(null);
+            this.repetitionsField.clearText();
+            this.recoveryField.clearText();
         }
     }
 

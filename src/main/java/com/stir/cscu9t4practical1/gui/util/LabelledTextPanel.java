@@ -27,8 +27,7 @@ public final class LabelledTextPanel extends JPanel {
     public String getText() { return textField.getText(); }
 
     /**
-     Sets the text of the text field
-    @param s the string to set as the text field's contents
+     Clears all text in the text area
      */
-    public void setText(String s) { textField.setText(s); }
+    public void clearText() { textField.setText(null); }
 }

@@ -60,8 +60,8 @@ public final class DateEntryPanel extends JPanel {
      Clear the date entry fields
      */
     public void clearFields() {
-        yearField.setText(null);
-        monthField.setText(null);
-        dayField.setText(null);
+        yearField.clearText();
+        monthField.clearText();
+        dayField.clearText();
     }
 }

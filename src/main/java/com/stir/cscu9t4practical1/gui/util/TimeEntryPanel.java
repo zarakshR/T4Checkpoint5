@@ -57,8 +57,8 @@ public final class TimeEntryPanel extends JPanel {
     }
 
     public void clearFields() {
-        hourField.setText(null);
-        minuteField.setText(null);
-        secondField.setText(null);
+        hourField.clearText();
+        minuteField.clearText();
+        secondField.clearText();
     }
 }
