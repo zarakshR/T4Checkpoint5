@@ -2,7 +2,6 @@ package com.stir.cscu9t4practical1.gui;
 
 import javax.swing.*;
 
-// TODO: Write tests for this
 final class SystemMessagesPanel extends JScrollPane {
 
     private final JTextArea messageConsole = new JTextArea();

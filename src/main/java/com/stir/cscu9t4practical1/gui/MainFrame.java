@@ -9,7 +9,6 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.util.Collection;
 
-// TODO: Write tests for this
 public final class MainFrame extends JFrame implements TrainingRecordAppController {
 
     private final TrainingRecord trainingRecord;
@@ -79,7 +78,7 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
     }
 
     @Override
-    public void removeEntryAtIndex(int index) {
+    public void removeEntryAtIndex(final int index) {
         Entry toRemove = recordsModel.getElementAt(index);
         trainingRecord.removeEntry(toRemove);
         recordsModel.removeElementAt(index);
@@ -133,7 +132,7 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
     }
 
     @Override
-    public void handleInvalidInput(InvalidFieldsException ex) {
+    public void handleInvalidInput(final InvalidFieldsException ex) {
         JOptionPane.showMessageDialog(this,
                 "Invalid value: \"" + ex.getBadValue() + "\" in field " + ex.getFieldName());
     }

@@ -20,7 +20,7 @@ public abstract class Entry {
         return name;
     }
 
-    public LocalDateTime getDateTime() {return dateTime;}
+    public LocalDateTime getDateTime() { return dateTime; }
 
     public double getDistance() {
         return distance;

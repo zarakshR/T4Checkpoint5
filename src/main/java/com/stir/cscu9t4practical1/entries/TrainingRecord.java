@@ -19,7 +19,7 @@ public final class TrainingRecord {
         store.add(e);
     }
 
-    public void removeEntry(final Entry e) {store.remove(e);}
+    public void removeEntry(final Entry e) { store.remove(e); }
 
     public Collection<Entry> lookupEntriesByName(final String name) {
         return store.stream().filter(e -> e.getName().equals(name)).toList();

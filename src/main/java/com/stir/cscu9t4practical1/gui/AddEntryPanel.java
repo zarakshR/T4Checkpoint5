@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-// TODO: Write tests for this
 final class AddEntryPanel extends JPanel implements ActionListener {
 
     private final TrainingRecordAppController controller;

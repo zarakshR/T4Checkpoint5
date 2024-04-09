@@ -15,7 +15,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-// TODO: Write tests for this
 final class EntryPanel extends JPanel {
 
     private final RunFieldsPanel runEntryPanel = new RunFieldsPanel();
@@ -26,7 +25,7 @@ final class EntryPanel extends JPanel {
     // CardLayout does not have an API for determining what the currently showing card is so we have to manually keep track of it
     private String currentlyShowing;
 
-    public EntryPanel() {
+    EntryPanel() {
         setLayout(new CardLayout());
 
         // CardLayout shows the first added card by default, so this will show a blank panel until the user selects one.
@@ -75,7 +74,6 @@ final class EntryPanel extends JPanel {
     //  specific UI functionality (e.g., CycleEntry contains a combo box for terrain and tempo, SprintEntry has text areas for
     //  repetitions and recovery) and are swapped in and out by EntryPanel.
     // these should be the only classes in our UI which concern themselves with the internal details of the various Entry types
-    // TODO: bump language level to 17 to get sealed classes
     private abstract static class EntryFieldsPanel extends JPanel {
 
         protected final LabelledTextPanel nameField = new LabelledTextPanel("Name", 30);

@@ -6,14 +6,13 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-// TODO: Write tests for this
 final class RecordsListPanel extends JList<Entry> {
 
     private final JPopupMenu menu = new JPopupMenu();
     private final JMenuItem deleteButton = new JMenuItem("Delete");
 
     // We need to use atleast a ComboBoxModel because it must support selecting elements (for remove/weekly distance operation)
-    public RecordsListPanel(final TrainingRecordAppController controller, final ComboBoxModel<Entry> listModel) {
+    RecordsListPanel(final TrainingRecordAppController controller, final ComboBoxModel<Entry> listModel) {
         super(listModel);
 
         menu.add(deleteButton);

@@ -7,7 +7,11 @@ import com.stir.cscu9t4practical1.gui.MainFrame;
 import java.awt.*;
 import java.time.LocalDateTime;
 
-public class TrainingRecordApp {
+public final class TrainingRecordApp {
+
+    private TrainingRecordApp() {
+        throw new UnsupportedOperationException("This is a utility class and should not be instantiated");
+    }
 
     private static final TrainingRecord trainingRecord = new TrainingRecord();
 
