@@ -17,12 +17,17 @@ final class SearchPanel extends JPanel implements ActionListener {
     private final NameSearchPanel nameSearchPanel = new NameSearchPanel(this);
     private final DateSearchPanel dateSearchPanel = new DateSearchPanel(this);
 
+    private final JButton clearSearchButton = new JButton("Clear Search");
+
     SearchPanel(final MainFrame parentFrame) {
         mainFrame = parentFrame;
+
+        clearSearchButton.addActionListener(this);
 
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         add(nameSearchPanel);
         add(dateSearchPanel);
+        add(clearSearchButton);
     }
 
     @Override
@@ -48,6 +53,9 @@ final class SearchPanel extends JPanel implements ActionListener {
             } catch (InvalidFieldsException ex) {
                 mainFrame.handleInvalidInput(ex);
             }
+        }
+        if (e.getSource() == clearSearchButton) {
+            mainFrame.reinitializeRecords();
         }
     }
 
