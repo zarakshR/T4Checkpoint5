@@ -57,10 +57,6 @@ public final class TrainingRecord {
         return store.size();
     }
 
-    public void clearAllEntries() {
-        store.clear();
-    }
-
     public Vector<Entry> getEntries() {
         return new Vector<Entry>(store);
     }
