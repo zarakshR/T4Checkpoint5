@@ -7,6 +7,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ AddEntryPanel contains an EntryPanel and allows the user to switch between adding different types of Entrys while instructing
+ EntryPanel to show fields appropriate to the selected Entry type
+ */
 final class AddEntryPanel extends JPanel implements ActionListener {
 
     private final TrainingRecordAppController controller;
@@ -20,6 +24,11 @@ final class AddEntryPanel extends JPanel implements ActionListener {
 
     private final JButton addButton = new JButton("Add Entry");
 
+    /**
+     Instantiates a new Add entry panel.
+
+     @param parentFrame the controller that handles adding entries
+     */
     AddEntryPanel(final TrainingRecordAppController parentFrame) {
         controller = parentFrame;
 

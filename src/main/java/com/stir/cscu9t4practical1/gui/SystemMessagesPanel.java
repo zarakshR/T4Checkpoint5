@@ -2,10 +2,16 @@ package com.stir.cscu9t4practical1.gui;
 
 import javax.swing.*;
 
+/**
+ The type System messages panel.
+ */
 final class SystemMessagesPanel extends JScrollPane {
 
     private final JTextArea messageConsole = new JTextArea();
 
+    /**
+     Instantiates a new System messages panel.
+     */
     public SystemMessagesPanel() {
         super();
         getViewport().setView(messageConsole);
@@ -15,6 +21,11 @@ final class SystemMessagesPanel extends JScrollPane {
         println("System Messages");
     }
 
+    /**
+     Println.
+
+     @param s the s
+     */
     public void println(final String s) {
         // appends a newline to the message if it doesn't already have one
         messageConsole.append(s.charAt(s.length() - 1) == '\n' ? s : s + '\n');
