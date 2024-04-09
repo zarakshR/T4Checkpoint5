@@ -1,6 +1,9 @@
 package com.stir.cscu9t4practical1.gui;
 
 import com.stir.cscu9t4practical1.entries.*;
+import com.stir.cscu9t4practical1.entries.CycleEntry.Terrain;
+import com.stir.cscu9t4practical1.entries.CycleEntry.Tempo;
+import com.stir.cscu9t4practical1.entries.SwimEntry.LOCATION;
 
 import javax.swing.*;
 import java.awt.*;
@@ -124,15 +127,13 @@ final class EntryPanel extends JPanel {
 
     private static final class CycleFieldsPanel extends EntryFieldsPanel {
 
-        private final LabelledTextPanel terrainField;
-        private final LabelledTextPanel tempoField;
+        private final JComboBox<Terrain> terrainBox = new JComboBox<Terrain>(Terrain.values());
+        private final JComboBox<Tempo> tempoBox = new JComboBox<Tempo>(Tempo.values());
 
         private CycleFieldsPanel() {
             super();
-            this.terrainField = new LabelledTextPanel("Terrain");
-            this.tempoField = new LabelledTextPanel("Tempo");
-            add(terrainField);
-            add(tempoField);
+            add(terrainBox);
+            add(tempoBox);
         }
 
         @Override
@@ -156,24 +157,23 @@ final class EntryPanel extends JPanel {
                 throw new InvalidFieldsException("Distance", distanceText);
             }
 
-            return new CycleEntry(name, dateTime, distance, CycleEntry.Terrain.ASPHALT, CycleEntry.Tempo.MODERATE);
+            return new CycleEntry(name, dateTime, distance,
+                    (Terrain) terrainBox.getSelectedItem(),
+                    (Tempo) tempoBox.getSelectedItem());
         }
 
         @Override
         void clearFields() throws NullPointerException {
             super.clearFields();
-            this.terrainField.getTextField().setText(null);
-            this.tempoField.getTextField().setText(null);
         }
     }
 
     private static final class SwimFieldsPanel extends EntryFieldsPanel {
 
-        private final LabelledTextPanel locationField;
+        private final JComboBox<LOCATION> locationField = new JComboBox<>(LOCATION.values());
 
         private SwimFieldsPanel() {
             super();
-            this.locationField = new LabelledTextPanel("Location");
             add(locationField);
         }
 
@@ -194,7 +194,7 @@ final class EntryPanel extends JPanel {
 
             try {
                 distance = Double.parseDouble(distanceText);
-                return new SwimEntry(name, dateTime, distance, SwimEntry.LOCATION.OUTDOORS);
+                return new SwimEntry(name, dateTime, distance, (LOCATION) locationField.getSelectedItem());
             } catch (NumberFormatException e) {
                 throw new InvalidFieldsException("Double", distanceText);
             }
@@ -203,7 +203,6 @@ final class EntryPanel extends JPanel {
         @Override
         void clearFields() throws NullPointerException {
             super.clearFields();
-            this.locationField.getTextField().setText(null);
         }
     }
 
