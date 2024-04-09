@@ -17,8 +17,6 @@ public class SwimEntryTest {
     @Test
     public void testGetLocation() {
         assertEquals(SwimEntry.LOCATION.OUTDOORS, outdoorSwimEntry.getLocation());
-
-        SwimEntry poolSwimEntry = new SwimEntry("Alice", dateTime, 3, SwimEntry.LOCATION.POOL); // TODO
         assertEquals(SwimEntry.LOCATION.POOL, poolSwimEntry.getLocation());
     }
 

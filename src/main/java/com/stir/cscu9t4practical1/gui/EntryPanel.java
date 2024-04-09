@@ -64,7 +64,6 @@ final class EntryPanel extends JPanel {
         getActivePanel().clearFields();
     }
 
-    // TODO: all the classes return dummy LocalDateTime value for testing purposes. change them to parse from the time field
     // There is some ugly and repetitive (but robust) error handling code in the emitEntry implementations below. We could have
     // had simpler code by just throwing the exceptions upward and letting AddEntryPanel handle it, but we get much nicer error
     //  messages this way
