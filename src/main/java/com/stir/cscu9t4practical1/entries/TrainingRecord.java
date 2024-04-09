@@ -22,11 +22,11 @@ public final class TrainingRecord {
         store.add(e);
     }
 
-    public Collection<Entry> lookupEntriesByName(String name) {
+    public Collection<Entry> lookupEntriesByName(final String name) {
         return store.stream().filter(e -> e.getName().equals(name)).toList();
     }
 
-    public Collection<Entry> lookupEntriesByDay(LocalDate date) {
+    public Collection<Entry> lookupEntriesByDay(final LocalDate date) {
         return store.stream().filter(e -> e.getDateTime().toLocalDate().equals(date)).toList();
     }
 

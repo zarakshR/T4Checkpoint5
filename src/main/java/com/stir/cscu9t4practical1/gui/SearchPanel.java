@@ -6,7 +6,7 @@ import java.awt.*;
 // TODO: Write tests for this
 final class SearchPanel extends JPanel {
 
-    public SearchPanel() {
+    SearchPanel() {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         NameSearchPanel nameSearchPanel = new NameSearchPanel();

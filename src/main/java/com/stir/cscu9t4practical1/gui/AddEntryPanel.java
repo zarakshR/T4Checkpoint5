@@ -19,7 +19,7 @@ final class AddEntryPanel extends JPanel implements ActionListener {
 
     private final JButton addButton = new JButton("Add Entry");
 
-    public AddEntryPanel(final MainFrame parentFrame) {
+    AddEntryPanel(final MainFrame parentFrame) {
         mainFrame = parentFrame;
 
         ButtonGroup entryType = new ButtonGroup();

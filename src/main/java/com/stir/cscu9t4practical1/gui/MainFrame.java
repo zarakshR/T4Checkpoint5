@@ -65,11 +65,11 @@ public final class MainFrame extends JFrame implements ActionListener {
         pack();
     }
 
-    void addEntry(Entry e) {
+    void addEntry(final Entry e) {
         recordsModel.addElement(e);
     }
 
-    void log(String s) {
+    void log(final String s) {
         systemMessagesPanel.println(s);
     }
 

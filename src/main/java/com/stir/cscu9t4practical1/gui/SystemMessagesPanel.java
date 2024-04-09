@@ -16,7 +16,7 @@ final class SystemMessagesPanel extends JScrollPane {
         println("System Messages");
     }
 
-    public void println(String s) {
+    public void println(final String s) {
         // appends a newline to the message if it doesn't already have one
         messageConsole.append(s.charAt(s.length() - 1) == '\n' ? s : s + '\n');
         // scroll to the bottom everytime we append a message
