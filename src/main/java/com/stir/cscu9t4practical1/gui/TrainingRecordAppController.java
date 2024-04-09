@@ -11,6 +11,8 @@ public interface TrainingRecordAppController {
 
     void log(String s);
 
+    void removeEntryAtIndex(int index);
+
     void updateWithSearchByName(String name);
 
     void updateWithSearchByDate(LocalDate date);

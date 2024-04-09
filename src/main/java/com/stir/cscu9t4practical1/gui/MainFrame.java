@@ -80,6 +80,11 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
     }
 
     @Override
+    public void removeEntryAtIndex(int index) {
+        recordsModel.removeElementAt(index);
+    }
+
+    @Override
     public void updateWithSearchByName(final String name) {
         recordsModel.removeAllElements();
         recordsModel.addAll(trainingRecord.lookupEntriesByName(name));
