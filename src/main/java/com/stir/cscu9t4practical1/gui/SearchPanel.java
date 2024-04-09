@@ -17,7 +17,7 @@ final class SearchPanel extends JPanel implements ActionListener {
     private final NameSearchPanel nameSearchPanel = new NameSearchPanel(this);
     private final DateSearchPanel dateSearchPanel = new DateSearchPanel(this);
 
-    SearchPanel(MainFrame parentFrame) {
+    SearchPanel(final MainFrame parentFrame) {
         mainFrame = parentFrame;
 
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -57,7 +57,7 @@ final class SearchPanel extends JPanel implements ActionListener {
         private final JButton searchByNameButton = new JButton("Search By Name");
         private final JButton weeklyDistanceButton = new JButton("Calculate Weekly Distance");
 
-        NameSearchPanel(ActionListener controller) {
+        NameSearchPanel(final ActionListener controller) {
             setLayout(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();
 
@@ -94,7 +94,7 @@ final class SearchPanel extends JPanel implements ActionListener {
         private final DateEntryPanel dateEntryPanel = new DateEntryPanel();
         private final JButton searchByDateButton = new JButton("Search By Date");
 
-        DateSearchPanel(ActionListener controller) {
+        DateSearchPanel(final ActionListener controller) {
             setLayout(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();
 
