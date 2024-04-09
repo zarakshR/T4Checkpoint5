@@ -71,9 +71,9 @@ final class EntryPanel extends JPanel {
 
         private EntryFieldsPanel() {
             setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-            this.nameField = new LabelledTextPanel("Name");
-            this.dateField = new LabelledTextPanel("Date");
-            this.distanceField = new LabelledTextPanel("Distance");
+            this.nameField = new LabelledTextPanel("Name", 30);
+            this.dateField = new LabelledTextPanel("Date", 30);
+            this.distanceField = new LabelledTextPanel("Distance", 30);
             add(nameField);
             add(dateField);
             add(distanceField);
@@ -212,8 +212,8 @@ final class EntryPanel extends JPanel {
 
         private SprintFieldsPanel() {
             super();
-            this.repetitionsField = new LabelledTextPanel("Terrain");
-            this.recoveryField = new LabelledTextPanel("Tempo");
+            this.repetitionsField = new LabelledTextPanel("Terrain", 30);
+            this.recoveryField = new LabelledTextPanel("Tempo", 30);
             add(repetitionsField);
             add(recoveryField);
         }

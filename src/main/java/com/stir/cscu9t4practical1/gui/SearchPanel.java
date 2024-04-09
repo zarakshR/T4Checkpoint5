@@ -33,7 +33,7 @@ final class SearchPanel extends JPanel implements ActionListener {
     // We need these two to be separate panels, otherwise the layout looks horrible
     private static final class NameSearchPanel extends JPanel {
 
-        private final LabelledTextPanel nameField = new LabelledTextPanel("Name");
+        private final LabelledTextPanel nameField = new LabelledTextPanel("Name", 30);
         private final JButton searchByNameButton = new JButton("Search By Name");
         private final JButton weeklyDistanceButton = new JButton("Calculate Weekly Distance");
 
@@ -62,7 +62,7 @@ final class SearchPanel extends JPanel implements ActionListener {
 
     private static final class DateSearchPanel extends JPanel {
 
-        private final LabelledTextPanel dateField = new LabelledTextPanel("Date");
+        private final LabelledTextPanel dateField = new LabelledTextPanel("Date", 30);
         private final JButton searchByDateButton = new JButton("Search By Date");
 
         DateSearchPanel(ActionListener controller) {

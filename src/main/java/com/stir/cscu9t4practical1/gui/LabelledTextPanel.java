@@ -4,9 +4,10 @@ import javax.swing.*;
 
 final class LabelledTextPanel extends JPanel {
 
-    private final JTextField textField = new JTextField(30);
+    private final JTextField textField;
 
-    LabelledTextPanel(final String labelText) {
+    LabelledTextPanel(final String labelText, final int columns) {
+        textField =  new JTextField(columns);
         add(new JLabel(labelText));
         add(textField);
     }
