@@ -6,7 +6,9 @@ import com.stir.cscu9t4practical1.entries.SwimEntry.LOCATION;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 // TODO: Write tests for this
 final class EntryPanel extends JPanel {
@@ -58,37 +60,32 @@ final class EntryPanel extends JPanel {
         getActivePanel().clearFields();
     }
 
-    // TODO: all the classes return dummy LocalDateTime value for testing purposes. change them to parse from the date field
+    // TODO: all the classes return dummy LocalDateTime value for testing purposes. change them to parse from the time field
     // There is some ugly and repetitive (but robust) error handling code in the emitEntry implementations below. We could have
     // had simpler code by just throwing the exceptions upward and letting AddEntryPanel handle it, but we get much nicer error
     //  messages this way
     private abstract static class EntryFieldsPanel extends JPanel {
 
-        protected final JPanel dateEntryPane = new JPanel();
-        protected final LabelledTextPanel yearField = new LabelledTextPanel("Year", 4);
-        protected final LabelledTextPanel monthField = new LabelledTextPanel("Month", 2);
-        protected final LabelledTextPanel dayField = new LabelledTextPanel("Day", 2);
         protected final LabelledTextPanel nameField = new LabelledTextPanel("Name", 30);
+        protected final DateEntryPanel dateEntryPanel = new DateEntryPanel();
+        protected final TimeEntryPanel timeEntryPanel = new TimeEntryPanel();
         protected final LabelledTextPanel distanceField = new LabelledTextPanel("Distance", 30);
 
         private EntryFieldsPanel() {
             setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
-            // year, name, and day text boxes in a separate panel so they are aligned left to right
-            dateEntryPane.add(yearField);
-            dateEntryPane.add(monthField);
-            dateEntryPane.add(dayField);
-
             add(nameField);
-            add(dateEntryPane);
+            add(dateEntryPanel);
+            add(timeEntryPanel);
             add(distanceField);
         }
 
         abstract Entry emitEntry() throws InvalidFieldsException;
 
-        void clearFields() throws NullPointerException {
+        void clearFields() {
             this.nameField.setText(null);
-            this.yearField.setText(null);
+            this.dateEntryPanel.clearFields();
+            this.timeEntryPanel.clearFields();
             this.distanceField.setText(null);
         }
     }
@@ -102,8 +99,6 @@ final class EntryPanel extends JPanel {
         @Override
         Entry emitEntry() throws InvalidFieldsException {
             String name = nameField.getText();
-            String dateTimeText = yearField.getText();
-            LocalDateTime dateTime;
             String distanceText = distanceField.getText();
             double distance;
 
@@ -111,8 +106,9 @@ final class EntryPanel extends JPanel {
                 throw new InvalidFieldsException("Name", name);
             }
 
-            // TODO: parse properly
-            dateTime = LocalDateTime.now();
+            LocalDate date = dateEntryPanel.getDate();
+            LocalTime time = timeEntryPanel.getTime();
+            LocalDateTime dateTime = LocalDateTime.of(date, time);
 
             try {
                 distance = Double.parseDouble(distanceText);
@@ -143,8 +139,6 @@ final class EntryPanel extends JPanel {
         @Override
         Entry emitEntry() throws InvalidFieldsException {
             String name = nameField.getText();
-            String dateTimeText = yearField.getText();
-            LocalDateTime dateTime;
             String distanceText = distanceField.getText();
             double distance;
 
@@ -152,8 +146,9 @@ final class EntryPanel extends JPanel {
                 throw new InvalidFieldsException("Name", name);
             }
 
-            // TODO: parse properly
-            dateTime = LocalDateTime.now();
+            LocalDate date = dateEntryPanel.getDate();
+            LocalTime time = timeEntryPanel.getTime();
+            LocalDateTime dateTime = LocalDateTime.of(date, time);
 
             try {
                 distance = Double.parseDouble(distanceText);
@@ -184,8 +179,6 @@ final class EntryPanel extends JPanel {
         @Override
         Entry emitEntry() throws InvalidFieldsException {
             String name = nameField.getText();
-            String dateTimeText = yearField.getText();
-            LocalDateTime dateTime;
             String distanceText = distanceField.getText();
             double distance;
 
@@ -193,8 +186,9 @@ final class EntryPanel extends JPanel {
                 throw new InvalidFieldsException("Name", name);
             }
 
-            // TODO: parse properly
-            dateTime = LocalDateTime.now();
+            LocalDate date = dateEntryPanel.getDate();
+            LocalTime time = timeEntryPanel.getTime();
+            LocalDateTime dateTime = LocalDateTime.of(date, time);
 
             try {
                 distance = Double.parseDouble(distanceText);
@@ -224,8 +218,6 @@ final class EntryPanel extends JPanel {
         @Override
         Entry emitEntry() throws InvalidFieldsException {
             String name;
-            String dateTimeText = yearField.getText();
-            LocalDateTime dateTime;
             String distanceText = distanceField.getText();
             double distance;
             String repetitionsText = repetitionsField.getText();
@@ -238,8 +230,9 @@ final class EntryPanel extends JPanel {
                 throw new InvalidFieldsException("Name", name);
             }
 
-            // TODO: parse properly
-            dateTime = LocalDateTime.now();
+            LocalDate date = dateEntryPanel.getDate();
+            LocalTime time = timeEntryPanel.getTime();
+            LocalDateTime dateTime = LocalDateTime.of(date, time);
 
             try {
                 distance = Double.parseDouble(distanceText);
@@ -270,23 +263,4 @@ final class EntryPanel extends JPanel {
         }
     }
 
-    // An exception that indicates that the user has entered invalid values for a field.
-    static final class InvalidFieldsException extends Exception {
-
-        private final String fieldName;
-        private final String badValue;
-
-        public InvalidFieldsException(final String fieldName, final String badValue) {
-            this.fieldName = fieldName;
-            this.badValue = badValue;
-        }
-
-        public String getFieldName() {
-            return fieldName;
-        }
-
-        public String getBadValue() {
-            return badValue;
-        }
-    }
 }
