@@ -37,41 +37,41 @@ public class MainFrameTest {
     }
 
     @Test
-    public void testAddEntry() {
-        mockMainFrame.addEntry(mockEntry);
+    public void testRequestCreationOfEntry() {
+        mockMainFrame.requestCreationOfEntry(mockEntry);
         assertTrue(mockTrainingRecord.getEntries().contains(mockEntry));
     }
 
     // we can't test the following without stubs
     // some of these will create GUI message dialogs, just click OK and proceed
     @Test
-    public void testLog() {
-        assertDoesNotThrow(() -> mockMainFrame.log("Hello, World!"));
+    public void testRequestLog() {
+        assertDoesNotThrow(() -> mockMainFrame.requestLog("Hello, World!"));
     }
 
     @Test
-    public void testRemoveEntryAtIndex() {
-        assertDoesNotThrow(() -> mockMainFrame.removeEntryAtIndex(0));
+    public void testRequestRemovalOfEntryAtIndex() {
+        assertDoesNotThrow(() -> mockMainFrame.requestRemovalOfEntryAtIndex(0));
     }
 
     @Test
-    public void testUpdateWithSearchByName() {
-        assertDoesNotThrow(() -> mockMainFrame.updateWithSearchByName("Mariam"));
+    public void testRequestSearchByName() {
+        assertDoesNotThrow(() -> mockMainFrame.requestSearchByName("Mariam"));
     }
 
     @Test
-    public void testUpdateWithSearchByDate() {
-        assertDoesNotThrow(() -> mockMainFrame.updateWithSearchByDate(LocalDate.now()));
+    public void testRequestSearchByDate() {
+        assertDoesNotThrow(() -> mockMainFrame.requestSearchByDate(LocalDate.now()));
     }
 
     @Test
-    public void testShowWeeklyDistance() {
-        assertDoesNotThrow(() -> mockMainFrame.showWeeklyDistance("Mariam"));
+    public void testRequestShowWeeklyDistance() {
+        assertDoesNotThrow(() -> mockMainFrame.requestShowWeeklyDistance("Mariam"));
     }
 
     @Test
-    public void testReinitializeRecords() {
-        assertDoesNotThrow(() -> mockMainFrame.reinitializeRecords());
+    public void testRequestReinitializeRecords() {
+        assertDoesNotThrow(() -> mockMainFrame.requestReinitializeRecords());
     }
 
     @Test

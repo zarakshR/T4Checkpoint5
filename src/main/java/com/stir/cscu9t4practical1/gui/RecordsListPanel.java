@@ -20,7 +20,7 @@ final class RecordsListPanel extends JList<Entry> {
 
         deleteButton.addActionListener(e -> {
             if (e.getSource() == deleteButton) {
-                controller.removeEntryAtIndex(getSelectedIndex());
+                controller.requestRemovalOfEntryAtIndex(getSelectedIndex());
             }
         });
 

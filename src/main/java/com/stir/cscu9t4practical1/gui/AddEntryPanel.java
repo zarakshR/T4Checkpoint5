@@ -61,7 +61,7 @@ final class AddEntryPanel extends JPanel implements ActionListener {
         }
         if (e.getSource() == addButton) {
             try {
-                controller.addEntry(entryPanel.emitEntry());
+                controller.requestCreationOfEntry(entryPanel.emitEntry());
                 entryPanel.clearFields();
             } catch (NullPointerException ex) {
                 // NullPointerException is thrown iff blank panel is still active in which case do nothing

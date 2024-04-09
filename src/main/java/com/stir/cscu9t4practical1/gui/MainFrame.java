@@ -66,27 +66,27 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
     }
 
     @Override
-    public void addEntry(final Entry e) {
+    public void requestCreationOfEntry(final Entry e) {
         trainingRecord.addEntry(e);
         recordsModel.addElement(e);
-        log("added entry: " + e);
+        requestLog("added entry: " + e);
     }
 
     @Override
-    public void log(final String s) {
-        systemMessagesPanel.println(s);
+    public void requestLog(final String message) {
+        systemMessagesPanel.println(message);
     }
 
     @Override
-    public void removeEntryAtIndex(final int index) {
+    public void requestRemovalOfEntryAtIndex(final int index) {
         Entry toRemove = recordsModel.getElementAt(index);
         trainingRecord.removeEntry(toRemove);
         recordsModel.removeElementAt(index);
-        log("removed entry: " + toRemove);
+        requestLog("removed entry: " + toRemove);
     }
 
     @Override
-    public void updateWithSearchByName(final String name) {
+    public void requestSearchByName(final String name) {
         Collection<Entry> entries = trainingRecord.lookupEntriesByName(name);
 
         // don't replace the records with an empty list in case we find no search matches, that is probably not what the user
@@ -100,7 +100,7 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
     }
 
     @Override
-    public void updateWithSearchByDate(final LocalDate date) {
+    public void requestSearchByDate(final LocalDate date) {
         Collection<Entry> entries = trainingRecord.lookupEntriesByDay(date);
 
         if (entries.isEmpty()) {
@@ -118,17 +118,17 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
     }
 
     @Override
-    public void showWeeklyDistance(final String name) {
+    public void requestShowWeeklyDistance(final String name) {
         JOptionPane.showMessageDialog(this,
                 name + " achieved total distance " + trainingRecord.lookupWeeklyDistance(name, LocalDate.now())
                         + " in the last week");
     }
 
     @Override
-    public void reinitializeRecords() {
+    public void requestReinitializeRecords() {
         recordsModel.removeAllElements();
         recordsModel.addAll(trainingRecord.getEntries());
-        log("refreshed all records");
+        requestLog("refreshed all records");
     }
 
     @Override

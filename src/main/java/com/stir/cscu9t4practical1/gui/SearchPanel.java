@@ -34,27 +34,27 @@ final class SearchPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == nameSearchPanel.searchByNameButton) {
             try {
-                controller.updateWithSearchByName(nameSearchPanel.getValidatedName());
+                controller.requestSearchByName(nameSearchPanel.getValidatedName());
             } catch (InvalidFieldsException ex) {
                 controller.handleInvalidInput(ex);
             }
         }
         if (e.getSource() == nameSearchPanel.weeklyDistanceButton) {
             try {
-                controller.showWeeklyDistance(nameSearchPanel.getValidatedName());
+                controller.requestShowWeeklyDistance(nameSearchPanel.getValidatedName());
             } catch (InvalidFieldsException ex) {
                 controller.handleInvalidInput(ex);
             }
         }
         if (e.getSource() == dateSearchPanel.searchByDateButton) {
             try {
-                controller.updateWithSearchByDate(dateSearchPanel.dateEntryPanel.getDate());
+                controller.requestSearchByDate(dateSearchPanel.dateEntryPanel.getDate());
             } catch (InvalidFieldsException ex) {
                 controller.handleInvalidInput(ex);
             }
         }
         if (e.getSource() == clearSearchButton) {
-            controller.reinitializeRecords();
+            controller.requestReinitializeRecords();
         }
     }
 
