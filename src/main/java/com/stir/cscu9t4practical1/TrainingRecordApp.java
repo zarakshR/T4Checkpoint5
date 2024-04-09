@@ -25,6 +25,7 @@ public final class TrainingRecordApp {
 
         MainFrame mainFrame = new MainFrame(trainingRecord);
         mainFrame.setPreferredSize(new Dimension(800, 400));
+        mainFrame.setTitle("Training Record Manager Ultimate Pro Edition");
         mainFrame.setVisible(true);
     }
 }
