@@ -1,3 +1,4 @@
+// This is a giant file that handles Entry specific UI functionality
 package com.stir.cscu9t4practical1.gui;
 
 import com.stir.cscu9t4practical1.entries.*;
@@ -64,10 +65,18 @@ final class EntryPanel extends JPanel {
         getActivePanel().clearFields();
     }
 
-    // There is some ugly and repetitive (but robust) error handling code in the emitEntry implementations below. We could have
-    // had simpler code by just throwing the exceptions upward and letting AddEntryPanel handle it, but we get much nicer error
-    //  messages this way
-    private abstract static class EntryFieldsPanel extends JPanel {
+    // the below class hierarchy is as follows:
+    //      abstract EntryFieldsPanel extends JPanel
+    //                  |- RunFieldsPanel
+    //                  |- CycleFieldsPanel
+    //                  |- SwimFieldsPanel
+    //                  |- SprintFieldsPanel
+    // these panels contain entry fields specific to each entry type (since they may be different) and implement entry type
+    //  specific UI functionality (e.g., CycleEntry contains a combo box for terrain and tempo, SprintEntry has text areas for
+    //  repetitions and recovery) and are swapped in and out by EntryPanel.
+    // these should be the only classes in our UI which concern themselves with the internal details of the various Entry types
+    // TODO: bump language level to 17 to get sealed classes
+    private abstract static  class EntryFieldsPanel extends JPanel {
 
         protected final LabelledTextPanel nameField = new LabelledTextPanel("Name", 30);
         protected final DateEntryPanel dateEntryPanel = new DateEntryPanel();
@@ -83,6 +92,9 @@ final class EntryPanel extends JPanel {
             add(distanceField);
         }
 
+        // There is some ugly and repetitive (but robust) error handling code in the emitEntry implementations below. We could have
+        // had simpler code by just throwing the exceptions upward and letting AddEntryPanel handle it, but we get much nicer error
+        //  messages this way + AddEntry panel now does not need to concern itself with the implementation details of Entry types
         abstract Entry emitEntry() throws InvalidFieldsException;
 
         void clearFields() {
