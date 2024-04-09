@@ -5,7 +5,8 @@
  */
 package com.stir.cscu9t4practical1.entries;
 
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -61,9 +62,16 @@ public class TrainingRecordTest {
     }
 
     // we need to create a new TrainingRecord instance before each test since we don't have mocks
-    @BeforeEach
-    public void setUp() {
+    @BeforeAll
+    public static void setUp() {
         instance = new TrainingRecord();
+    }
+
+    @AfterEach
+    public void teardown() {
+        for (Entry entry : instance.getEntries()) {
+            instance.removeEntry(entry);
+        }
     }
 
     @Test
@@ -83,7 +91,7 @@ public class TrainingRecordTest {
         instance.addEntry(alice);
         instance.addEntry(bob);
         LocalDate probablyNotInRecord = LocalDate.of(9999, 1, 1);
-        Assertions.assertIterableEquals(new Vector<Entry>(), instance.lookupEntriesByDay(probablyNotInRecord));
+        assertTrue(instance.lookupEntriesByDay(probablyNotInRecord).isEmpty());
     }
 
     @Test
@@ -101,7 +109,8 @@ public class TrainingRecordTest {
     public void testLookupEntriesByNameNonExistent() {
         instance.addEntry(bob);
         instance.addEntry(claire1);
-        assertIterableEquals(new Vector<Entry>(), instance.lookupEntriesByName("Alice"));
+//        System.out.println("instance.lookupEntriesByName(\"Alice\") = " + instance.lookupEntriesByName("Alice"));
+        assertTrue(instance.lookupEntriesByName("Alice").isEmpty());
     }
 
     @Test
