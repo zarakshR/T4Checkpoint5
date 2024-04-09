@@ -15,20 +15,49 @@ public final class TrainingRecord {
         this.store = new HashSet<Entry>();
     }
 
+    /**
+     Add an entry to the training record database. If the entry already exists (as defined by Entry.equals()), it is
+     overwritten with the new entry.
+     @param e the entry to add
+     */
     public void addEntry(final Entry e) {
         store.add(e);
     }
 
+    /**
+     Remove an entry, if it exists, from the training record database
+     @param e the entry to remove
+     */
     public void removeEntry(final Entry e) { store.remove(e); }
 
+    /**
+     Returns a collection of all entries in the database which match the given name
+     @param name the name to lookup by
+
+     @return the entries which have the same name as <code>name</code>
+     */
     public Collection<Entry> lookupEntriesByName(final String name) {
         return store.stream().filter(e -> e.getName().equals(name)).toList();
     }
 
+    /**
+     Returns a collection of all entries in the database which match the given date
+     @param date the name to lookup by
+
+     @return the entries which have the same date as <code>date</code>
+     */
     public Collection<Entry> lookupEntriesByDay(final LocalDate date) {
         return store.stream().filter(e -> e.getDateTime().toLocalDate().equals(date)).toList();
     }
 
+    /**
+     Returns the total distance accumulated by all entries with the given name which occurred within the last seven days
+     of the date
+     @param name the name to lookup by
+     @param today the date which entries must be within seven days before of
+
+     @return the total distance accumulated by the entries
+     */
     public Double lookupWeeklyDistance(final String name, final LocalDate today) {
         // I'm on that Functional Programming grindset
         return store.stream()
@@ -53,6 +82,9 @@ public final class TrainingRecord {
                 .reduce(0.0, (acc, e) -> acc + e.getDistance(), (acc1, acc2) -> acc1 + acc2);
     }
 
+    /**
+     @return all entries in the database as a <code>Collection<Entry></code>
+     */
     public Collection<Entry> getEntries() {
         return new Vector<Entry>(store);
     }

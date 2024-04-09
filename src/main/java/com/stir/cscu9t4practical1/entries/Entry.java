@@ -26,10 +26,16 @@ public abstract class Entry {
         return distance;
     }
 
+    /**
+     @return the time that the training event took place at, formatted as : HOUR:MINUTE:SECOND
+     */
     protected String getFormattedTime() {
         return dateTime.getHour() + ":" + dateTime.getMinute() + ":" + dateTime.getSecond();
     }
 
+    /**
+     @return the date that the training event took place on, formatted as : YEAR/MONTH/DAY
+     */
     protected String getFormattedDate() {
         return dateTime.getDayOfMonth() + "/" + dateTime.getMonthValue() + "/" + dateTime.getYear();
     }
