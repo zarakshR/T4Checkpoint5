@@ -53,10 +53,6 @@ public final class TrainingRecord {
                 .reduce(0.0, (acc, e) -> acc + e.getDistance(), (acc1, acc2) -> acc1 + acc2);
     }
 
-    public int getNumberOfEntries() {
-        return store.size();
-    }
-
     public Vector<Entry> getEntries() {
         return new Vector<Entry>(store);
     }

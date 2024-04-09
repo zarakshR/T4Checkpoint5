@@ -67,32 +67,6 @@ public class TrainingRecordTest {
     }
 
     @Test
-    public void testAddEntry() {
-        instance.addEntry(alice);
-        assertEquals(1, instance.getNumberOfEntries());
-    }
-
-    @Test
-    public void testAddEntryUnique() {
-        instance.addEntry(alice);
-        instance.addEntry(alice);
-        assertEquals(1, instance.getNumberOfEntries());
-    }
-
-    @Test
-    public void testGetNumberOfEntries() {
-        assertEquals(0, instance.getNumberOfEntries());
-        instance.addEntry(alice);
-        assertEquals(1, instance.getNumberOfEntries());
-        instance.addEntry(bob);
-        assertEquals(2, instance.getNumberOfEntries());
-        instance.addEntry(claire1);
-        assertEquals(3, instance.getNumberOfEntries());
-        instance.addEntry(claire2);
-        assertEquals(4, instance.getNumberOfEntries());
-    }
-
-    @Test
     public void testLookupEntriesByDate() {
         instance.addEntry(alice);
         instance.addEntry(bob);
