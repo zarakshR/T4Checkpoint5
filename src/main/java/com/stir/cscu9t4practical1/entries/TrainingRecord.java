@@ -1,6 +1,8 @@
 package com.stir.cscu9t4practical1.entries;
 
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.HashSet;
@@ -26,6 +28,11 @@ public final class TrainingRecord {
         return store.stream().filter(e -> e.getName().equals(name)).toList();
     }
 
+    public Collection<Entry> lookupEntriesByDay(LocalDate date) {
+        return store.stream().filter(e -> e.getLocalDateAndTime().toLocalDate().equals(date)).toList();
+    }
+
+    @Deprecated
     public Collection<Entry> lookupEntriesByDay(ZonedDateTime dateTime) {
         return store.stream().filter(e ->
                 (e.getDay() == dateTime.getDayOfMonth())
