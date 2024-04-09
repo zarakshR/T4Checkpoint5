@@ -2,10 +2,7 @@ package com.stir.cscu9t4practical1.entries;
 
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Vector;
+import java.util.*;
 
 
 public final class TrainingRecord {
@@ -30,12 +27,28 @@ public final class TrainingRecord {
         return store.stream().filter(e -> e.getDateTime().toLocalDate().equals(date)).toList();
     }
 
-    public Double lookupWeeklyDistance(final String name) {
-        // I'm on that FP grindset
+    public Double lookupWeeklyDistance(final String name, final LocalDate today) {
+        // I'm on that Functional Programming grindset
         return store.stream()
                     .filter(e -> e.getName().equals(name))
-                    .map(Entry::getDistance)
-                    .reduce(0.0, Double::sum);
+                    // only consider dates within the last seven days
+                    .filter(e -> {
+                        // the easiest way to do this, since we know exactly what the valid range of days is, is to just generate
+                        //  all possible matching days :)
+                        ArrayList<LocalDate> lastSevenDays = new ArrayList<LocalDate>(List.of(
+                                today,
+                                today.minusDays(1),
+                                today.minusDays(2),
+                                today.minusDays(3),
+                                today.minusDays(4),
+                                today.minusDays(5),
+                                today.minusDays(6)
+                        ));
+
+                        return lastSevenDays.contains(e.getDateTime().toLocalDate());
+                    })
+                    // this should parallelize easily
+                    .reduce(0.0, (acc,e) -> acc + e.getDistance(), (acc1,acc2) -> acc1 + acc2);
     }
 
     public int getNumberOfEntries() {

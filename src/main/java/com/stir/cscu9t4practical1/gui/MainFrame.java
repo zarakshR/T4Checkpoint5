@@ -119,7 +119,9 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
 
     @Override
     public void showWeeklyDistance(final String name) {
-        System.out.println("trainingRecord = " + trainingRecord.lookupWeeklyDistance(name));
+        JOptionPane.showMessageDialog(this,
+                name + " achieved total distance " + trainingRecord.lookupWeeklyDistance(name, LocalDate.now())
+                        + " in the last week");
     }
 
     @Override
