@@ -7,10 +7,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- AddEntryPanel contains an EntryPanel and allows the user to switch between adding different types of Entrys while instructing
- EntryPanel to show fields appropriate to the selected Entry type
- */
 final class AddEntryPanel extends JPanel implements ActionListener {
 
     private final TrainingRecordAppController controller;
@@ -24,11 +20,6 @@ final class AddEntryPanel extends JPanel implements ActionListener {
 
     private final JButton addButton = new JButton("Add Entry");
 
-    /**
-     Instantiates a new Add entry panel.
-
-     @param parentFrame the controller that handles adding entries
-     */
     AddEntryPanel(final TrainingRecordAppController parentFrame) {
         controller = parentFrame;
 
@@ -54,26 +45,19 @@ final class AddEntryPanel extends JPanel implements ActionListener {
         add(addButton);
     }
 
-    // refer to EntryPanel.java for an explanation of why we have to manually keep track of the currently shown card
     @Override
     public void actionPerformed(final ActionEvent e) {
-        CardLayout cardLayout = (CardLayout) entryPanel.getLayout();
-
         if (e.getSource() == runEntrySelector) {
-            cardLayout.show(entryPanel, "RUN");
-            entryPanel.setCurrentlyShowing("RUN");
+            entryPanel.setEntryType("RUN");
         }
         if (e.getSource() == cycleEntrySelector) {
-            cardLayout.show(entryPanel, "CYCLE");
-            entryPanel.setCurrentlyShowing("CYCLE");
+            entryPanel.setEntryType("CYCLE");
         }
         if (e.getSource() == swimEntrySelector) {
-            cardLayout.show(entryPanel, "SWIM");
-            entryPanel.setCurrentlyShowing("SWIM");
+            entryPanel.setEntryType("SWIM");
         }
         if (e.getSource() == sprintEntrySelector) {
-            cardLayout.show(entryPanel, "SPRINT");
-            entryPanel.setCurrentlyShowing("SPRINT");
+            entryPanel.setEntryType("SPRINT");
         }
         if (e.getSource() == addButton) {
             try {

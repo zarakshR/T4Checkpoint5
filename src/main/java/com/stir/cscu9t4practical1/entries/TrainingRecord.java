@@ -5,68 +5,30 @@ import java.time.LocalDate;
 import java.util.*;
 
 
-/**
- The type Training record.
- */
 public final class TrainingRecord {
 
     // Use a Set because the primary use of TrainingRecordApp will be lookups.
     private final Set<Entry> store;
 
-    /**
-     Instantiates a new Training record.
-     */
     public TrainingRecord() {
         // Use a HashSet because its fast
         this.store = new HashSet<Entry>();
     }
 
-    /**
-     Add entry.
-
-     @param e the e
-     */
     public void addEntry(final Entry e) {
         store.add(e);
     }
 
-    /**
-     Remove entry.
-
-     @param e the e
-     */
     public void removeEntry(final Entry e) { store.remove(e); }
 
-    /**
-     Lookup entries by name collection.
-
-     @param name the name
-
-     @return the collection
-     */
     public Collection<Entry> lookupEntriesByName(final String name) {
         return store.stream().filter(e -> e.getName().equals(name)).toList();
     }
 
-    /**
-     Lookup entries by day collection.
-
-     @param date the date
-
-     @return the collection
-     */
     public Collection<Entry> lookupEntriesByDay(final LocalDate date) {
         return store.stream().filter(e -> e.getDateTime().toLocalDate().equals(date)).toList();
     }
 
-    /**
-     Lookup weekly distance double.
-
-     @param name  the name
-     @param today the today
-
-     @return the double
-     */
     public Double lookupWeeklyDistance(final String name, final LocalDate today) {
         // I'm on that Functional Programming grindset
         return store.stream()
@@ -91,20 +53,10 @@ public final class TrainingRecord {
                 .reduce(0.0, (acc, e) -> acc + e.getDistance(), (acc1, acc2) -> acc1 + acc2);
     }
 
-    /**
-     Gets number of entries.
-
-     @return the number of entries
-     */
     public int getNumberOfEntries() {
         return store.size();
     }
 
-    /**
-     Gets entries.
-
-     @return the entries
-     */
     public Vector<Entry> getEntries() {
         return new Vector<Entry>(store);
     }

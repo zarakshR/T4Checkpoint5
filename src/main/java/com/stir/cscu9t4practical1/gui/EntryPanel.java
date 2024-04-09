@@ -15,10 +15,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-/**
- EntryPanel can show a selection of different UI panels specialised for displaying the fields of various Entry types.
- EntryPanel can be instructed to show different types of entries using setEntryTypePanel()
- */
 final class EntryPanel extends JPanel {
 
     private final RunFieldsPanel runEntryPanel = new RunFieldsPanel();
@@ -29,9 +25,6 @@ final class EntryPanel extends JPanel {
     // CardLayout does not have an API for determining what the currently showing card is so we have to manually keep track of it
     private String currentlyShowing;
 
-    /**
-     Instantiates a new Entry panel.
-     */
     EntryPanel() {
         setLayout(new CardLayout());
 
@@ -46,13 +39,10 @@ final class EntryPanel extends JPanel {
         add(sprintEntryPanel, "SPRINT");
     }
 
-    /**
-     Sets currently showing.
-
-     @param currentlyShowing the currently showing
-     */
-    public void setCurrentlyShowing(final String currentlyShowing) {
-        this.currentlyShowing = currentlyShowing;
+    public void setEntryType(final String entryKey) {
+        CardLayout layout = (CardLayout) getLayout();
+        layout.show(this, entryKey);
+        currentlyShowing = entryKey;
     }
 
     // this is really hacky, but we have no choice since CardLayout doesn't do this for us. hopefully failing early with an
@@ -68,23 +58,10 @@ final class EntryPanel extends JPanel {
         };
     }
 
-    /**
-     Emit entry entry.
-
-     @return the entry
-
-     @throws InvalidFieldsException the invalid fields exception
-     @throws NullPointerException   the null pointer exception
-     */
     public Entry emitEntry() throws InvalidFieldsException, NullPointerException {
         return getActivePanel().emitEntry();
     }
 
-    /**
-     Clear fields.
-
-     @throws NullPointerException the null pointer exception
-     */
     public void clearFields() throws NullPointerException {
         getActivePanel().clearFields();
     }
@@ -101,21 +78,9 @@ final class EntryPanel extends JPanel {
     // these should be the only classes in our UI which concern themselves with the internal details of the various Entry types
     private abstract static class EntryFieldsPanel extends JPanel {
 
-        /**
-         The Name field.
-         */
         protected final LabelledTextPanel nameField = new LabelledTextPanel("Name", 30);
-        /**
-         The Date entry panel.
-         */
         protected final DateEntryPanel dateEntryPanel = new DateEntryPanel();
-        /**
-         The Time entry panel.
-         */
         protected final TimeEntryPanel timeEntryPanel = new TimeEntryPanel();
-        /**
-         The Distance field.
-         */
         protected final LabelledTextPanel distanceField = new LabelledTextPanel("Distance", 30);
 
         private EntryFieldsPanel() {
@@ -127,23 +92,13 @@ final class EntryPanel extends JPanel {
             add(distanceField);
         }
 
-        /**
-         Emit entry entry.
-
-         @return the entry
-
-         @throws InvalidFieldsException the invalid fields exception
-         */
-// There is some ugly and repetitive (but robust) error handling code in the emitEntry implementations below. We could
+        // There is some ugly and repetitive (but robust) error handling code in the emitEntry implementations below. We could
         // have
         // had simpler code by just throwing the exceptions upward and letting AddEntryPanel handle it, but we get much nicer
         // error
         //  messages this way + AddEntry panel now does not need to concern itself with the implementation details of Entry types
         abstract Entry emitEntry() throws InvalidFieldsException;
 
-        /**
-         Clear fields.
-         */
         void clearFields() {
             this.nameField.setText(null);
             this.dateEntryPanel.clearFields();

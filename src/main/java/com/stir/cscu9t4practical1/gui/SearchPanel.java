@@ -9,9 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- The type Search panel.
- */
 // TODO: Write tests for this
 final class SearchPanel extends JPanel implements ActionListener {
 
@@ -22,11 +19,6 @@ final class SearchPanel extends JPanel implements ActionListener {
 
     private final JButton clearSearchButton = new JButton("Clear Search");
 
-    /**
-     Instantiates a new Search panel.
-
-     @param parentFrame the parent frame
-     */
     SearchPanel(final TrainingRecordAppController parentFrame) {
         controller = parentFrame;
 
@@ -73,11 +65,6 @@ final class SearchPanel extends JPanel implements ActionListener {
         private final JButton searchByNameButton = new JButton("Search By Name");
         private final JButton weeklyDistanceButton = new JButton("Calculate Weekly Distance");
 
-        /**
-         Instantiates a new Name search panel.
-
-         @param controller the controller
-         */
         NameSearchPanel(final ActionListener controller) {
             setLayout(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();
@@ -100,13 +87,6 @@ final class SearchPanel extends JPanel implements ActionListener {
             weeklyDistanceButton.addActionListener(controller);
         }
 
-        /**
-         Gets validated name.
-
-         @return the validated name
-
-         @throws InvalidFieldsException the invalid fields exception
-         */
         public String getValidatedName() throws InvalidFieldsException {
             String name = nameField.getText();
             if (name.isEmpty()) {
@@ -122,11 +102,6 @@ final class SearchPanel extends JPanel implements ActionListener {
         private final DateEntryPanel dateEntryPanel = new DateEntryPanel();
         private final JButton searchByDateButton = new JButton("Search By Date");
 
-        /**
-         Instantiates a new Date search panel.
-
-         @param controller the controller
-         */
         DateSearchPanel(final ActionListener controller) {
             setLayout(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();

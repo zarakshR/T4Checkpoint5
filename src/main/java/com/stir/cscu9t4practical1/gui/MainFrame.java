@@ -9,21 +9,13 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.util.Collection;
 
-/**
- The type Main frame.
- */
 public final class MainFrame extends JFrame implements TrainingRecordAppController {
 
     private final TrainingRecord trainingRecord;
     private final DefaultComboBoxModel<Entry> recordsModel;
     private final SystemMessagesPanel systemMessagesPanel;
 
-    /**
-     Instantiates a new Main frame.
-
-     @param initialTrainingRecord the initial training record
-     */
-// MainFrame acts as the controller + model combined. It is passed to the child panels so they don't have to concern
+    // MainFrame acts as the controller + model combined. It is passed to the child panels so they don't have to concern
     //  themselves with the data representation
     public MainFrame(final TrainingRecord initialTrainingRecord) {
         trainingRecord = initialTrainingRecord;

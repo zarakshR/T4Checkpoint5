@@ -6,21 +6,12 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**
- The type Records list panel.
- */
 final class RecordsListPanel extends JList<Entry> {
 
     private final JPopupMenu menu = new JPopupMenu();
     private final JMenuItem deleteButton = new JMenuItem("Delete");
 
-    /**
-     Instantiates a new Records list panel.
-
-     @param controller the controller
-     @param listModel  the list model
-     */
-// We need to use atleast a ComboBoxModel because it must support selecting elements (for remove/weekly distance operation)
+    // We need to use atleast a ComboBoxModel because it must support selecting elements (for remove/weekly distance operation)
     RecordsListPanel(final TrainingRecordAppController controller, final ComboBoxModel<Entry> listModel) {
         super(listModel);
 
