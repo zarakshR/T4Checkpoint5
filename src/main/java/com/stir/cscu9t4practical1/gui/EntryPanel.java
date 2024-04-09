@@ -22,7 +22,6 @@ final class EntryPanel extends JPanel {
     public EntryPanel() {
         setLayout(new CardLayout());
 
-
         // CardLayout shows the first added card by default, so this will show a blank panel until the user selects one.
         // do not add a string key to the blank panel to ensure that it cannot be shown once the user has selected any entry panel
         JPanel blankPanel = new JPanel();
@@ -65,23 +64,15 @@ final class EntryPanel extends JPanel {
     //  messages this way
     private abstract static class EntryFieldsPanel extends JPanel {
 
-        protected final JPanel dateEntryPane;
-        protected final LabelledTextPanel yearField;
-        protected final LabelledTextPanel monthField;
-        protected final LabelledTextPanel dayField;
-        protected final LabelledTextPanel nameField;
-        protected final LabelledTextPanel distanceField;
+        protected final JPanel dateEntryPane = new JPanel();
+        protected final LabelledTextPanel yearField = new LabelledTextPanel("Year", 4);
+        protected final LabelledTextPanel monthField = new LabelledTextPanel("Month", 2);
+        protected final LabelledTextPanel dayField = new LabelledTextPanel("Day", 2);
+        protected final LabelledTextPanel nameField = new LabelledTextPanel("Name", 30);
+        protected final LabelledTextPanel distanceField = new LabelledTextPanel("Distance", 30);
 
         private EntryFieldsPanel() {
             setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-
-            dateEntryPane = new JPanel();
-
-            this.yearField = new LabelledTextPanel("Year", 4);
-            this.monthField = new LabelledTextPanel("Month", 2);
-            this.dayField = new LabelledTextPanel("Day", 2);
-            this.nameField = new LabelledTextPanel("Name", 30);
-            this.distanceField = new LabelledTextPanel("Distance", 30);
 
             // year, name, and day text boxes in a separate panel so they are aligned left to right
             dateEntryPane.add(yearField);
@@ -221,13 +212,11 @@ final class EntryPanel extends JPanel {
 
     private static final class SprintFieldsPanel extends EntryFieldsPanel {
 
-        private final LabelledTextPanel repetitionsField;
-        private final LabelledTextPanel recoveryField;
+        private final LabelledTextPanel repetitionsField = new LabelledTextPanel("Repetitions", 10);
+        private final LabelledTextPanel recoveryField = new LabelledTextPanel("Recovery", 30);
 
         private SprintFieldsPanel() {
             super();
-            this.repetitionsField = new LabelledTextPanel("Terrain", 30);
-            this.recoveryField = new LabelledTextPanel("Tempo", 30);
             add(repetitionsField);
             add(recoveryField);
         }
