@@ -53,7 +53,7 @@ public final class TrainingRecord {
                 .reduce(0.0, (acc, e) -> acc + e.getDistance(), (acc1, acc2) -> acc1 + acc2);
     }
 
-    public Vector<Entry> getEntries() {
+    public Collection<Entry> getEntries() {
         return new Vector<Entry>(store);
     }
 }

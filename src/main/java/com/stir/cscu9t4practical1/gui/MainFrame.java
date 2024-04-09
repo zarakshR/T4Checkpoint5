@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Vector;
 
 public final class MainFrame extends JFrame implements TrainingRecordAppController {
 
@@ -20,7 +21,8 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
     public MainFrame(final TrainingRecord initialTrainingRecord) {
         trainingRecord = initialTrainingRecord;
 
-        recordsModel = new DefaultComboBoxModel<Entry>(trainingRecord.getEntries());
+        // DefaultComboBoxModel only accepts Vectors
+        recordsModel = new DefaultComboBoxModel<Entry>(new Vector<Entry>(trainingRecord.getEntries()));
 
         RecordsListPanel recordsListPanel = new RecordsListPanel(this, recordsModel);
         AddEntryPanel addEntryPanel = new AddEntryPanel(this);
