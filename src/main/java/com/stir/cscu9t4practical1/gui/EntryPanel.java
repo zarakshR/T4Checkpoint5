@@ -65,17 +65,31 @@ final class EntryPanel extends JPanel {
     //  messages this way
     private abstract static class EntryFieldsPanel extends JPanel {
 
+        protected final JPanel dateEntryPane;
+        protected final LabelledTextPanel yearField;
+        protected final LabelledTextPanel monthField;
+        protected final LabelledTextPanel dayField;
         protected final LabelledTextPanel nameField;
-        protected final LabelledTextPanel dateField;
         protected final LabelledTextPanel distanceField;
 
         private EntryFieldsPanel() {
             setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+
+            dateEntryPane = new JPanel();
+
+            this.yearField = new LabelledTextPanel("Year", 4);
+            this.monthField = new LabelledTextPanel("Month", 2);
+            this.dayField = new LabelledTextPanel("Day", 2);
             this.nameField = new LabelledTextPanel("Name", 30);
-            this.dateField = new LabelledTextPanel("Date", 30);
             this.distanceField = new LabelledTextPanel("Distance", 30);
+
+            // year, name, and day text boxes in a separate panel so they are aligned left to right
+            dateEntryPane.add(yearField);
+            dateEntryPane.add(monthField);
+            dateEntryPane.add(dayField);
+
             add(nameField);
-            add(dateField);
+            add(dateEntryPane);
             add(distanceField);
         }
 
@@ -83,7 +97,7 @@ final class EntryPanel extends JPanel {
 
         void clearFields() throws NullPointerException {
             this.nameField.setText(null);
-            this.dateField.setText(null);
+            this.yearField.setText(null);
             this.distanceField.setText(null);
         }
     }
@@ -97,7 +111,7 @@ final class EntryPanel extends JPanel {
         @Override
         Entry emitEntry() throws InvalidFieldsException {
             String name = nameField.getText();
-            String dateTimeText = dateField.getText();
+            String dateTimeText = yearField.getText();
             LocalDateTime dateTime;
             String distanceText = distanceField.getText();
             double distance;
@@ -138,7 +152,7 @@ final class EntryPanel extends JPanel {
         @Override
         Entry emitEntry() throws InvalidFieldsException {
             String name = nameField.getText();
-            String dateTimeText = dateField.getText();
+            String dateTimeText = yearField.getText();
             LocalDateTime dateTime;
             String distanceText = distanceField.getText();
             double distance;
@@ -179,7 +193,7 @@ final class EntryPanel extends JPanel {
         @Override
         Entry emitEntry() throws InvalidFieldsException {
             String name = nameField.getText();
-            String dateTimeText = dateField.getText();
+            String dateTimeText = yearField.getText();
             LocalDateTime dateTime;
             String distanceText = distanceField.getText();
             double distance;
@@ -221,7 +235,7 @@ final class EntryPanel extends JPanel {
         @Override
         Entry emitEntry() throws InvalidFieldsException {
             String name;
-            String dateTimeText = dateField.getText();
+            String dateTimeText = yearField.getText();
             LocalDateTime dateTime;
             String distanceText = distanceField.getText();
             double distance;
