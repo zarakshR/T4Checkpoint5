@@ -7,13 +7,13 @@ import com.stir.cscu9t4practical1.entries.Entry;
 import com.stir.cscu9t4practical1.entries.RunEntry;
 import com.stir.cscu9t4practical1.entries.TrainingRecord;
 import com.stir.cscu9t4practical1.gui.util.InvalidFieldsException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MainFrameTest {
 
@@ -25,10 +25,10 @@ public class MainFrameTest {
     private static final Entry bob = new RunEntry("Bob", LocalDateTime.now(), 10.0);
     private static final Entry charlie = new RunEntry("Charlie", LocalDateTime.now(), 10.0);
     // extra Charlies for everyone
-    private static final Entry charlie2 = new RunEntry("Charlie", LocalDateTime.of(1,1,1,1,1,1,1), 10.0);
+    private static final Entry charlie2 = new RunEntry("Charlie", LocalDateTime.of(1, 1, 1, 1, 1, 1, 1), 10.0);
     private static final Entry david = new RunEntry("David", LocalDateTime.now(), 10.0);
 
-    static  {
+    static {
         mockTrainingRecord.addEntry(alice);
         mockTrainingRecord.addEntry(bob);
         mockTrainingRecord.addEntry(charlie);

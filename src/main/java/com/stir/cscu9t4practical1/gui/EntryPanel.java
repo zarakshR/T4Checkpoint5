@@ -76,7 +76,7 @@ final class EntryPanel extends JPanel {
     //  repetitions and recovery) and are swapped in and out by EntryPanel.
     // these should be the only classes in our UI which concern themselves with the internal details of the various Entry types
     // TODO: bump language level to 17 to get sealed classes
-    private abstract static  class EntryFieldsPanel extends JPanel {
+    private abstract static class EntryFieldsPanel extends JPanel {
 
         protected final LabelledTextPanel nameField = new LabelledTextPanel("Name", 30);
         protected final DateEntryPanel dateEntryPanel = new DateEntryPanel();
@@ -92,8 +92,10 @@ final class EntryPanel extends JPanel {
             add(distanceField);
         }
 
-        // There is some ugly and repetitive (but robust) error handling code in the emitEntry implementations below. We could have
-        // had simpler code by just throwing the exceptions upward and letting AddEntryPanel handle it, but we get much nicer error
+        // There is some ugly and repetitive (but robust) error handling code in the emitEntry implementations below. We could
+        // have
+        // had simpler code by just throwing the exceptions upward and letting AddEntryPanel handle it, but we get much nicer
+        // error
         //  messages this way + AddEntry panel now does not need to concern itself with the implementation details of Entry types
         abstract Entry emitEntry() throws InvalidFieldsException;
 

@@ -5,7 +5,9 @@
  */
 package com.stir.cscu9t4practical1.entries;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,17 +35,15 @@ public class TrainingRecordTest {
             2010, 3, 11, 0, 24, 55, 0
     );
     final static RunEntry claire2 = new RunEntry("Claire", claireDateTime2, 10);
-
+    // A highly specific double value was chosen to make sure we are handling double comparisions properly
+    private static final double MARIAM_DISTANCE = 7.35323;
+    private static final String MARIAM_NAME = "Mariam";
     static TrainingRecord instance;
 
     // for testing purposes: just to generate LocalDateTimes with no useful time info
     private static LocalDate dateMocker(int year, int month, int day) {
         return LocalDate.of(year, month, day);
     }
-
-    // A highly specific double value was chosen to make sure we are handling double comparisions properly
-    private static final double MARIAM_DISTANCE = 7.35323;
-    private static final String MARIAM_NAME = "Mariam";
 
     // MARIAM the mock athlete: generates RunEntry instances that differ *only* in terms of their dates
     //  All RunEntries generated with this are guaranteed to have:
@@ -53,7 +53,7 @@ public class TrainingRecordTest {
     // you can rename MARIAM_NAME and MARIAM_DISTANCE to be MOCK_NAME and MOCK_DISTANCE if it seems more professional to you,
     //  but I think this has more character :)
     private static RunEntry makeMariam(int year, int month, int day) {
-        return new RunEntry(MARIAM_NAME, LocalDateTime.of(year, month, day, 0,0,0), MARIAM_DISTANCE);
+        return new RunEntry(MARIAM_NAME, LocalDateTime.of(year, month, day, 0, 0, 0), MARIAM_DISTANCE);
     }
 
     private static <E> boolean orderIndependentIterableEquality(Collection<E> c1, Collection<E> c2) {
@@ -133,16 +133,16 @@ public class TrainingRecordTest {
     @Test
     // checks when dates within one week
     public void testGetWeeklyDistanceWithinOneWeek() {
-        instance.addEntry(makeMariam(2020,1,1));
-        double totalDistance = instance.lookupWeeklyDistance(MARIAM_NAME, dateMocker(2020,1,7));
+        instance.addEntry(makeMariam(2020, 1, 1));
+        double totalDistance = instance.lookupWeeklyDistance(MARIAM_NAME, dateMocker(2020, 1, 7));
         assertEquals(MARIAM_DISTANCE, totalDistance, 0.001);
     }
 
     @Test
     // checks when dates not within one week
     public void testGetWeeklyDistanceOutwithOneWeek() {
-        instance.addEntry(makeMariam(2020,1,1));
-        double totalDistance = instance.lookupWeeklyDistance(MARIAM_NAME, dateMocker(2020,1,8));
+        instance.addEntry(makeMariam(2020, 1, 1));
+        double totalDistance = instance.lookupWeeklyDistance(MARIAM_NAME, dateMocker(2020, 1, 8));
         assertEquals(0.0, totalDistance, 0.001);
     }
 
@@ -150,16 +150,16 @@ public class TrainingRecordTest {
     // checks when dates within one week across a year boundary, e.g. - 2020-12-31 to 2021-01-01 should match
     public void testGetWeeklyDistanceAcrossYearBoundary() {
         instance.addEntry(makeMariam(2020, 12, 31));
-        double totalDistance = instance.lookupWeeklyDistance(MARIAM_NAME, dateMocker(2021,1,1));
+        double totalDistance = instance.lookupWeeklyDistance(MARIAM_NAME, dateMocker(2021, 1, 1));
         assertEquals(MARIAM_DISTANCE, totalDistance, 0.001);
     }
 
     @Test
     public void testGetWeeklyDistanceSumsCorrectly() {
-        instance.addEntry(makeMariam(1,1,4)); // this should not count, so MARIAM_DISTANCE * 2 is expected
-        instance.addEntry(makeMariam(2020,1,1));
-        instance.addEntry(makeMariam(2020,1,2));
-        double totalDistance = instance.lookupWeeklyDistance(MARIAM_NAME, dateMocker(2020,1,3));
+        instance.addEntry(makeMariam(1, 1, 4)); // this should not count, so MARIAM_DISTANCE * 2 is expected
+        instance.addEntry(makeMariam(2020, 1, 1));
+        instance.addEntry(makeMariam(2020, 1, 2));
+        double totalDistance = instance.lookupWeeklyDistance(MARIAM_NAME, dateMocker(2020, 1, 3));
         assertEquals(MARIAM_DISTANCE * 2, totalDistance, 0.001);
     }
 
