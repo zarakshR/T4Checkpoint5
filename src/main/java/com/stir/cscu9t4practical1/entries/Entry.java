@@ -2,19 +2,17 @@
 package com.stir.cscu9t4practical1.entries;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.Objects;
-import java.util.TimeZone;
 
 public abstract class Entry {
 
     private final String name;
-    private final ZonedDateTime dateAndTime;
+    private final LocalDateTime dateTime;
     private final double distance;
 
     public Entry(final String name, final LocalDateTime dateTime, final double distance) {
         this.name = name;
-        this.dateAndTime = ZonedDateTime.of(dateTime, TimeZone.getDefault().toZoneId());
+        this.dateTime = dateTime;
         this.distance = distance;
     }
 
@@ -22,18 +20,18 @@ public abstract class Entry {
         return name;
     }
 
-    public LocalDateTime getDateTime() { return dateAndTime.toLocalDateTime(); }
+    public LocalDateTime getDateTime() { return dateTime; }
 
     public double getDistance() {
         return distance;
     }
 
     protected String getFormattedTime() {
-        return dateAndTime.getHour() + ":" + dateAndTime.getMinute() + ":" + dateAndTime.getSecond();
+        return dateTime.getHour() + ":" + dateTime.getMinute() + ":" + dateTime.getSecond();
     }
 
     protected String getFormattedDate() {
-        return dateAndTime.getDayOfMonth() + "/" + dateAndTime.getMonthValue() + "/" + dateAndTime.getYear();
+        return dateTime.getDayOfMonth() + "/" + dateTime.getMonthValue() + "/" + dateTime.getYear();
     }
 
     @Override
@@ -45,12 +43,12 @@ public abstract class Entry {
 
         // two Entrys are considered equal if the training session occurred at the same time and by the same person
         if (!Objects.equals(name, entry.name)) return false;
-        return Objects.equals(dateAndTime, entry.dateAndTime);
+        return Objects.equals(dateTime, entry.dateTime);
     }
 
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        return 31 * result + (dateAndTime != null ? dateAndTime.hashCode() : 0);
+        return 31 * result + (dateTime != null ? dateTime.hashCode() : 0);
     }
 }
