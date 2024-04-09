@@ -5,10 +5,11 @@ import javax.swing.*;
 // TODO: Write tests for this
 final class SystemMessagesPanel extends JScrollPane {
 
-    private static final JTextArea messageConsole = new JTextArea();
+    private final JTextArea messageConsole = new JTextArea();
 
     public SystemMessagesPanel() {
-        super(messageConsole);
+        super();
+        getViewport().setView(messageConsole);
         messageConsole.setRows(3); // we don't want more than 3 lines in the system console at a time
         messageConsole.setEditable(false);
         messageConsole.setFocusable(false);
