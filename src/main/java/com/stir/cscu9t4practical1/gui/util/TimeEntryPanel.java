@@ -1,9 +1,9 @@
-package com.stir.cscu9t4practical1.gui;
+package com.stir.cscu9t4practical1.gui.util;
 
 import javax.swing.*;
 import java.time.LocalTime;
 
-final class TimeEntryPanel extends JPanel {
+public final class TimeEntryPanel extends JPanel {
     private final LabelledTextPanel hourField = new LabelledTextPanel("Hour", 2);
     private final LabelledTextPanel minuteField = new LabelledTextPanel("Minute", 2);
     private final LabelledTextPanel secondField = new LabelledTextPanel("Second", 2);

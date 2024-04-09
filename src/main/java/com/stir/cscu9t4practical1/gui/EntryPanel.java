@@ -3,6 +3,10 @@ package com.stir.cscu9t4practical1.gui;
 import com.stir.cscu9t4practical1.entries.*;
 import com.stir.cscu9t4practical1.entries.CycleEntry.TEMPO;
 import com.stir.cscu9t4practical1.entries.SwimEntry.LOCATION;
+import com.stir.cscu9t4practical1.gui.util.DateEntryPanel;
+import com.stir.cscu9t4practical1.gui.util.InvalidFieldsException;
+import com.stir.cscu9t4practical1.gui.util.LabelledTextPanel;
+import com.stir.cscu9t4practical1.gui.util.TimeEntryPanel;
 
 import javax.swing.*;
 import java.awt.*;

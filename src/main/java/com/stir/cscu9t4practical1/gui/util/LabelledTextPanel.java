@@ -1,12 +1,12 @@
-package com.stir.cscu9t4practical1.gui;
+package com.stir.cscu9t4practical1.gui.util;
 
 import javax.swing.*;
 
-final class LabelledTextPanel extends JPanel {
+public final class LabelledTextPanel extends JPanel {
 
     private final JTextField textField;
 
-    LabelledTextPanel(final String labelText, final int columns) {
+    public LabelledTextPanel(final String labelText, final int columns) {
         textField =  new JTextField(columns);
         add(new JLabel(labelText));
         add(textField);

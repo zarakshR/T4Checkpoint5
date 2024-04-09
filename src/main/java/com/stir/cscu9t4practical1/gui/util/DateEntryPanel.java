@@ -1,9 +1,9 @@
-package com.stir.cscu9t4practical1.gui;
+package com.stir.cscu9t4practical1.gui.util;
 
 import javax.swing.*;
 import java.time.LocalDate;
 
-final class DateEntryPanel extends JPanel {
+public final class DateEntryPanel extends JPanel {
     private final LabelledTextPanel yearField = new LabelledTextPanel("Year", 4);
     private final LabelledTextPanel monthField = new LabelledTextPanel("Month", 2);
     private final LabelledTextPanel dayField = new LabelledTextPanel("Day", 2);

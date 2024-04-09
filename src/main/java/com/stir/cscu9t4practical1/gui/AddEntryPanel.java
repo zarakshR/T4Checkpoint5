@@ -1,5 +1,7 @@
 package com.stir.cscu9t4practical1.gui;
 
+import com.stir.cscu9t4practical1.gui.util.InvalidFieldsException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
