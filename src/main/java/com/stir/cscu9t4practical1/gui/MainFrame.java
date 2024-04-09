@@ -7,6 +7,7 @@ import com.stir.cscu9t4practical1.gui.util.InvalidFieldsException;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
+import java.util.Collection;
 
 // TODO: Write tests for this
 public final class MainFrame extends JFrame implements TrainingRecordAppController {
@@ -86,14 +87,34 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
 
     @Override
     public void updateWithSearchByName(final String name) {
-        recordsModel.removeAllElements();
-        recordsModel.addAll(trainingRecord.lookupEntriesByName(name));
+        Collection<Entry> entries = trainingRecord.lookupEntriesByName(name);
+
+        // don't replace the records with an empty list in case we find no search matches, that is probably not what the user
+        //  expects
+        if (entries.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No search results for query: " + name);
+        } else {
+            recordsModel.removeAllElements();
+            recordsModel.addAll(entries);
+        }
     }
 
     @Override
     public void updateWithSearchByDate(final LocalDate date) {
-        recordsModel.removeAllElements();
-        recordsModel.addAll(trainingRecord.lookupEntriesByDay(date));
+        Collection<Entry> entries = trainingRecord.lookupEntriesByDay(date);
+
+        if (entries.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No search results for query: " + date);
+        }
+
+        // don't replace the records with an empty list in case we find no search matches, that is probably not what the user
+        //  expects
+        if (entries.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No search results for query: " + date);
+        } else {
+            recordsModel.removeAllElements();
+            recordsModel.addAll(entries);
+        }
     }
 
     @Override
