@@ -6,12 +6,10 @@ import com.stir.cscu9t4practical1.gui.util.InvalidFieldsException;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
 // TODO: Write tests for this
-public final class MainFrame extends JFrame implements ActionListener, TrainingRecordAppController {
+public final class MainFrame extends JFrame implements TrainingRecordAppController {
 
     private final TrainingRecord trainingRecord;
     private final DefaultComboBoxModel<Entry> recordsModel;
@@ -102,9 +100,5 @@ public final class MainFrame extends JFrame implements ActionListener, TrainingR
     public void handleInvalidInput(InvalidFieldsException ex) {
         JOptionPane.showMessageDialog(this,
                 "Invalid value: \"" + ex.getBadValue() + "\" in field " + ex.getFieldName());
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
     }
 }
