@@ -72,10 +72,7 @@ final class AddEntryPanel extends JPanel implements ActionListener {
             } catch (NullPointerException ex) {
                 // NullPointerException is thrown iff blank panel is still active in which case do nothing
             } catch (InvalidFieldsException ex) {
-                // we do all the janky error handling code in EntryPanel so we can get neat error messages here and so that
-                //  AddEntryPanel does not have to concern itself with the internal representation of Entry objects
-                JOptionPane.showMessageDialog(mainFrame,
-                        "Invalid value: \"" + ex.getBadValue() + "\" in field " + ex.getFieldName());
+                mainFrame.handleInvalidInput(ex);
             }
         }
     }

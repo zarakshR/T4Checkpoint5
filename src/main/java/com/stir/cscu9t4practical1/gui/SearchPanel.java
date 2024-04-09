@@ -8,10 +8,14 @@ import java.awt.event.ActionListener;
 // TODO: Write tests for this
 final class SearchPanel extends JPanel implements ActionListener {
 
+    private final MainFrame mainFrame;
+
     private final NameSearchPanel nameSearchPanel = new NameSearchPanel(this);
     private final DateSearchPanel dateSearchPanel = new DateSearchPanel(this);
 
-    SearchPanel() {
+    SearchPanel(MainFrame parentFrame) {
+        mainFrame = parentFrame;
+
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         add(nameSearchPanel);
         add(dateSearchPanel);
@@ -23,24 +27,21 @@ final class SearchPanel extends JPanel implements ActionListener {
             try {
                 System.out.println("name search = " + nameSearchPanel.getValidatedName());
             } catch (InvalidFieldsException ex) {
-                JOptionPane.showMessageDialog(this,
-                        "Invalid value: \"" + ex.getBadValue() + "\" in field " + ex.getFieldName());
+                mainFrame.handleInvalidInput(ex);
             }
         }
         if (e.getSource() == nameSearchPanel.weeklyDistanceButton) {
             try {
                 System.out.println("weekly distance = " + nameSearchPanel.getValidatedName());
             } catch (InvalidFieldsException ex) {
-                JOptionPane.showMessageDialog(this,
-                        "Invalid value: \"" + ex.getBadValue() + "\" in field " + ex.getFieldName());
+                mainFrame.handleInvalidInput(ex);
             }
         }
         if (e.getSource() == dateSearchPanel.searchByDateButton) {
             try {
                 System.out.println("date search = " + dateSearchPanel.dateEntryPanel.getDate());
             } catch (InvalidFieldsException ex) {
-                JOptionPane.showMessageDialog(this,
-                        "Invalid value: \"" + ex.getBadValue() + "\" in field " + ex.getFieldName());
+                mainFrame.handleInvalidInput(ex);
             }
         }
     }

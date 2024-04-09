@@ -24,7 +24,7 @@ public final class MainFrame extends JFrame implements ActionListener {
 
         RecordsListPanel recordsListPanel = new RecordsListPanel(this, recordsModel);
         AddEntryPanel addEntryPanel = new AddEntryPanel(this);
-        SearchPanel searchPanel = new SearchPanel();
+        SearchPanel searchPanel = new SearchPanel(this);
         systemMessagesPanel = new SystemMessagesPanel();
 
         setLayout(new GridBagLayout());
@@ -71,6 +71,13 @@ public final class MainFrame extends JFrame implements ActionListener {
 
     void log(final String s) {
         systemMessagesPanel.println(s);
+    }
+
+    void handleInvalidInput(InvalidFieldsException ex) {
+        // we do all the janky error handling code in EntryPanel / SearchPanel so we can get neat error messages here and so that
+        //  MainFrame does not have to concern itself with the internal representation of Entry objects
+        JOptionPane.showMessageDialog(this,
+                "Invalid value: \"" + ex.getBadValue() + "\" in field " + ex.getFieldName());
     }
 
     @Override
