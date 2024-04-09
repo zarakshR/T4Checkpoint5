@@ -15,6 +15,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ The EntryPanel manages multiple {@link EntryFieldsPanel}s and can be instructed to swap them in and out dynamically. The
+ {@link EntryFieldsPanel}s maintain their internal state when swapped out
+ */
 final class EntryPanel extends JPanel {
 
     private final RunFieldsPanel runEntryPanel = new RunFieldsPanel();
@@ -25,6 +29,9 @@ final class EntryPanel extends JPanel {
     // CardLayout does not have an API for determining what the currently showing card is so we have to manually keep track of it
     private String currentlyShowing;
 
+    /**
+     Create an <code>EntryPanel</code>
+     */
     EntryPanel() {
         setLayout(new CardLayout());
 
@@ -39,6 +46,10 @@ final class EntryPanel extends JPanel {
         add(sprintEntryPanel, "SPRINT");
     }
 
+    /**
+     Shown an {@link EntryFieldsPanel} associated with a <code>String</code> key
+     @param entryKey the string key associated with the {@link EntryFieldsPanel} to be shown
+     */
     public void setEntryType(final String entryKey) {
         CardLayout layout = (CardLayout) getLayout();
         layout.show(this, entryKey);
@@ -58,10 +69,24 @@ final class EntryPanel extends JPanel {
         };
     }
 
+    /**
+     Returns the Entry that is defined by the input provided by the user
+     @return the entry defined by the user
+
+     @throws InvalidFieldsException if the user has provided invalid fields for a field
+     @throws NullPointerException if no entry is currently showing, this can happen if an attempt is made to perform this
+     action before the user has selected any entry type for the first time
+     */
     public Entry emitEntry() throws InvalidFieldsException, NullPointerException {
         return getActivePanel().emitEntry();
     }
 
+    /**
+     Clears the fields of the currently active entry
+
+     @throws NullPointerException if no entry is currently showing, this can happen if an attempt is made to perform this
+     action before the user has selected any entry type for the first time
+     */
     public void clearFields() throws NullPointerException {
         getActivePanel().clearFields();
     }

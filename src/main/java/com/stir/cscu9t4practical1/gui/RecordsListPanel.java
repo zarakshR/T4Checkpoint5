@@ -6,12 +6,20 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ Manages a list of <code>Entry</code>s. Provides the ability for the user to right click and delete an entry
+ */
 final class RecordsListPanel extends JList<Entry> {
 
     private final JPopupMenu menu = new JPopupMenu();
     private final JMenuItem deleteButton = new JMenuItem("Delete");
 
-    // We need to use atleast a ComboBoxModel because it must support selecting elements (for remove/weekly distance operation)
+    /**
+     Create a <code>RecordsListPanel</code> with the given controller implementation and backed by the given list model
+     @param controller the {@link TrainingRecordAppController} of the running app
+     @param listModel the {@link ComboBoxModel} that backs up this list
+     */
+    // We need to use at least a ComboBoxModel because it must support selecting elements (for remove/weekly distance operation)
     RecordsListPanel(final TrainingRecordAppController controller, final ComboBoxModel<Entry> listModel) {
         super(listModel);
 

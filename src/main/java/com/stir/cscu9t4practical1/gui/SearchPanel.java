@@ -9,7 +9,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-// TODO: Write tests for this
+/**
+ Allows the user to search by name or date
+ */
 final class SearchPanel extends JPanel implements ActionListener {
 
     private final TrainingRecordAppController controller;
@@ -19,6 +21,10 @@ final class SearchPanel extends JPanel implements ActionListener {
 
     private final JButton clearSearchButton = new JButton("Clear Search");
 
+    /**
+     Create an <code>AddEntryPanel</code> with the given controller implementation
+     @param parentFrame the {@link TrainingRecordAppController} of the running app
+     */
     SearchPanel(final TrainingRecordAppController parentFrame) {
         controller = parentFrame;
 

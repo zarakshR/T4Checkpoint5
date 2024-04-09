@@ -20,6 +20,10 @@ final class AddEntryPanel extends JPanel implements ActionListener {
 
     private final JButton addButton = new JButton("Add Entry");
 
+    /**
+     Create an <code>AddEntryPanel</code> with the given controller implementation
+     @param parentFrame the {@link TrainingRecordAppController} of the running app
+     */
     AddEntryPanel(final TrainingRecordAppController parentFrame) {
         controller = parentFrame;
 

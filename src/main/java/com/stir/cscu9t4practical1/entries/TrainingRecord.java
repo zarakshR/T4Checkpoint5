@@ -10,6 +10,9 @@ public final class TrainingRecord {
     // Use a Set because the primary use of TrainingRecordApp will be lookups.
     private final Set<Entry> store;
 
+    /**
+     Creates a new <code>TrainingRecord</code> with no entries
+     */
     public TrainingRecord() {
         // Use a HashSet because its fast
         this.store = new HashSet<Entry>();
