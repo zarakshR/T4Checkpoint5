@@ -12,7 +12,7 @@ final class RecordsListPanel extends JList<Entry> {
     private final JPopupMenu menu = new JPopupMenu();
     private final JMenuItem deleteButton = new JMenuItem("Delete");
 
-    public RecordsListPanel(final MainFrame mainFrame, final DefaultComboBoxModel<Entry> listModel) {
+    public RecordsListPanel(final TrainingRecordAppController controller, final DefaultComboBoxModel<Entry> listModel) {
         super(listModel);
 
         menu.add(deleteButton);
@@ -21,7 +21,7 @@ final class RecordsListPanel extends JList<Entry> {
         deleteButton.addActionListener(e -> {
             if (e.getSource() == deleteButton) {
                 DefaultComboBoxModel<Entry> model = (DefaultComboBoxModel<Entry>) getModel();
-                mainFrame.log("Deleting entry: " + model.getSelectedItem());
+                controller.log("Deleting entry: " + model.getSelectedItem());
                 model.removeElement(model.getSelectedItem());
             }
         });

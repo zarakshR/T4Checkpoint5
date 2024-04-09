@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 // TODO: Write tests for this
 final class AddEntryPanel extends JPanel implements ActionListener {
 
-    private final MainFrame mainFrame;
+    private final TrainingRecordAppController controller;
 
     private final EntryPanel entryPanel = new EntryPanel();
 
@@ -21,8 +21,8 @@ final class AddEntryPanel extends JPanel implements ActionListener {
 
     private final JButton addButton = new JButton("Add Entry");
 
-    AddEntryPanel(final MainFrame parentFrame) {
-        mainFrame = parentFrame;
+    AddEntryPanel(final TrainingRecordAppController parentFrame) {
+        controller = parentFrame;
 
         ButtonGroup entryType = new ButtonGroup();
         entryType.add(runEntrySelector);
@@ -69,12 +69,12 @@ final class AddEntryPanel extends JPanel implements ActionListener {
         }
         if (e.getSource() == addButton) {
             try {
-                mainFrame.addEntry(entryPanel.emitEntry());
+                controller.addEntry(entryPanel.emitEntry());
                 entryPanel.clearFields();
             } catch (NullPointerException ex) {
                 // NullPointerException is thrown iff blank panel is still active in which case do nothing
             } catch (InvalidFieldsException ex) {
-                mainFrame.handleInvalidInput(ex);
+                controller.handleInvalidInput(ex);
             }
         }
     }

@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
 // TODO: Write tests for this
-public final class MainFrame extends JFrame implements ActionListener {
+public final class MainFrame extends JFrame implements ActionListener, TrainingRecordAppController {
 
     private final TrainingRecord trainingRecord;
     private final DefaultComboBoxModel<Entry> recordsModel;
@@ -70,32 +70,36 @@ public final class MainFrame extends JFrame implements ActionListener {
         pack();
     }
 
-    void addEntry(final Entry e) {
+    @Override
+    public void addEntry(final Entry e) {
         recordsModel.addElement(e);
     }
 
-    void log(final String s) {
+    @Override
+    public void log(final String s) {
         systemMessagesPanel.println(s);
     }
 
-    void updateWithSearchByName(String name) {
+    @Override
+    public void updateWithSearchByName(String name) {
         recordsModel.removeAllElements();
         recordsModel.addAll(trainingRecord.lookupEntriesByName(name));
     }
 
-    void updateWithSearchByDate(LocalDate date) {
+    @Override
+    public void updateWithSearchByDate(LocalDate date) {
         recordsModel.removeAllElements();
         recordsModel.addAll(trainingRecord.lookupEntriesByDay(date));
     }
 
-    void reinitializeRecords() {
+    @Override
+    public void reinitializeRecords() {
         recordsModel.removeAllElements();
         recordsModel.addAll(trainingRecord.getEntries());
     }
 
-    void handleInvalidInput(InvalidFieldsException ex) {
-        // we do all the janky error handling code in EntryPanel / SearchPanel so we can get neat error messages here and so that
-        //  MainFrame does not have to concern itself with the internal representation of Entry objects
+    @Override
+    public void handleInvalidInput(InvalidFieldsException ex) {
         JOptionPane.showMessageDialog(this,
                 "Invalid value: \"" + ex.getBadValue() + "\" in field " + ex.getFieldName());
     }

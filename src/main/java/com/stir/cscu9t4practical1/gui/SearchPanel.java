@@ -12,15 +12,15 @@ import java.awt.event.ActionListener;
 // TODO: Write tests for this
 final class SearchPanel extends JPanel implements ActionListener {
 
-    private final MainFrame mainFrame;
+    private final TrainingRecordAppController controller;
 
     private final NameSearchPanel nameSearchPanel = new NameSearchPanel(this);
     private final DateSearchPanel dateSearchPanel = new DateSearchPanel(this);
 
     private final JButton clearSearchButton = new JButton("Clear Search");
 
-    SearchPanel(final MainFrame parentFrame) {
-        mainFrame = parentFrame;
+    SearchPanel(final TrainingRecordAppController parentFrame) {
+        controller = parentFrame;
 
         clearSearchButton.addActionListener(this);
 
@@ -34,9 +34,9 @@ final class SearchPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == nameSearchPanel.searchByNameButton) {
             try {
-                mainFrame.updateWithSearchByName(nameSearchPanel.getValidatedName());
+                controller.updateWithSearchByName(nameSearchPanel.getValidatedName());
             } catch (InvalidFieldsException ex) {
-                mainFrame.handleInvalidInput(ex);
+                controller.handleInvalidInput(ex);
             }
         }
         if (e.getSource() == nameSearchPanel.weeklyDistanceButton) {
@@ -44,18 +44,18 @@ final class SearchPanel extends JPanel implements ActionListener {
                 // TODO
                 System.out.println("weekly distance = " + nameSearchPanel.getValidatedName());
             } catch (InvalidFieldsException ex) {
-                mainFrame.handleInvalidInput(ex);
+                controller.handleInvalidInput(ex);
             }
         }
         if (e.getSource() == dateSearchPanel.searchByDateButton) {
             try {
-                mainFrame.updateWithSearchByDate(dateSearchPanel.dateEntryPanel.getDate());
+                controller.updateWithSearchByDate(dateSearchPanel.dateEntryPanel.getDate());
             } catch (InvalidFieldsException ex) {
-                mainFrame.handleInvalidInput(ex);
+                controller.handleInvalidInput(ex);
             }
         }
         if (e.getSource() == clearSearchButton) {
-            mainFrame.reinitializeRecords();
+            controller.reinitializeRecords();
         }
     }
 
