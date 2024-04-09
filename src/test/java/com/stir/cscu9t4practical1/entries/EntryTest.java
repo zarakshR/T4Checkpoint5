@@ -23,7 +23,7 @@ public class EntryTest {
 
     @Test
     public void testGetDateTime() {
-        assertEquals(dateTime, instance.getLocalDateAndTime());
+        assertEquals(dateTime, instance.getDateTime());
     }
 
     /**

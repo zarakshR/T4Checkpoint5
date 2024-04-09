@@ -1,7 +1,6 @@
 package com.stir.cscu9t4practical1.entries;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 public final class SwimEntry extends Entry {
 
@@ -10,11 +9,6 @@ public final class SwimEntry extends Entry {
     public SwimEntry(final String n, final LocalDateTime dateTime, final double dist, final LOCATION location) {
         super(n, dateTime, dist);
         this.location = location;
-    }
-
-    @Deprecated
-    public SwimEntry(final String n, final ZonedDateTime zonedDateTime, final double dist, final LOCATION location) {
-        this(n, zonedDateTime.toLocalDateTime(), dist, location);
     }
 
     public LOCATION getLocation() {

@@ -18,52 +18,11 @@ public abstract class Entry {
         this.distance = distance;
     }
 
-    @Deprecated
-    public Entry(final String n, final ZonedDateTime zonedDateTime, final double dist) {
-        this(n, zonedDateTime.toLocalDateTime(), dist);
-    }
-
     public String getName() {
         return name;
     }
 
-    // this cannot overload getDateAndTime because type erasure
-    public LocalDateTime getLocalDateAndTime() { return dateAndTime.toLocalDateTime(); }
-
-    @Deprecated
-    public ZonedDateTime getDateAndTime() {
-        return dateAndTime;
-    }
-
-    @Deprecated
-    public int getDay() {
-        return dateAndTime.getDayOfMonth();
-    }
-
-    @Deprecated
-    public int getMonth() {
-        return dateAndTime.getMonthValue();
-    }
-
-    @Deprecated
-    public int getYear() {
-        return dateAndTime.getYear();
-    }
-
-    @Deprecated
-    public int getHour() {
-        return dateAndTime.getHour();
-    }
-
-    @Deprecated
-    public int getMin() {
-        return dateAndTime.getMinute();
-    }
-
-    @Deprecated
-    public int getSec() {
-        return dateAndTime.getSecond();
-    }
+    public LocalDateTime getDateTime() { return dateAndTime.toLocalDateTime(); }
 
     public double getDistance() {
         return distance;
