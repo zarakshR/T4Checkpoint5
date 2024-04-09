@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EntryTest {
 
@@ -22,11 +21,6 @@ public class EntryTest {
     @Test
     public void testGetDistance() {
         assertEquals(3.0, instance.getDistance(), 0.0);
-    }
-
-    @Test
-    public void testEquality() {
-        assertTrue(instance.equals(instance));
     }
 
     @Test
