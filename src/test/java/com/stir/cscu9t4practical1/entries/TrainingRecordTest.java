@@ -5,9 +5,7 @@
  */
 package com.stir.cscu9t4practical1.entries;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -62,8 +60,9 @@ public class TrainingRecordTest {
         return (c1.size() == c2.size()) && c1.containsAll(c2) && c2.containsAll(c1);
     }
 
-    @BeforeAll
-    public static void setUp() {
+    // we need to create a new TrainingRecord instance before each test since we don't have mocks
+    @BeforeEach
+    public void setUp() {
         instance = new TrainingRecord();
     }
 
