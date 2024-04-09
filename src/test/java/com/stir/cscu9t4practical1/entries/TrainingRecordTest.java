@@ -6,6 +6,7 @@
 package com.stir.cscu9t4practical1.entries;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +35,7 @@ public class TrainingRecordTest {
     final static LocalDateTime claireDateTime2 = LocalDateTime.of(
             2010, 3, 11, 0, 24, 55, 0
     );
-    final static RunEntry claire2 = new RunEntry("Claire", claireDateTime2, 7);
+    final static RunEntry claire2 = new RunEntry("Claire", claireDateTime2, 10);
 
     static TrainingRecord instance;
 
@@ -91,12 +92,37 @@ public class TrainingRecordTest {
     }
 
     @Test
+    public void testLookupEntriesByDateNonExistent() {
+        instance.addEntry(alice);
+        instance.addEntry(bob);
+        LocalDate probablyNotInRecord = LocalDate.of(9999, 1, 1);
+        Assertions.assertIterableEquals(new Vector<Entry>(), instance.lookupEntriesByDay(probablyNotInRecord));
+    }
+
+    @Test
     public void testLookupEntriesByName() {
+        instance.addEntry(alice);
         instance.addEntry(claire1);
+        instance.addEntry(bob);
         instance.addEntry(claire2);
         Vector<Entry> expected = new Vector<Entry>(List.of(claire1, claire2));
         Collection<Entry> result = instance.lookupEntriesByName(claire1.getName());
         assertTrue(orderIndependentIterableEquality(expected, result));
+    }
+
+    @Test
+    public void testLookupEntriesByNameNonExistent() {
+        instance.addEntry(bob);
+        instance.addEntry(claire1);
+        assertIterableEquals(new Vector<Entry>(), instance.lookupEntriesByName("Alice"));
+    }
+
+    @Test
+    public void testGetWeeklyDistance() {
+        // these need to be separate instances
+        instance.addEntry(claire1);
+        instance.addEntry(claire2);
+        assertEquals(17.0, instance.lookupWeeklyDistance("Claire"), 0.001);
     }
 
     @Test
