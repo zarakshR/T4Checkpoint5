@@ -70,6 +70,7 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
     public void addEntry(final Entry e) {
         trainingRecord.addEntry(e);
         recordsModel.addElement(e);
+        log("added entry: " + e);
     }
 
     @Override
@@ -79,8 +80,10 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
 
     @Override
     public void removeEntryAtIndex(int index) {
-        trainingRecord.removeEntry(recordsModel.getElementAt(index));
+        Entry toRemove = recordsModel.getElementAt(index);
+        trainingRecord.removeEntry(toRemove);
         recordsModel.removeElementAt(index);
+        log("removed entry: " + toRemove);
     }
 
     @Override
@@ -126,6 +129,7 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
     public void reinitializeRecords() {
         recordsModel.removeAllElements();
         recordsModel.addAll(trainingRecord.getEntries());
+        log("refreshed all records");
     }
 
     @Override
