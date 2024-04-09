@@ -1,8 +1,7 @@
 package com.stir.cscu9t4practical1.gui;
 
 import com.stir.cscu9t4practical1.entries.*;
-import com.stir.cscu9t4practical1.entries.CycleEntry.Terrain;
-import com.stir.cscu9t4practical1.entries.CycleEntry.Tempo;
+import com.stir.cscu9t4practical1.entries.CycleEntry.TEMPO;
 import com.stir.cscu9t4practical1.entries.SwimEntry.LOCATION;
 
 import javax.swing.*;
@@ -127,8 +126,8 @@ final class EntryPanel extends JPanel {
 
     private static final class CycleFieldsPanel extends EntryFieldsPanel {
 
-        private final JComboBox<Terrain> terrainBox = new JComboBox<Terrain>(Terrain.values());
-        private final JComboBox<Tempo> tempoBox = new JComboBox<Tempo>(Tempo.values());
+        private final JComboBox<CycleEntry.TERRAIN> terrainBox = new JComboBox<CycleEntry.TERRAIN>(CycleEntry.TERRAIN.values());
+        private final JComboBox<CycleEntry.TEMPO> tempoBox = new JComboBox<CycleEntry.TEMPO>(CycleEntry.TEMPO.values());
 
         private CycleFieldsPanel() {
             super();
@@ -158,8 +157,8 @@ final class EntryPanel extends JPanel {
             }
 
             return new CycleEntry(name, dateTime, distance,
-                    (Terrain) terrainBox.getSelectedItem(),
-                    (Tempo) tempoBox.getSelectedItem());
+                    (CycleEntry.TERRAIN) terrainBox.getSelectedItem(),
+                    (TEMPO) tempoBox.getSelectedItem());
         }
 
         @Override

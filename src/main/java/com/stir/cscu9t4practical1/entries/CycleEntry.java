@@ -4,21 +4,21 @@ import java.time.LocalDateTime;
 
 public final class CycleEntry extends Entry {
 
-    private final Terrain terrain;
-    private final Tempo tempo;
+    private final TERRAIN terrain;
+    private final TEMPO tempo;
 
-    public CycleEntry(final String name, final LocalDateTime dateTime, final double dist, final Terrain terrain,
-                      final Tempo tempo) {
+    public CycleEntry(final String name, final LocalDateTime dateTime, final double dist, final TERRAIN terrain,
+                      final TEMPO tempo) {
         super(name, dateTime, dist);
         this.terrain = terrain;
         this.tempo = tempo;
     }
 
-    public Terrain getTerrain() {
+    public TERRAIN getTerrain() {
         return terrain;
     }
 
-    public Tempo getTempo() {
+    public TEMPO getTempo() {
         return tempo;
     }
 
@@ -28,7 +28,7 @@ public final class CycleEntry extends Entry {
                 + "on " + getFormattedDate() + " on " + getTerrain() + " at " + getTempo() + " tempo\n";
     }
 
-    public enum Terrain {
+    public enum TERRAIN {
         ASPHALT,
         GRAVEL,
         MOUNTAIN;
@@ -40,7 +40,7 @@ public final class CycleEntry extends Entry {
         }
     }
 
-    public enum Tempo {
+    public enum TEMPO {
         FAST,
         MODERATE,
         SLOW;

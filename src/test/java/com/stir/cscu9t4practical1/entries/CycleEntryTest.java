@@ -16,20 +16,20 @@ public class CycleEntryTest {
     final static LocalDateTime dateTime = LocalDateTime.of(
             2003, 2, 1, 0, 16, 7, 0
     );
-    final static CycleEntry instance = new CycleEntry("Alice", dateTime, 3, CycleEntry.Terrain.ASPHALT,
-            CycleEntry.Tempo.MODERATE);
+    final static CycleEntry instance = new CycleEntry("Alice", dateTime, 3, CycleEntry.TERRAIN.ASPHALT,
+            CycleEntry.TEMPO.MODERATE);
 
     @Test
     public void testGetTerrain() {
-        CycleEntry.Terrain expResult = CycleEntry.Terrain.ASPHALT;
-        CycleEntry.Terrain result = instance.getTerrain();
+        CycleEntry.TERRAIN expResult = CycleEntry.TERRAIN.ASPHALT;
+        CycleEntry.TERRAIN result = instance.getTerrain();
         assertEquals(expResult, result);
     }
 
     @Test
     public void testGetTempo() {
-        CycleEntry.Tempo expResult = CycleEntry.Tempo.MODERATE;
-        CycleEntry.Tempo result = instance.getTempo();
+        CycleEntry.TEMPO expResult = CycleEntry.TEMPO.MODERATE;
+        CycleEntry.TEMPO result = instance.getTempo();
         assertEquals(expResult, result);
     }
 
