@@ -80,15 +80,20 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
     }
 
     @Override
-    public void updateWithSearchByName(String name) {
+    public void updateWithSearchByName(final String name) {
         recordsModel.removeAllElements();
         recordsModel.addAll(trainingRecord.lookupEntriesByName(name));
     }
 
     @Override
-    public void updateWithSearchByDate(LocalDate date) {
+    public void updateWithSearchByDate(final LocalDate date) {
         recordsModel.removeAllElements();
         recordsModel.addAll(trainingRecord.lookupEntriesByDay(date));
+    }
+
+    @Override
+    public void showWeeklyDistance(final String name) {
+        System.out.println("trainingRecord = " + trainingRecord.lookupWeeklyDistance(name));
     }
 
     @Override

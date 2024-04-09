@@ -30,6 +30,14 @@ public final class TrainingRecord {
         return store.stream().filter(e -> e.getDateTime().toLocalDate().equals(date)).toList();
     }
 
+    public Double lookupWeeklyDistance(final String name) {
+        // I'm on that FP grindset
+        return store.stream()
+                    .filter(e -> e.getName().equals(name))
+                    .map(Entry::getDistance)
+                    .reduce(0.0, Double::sum);
+    }
+
     public int getNumberOfEntries() {
         return store.size();
     }

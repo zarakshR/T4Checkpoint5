@@ -41,8 +41,7 @@ final class SearchPanel extends JPanel implements ActionListener {
         }
         if (e.getSource() == nameSearchPanel.weeklyDistanceButton) {
             try {
-                // TODO
-                System.out.println("weekly distance = " + nameSearchPanel.getValidatedName());
+                controller.showWeeklyDistance(nameSearchPanel.getValidatedName());
             } catch (InvalidFieldsException ex) {
                 controller.handleInvalidInput(ex);
             }

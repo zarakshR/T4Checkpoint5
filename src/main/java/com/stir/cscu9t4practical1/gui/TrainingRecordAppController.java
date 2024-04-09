@@ -15,6 +15,8 @@ public interface TrainingRecordAppController {
 
     void updateWithSearchByDate(LocalDate date);
 
+    void showWeeklyDistance(String name);
+
     void reinitializeRecords();
 
     // we do all the janky error handling code in EntryPanel / SearchPanel so we can get neat error messages here and so that
