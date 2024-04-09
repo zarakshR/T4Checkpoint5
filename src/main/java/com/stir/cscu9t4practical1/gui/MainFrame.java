@@ -8,10 +8,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 // TODO: Write tests for this
 public final class MainFrame extends JFrame implements ActionListener {
 
+    private final TrainingRecord trainingRecord;
     private final DefaultComboBoxModel<Entry> recordsModel;
     private final SystemMessagesPanel systemMessagesPanel;
 
@@ -20,7 +22,9 @@ public final class MainFrame extends JFrame implements ActionListener {
     // This has the drawback that the child panels now depend on MainFrame, ideally this would be fixed by defining an
     //  controller interface that MainFrame implements and which the subpanels depend on, but this project is already overkill
     //  for a checkpoint
-    public MainFrame(final TrainingRecord trainingRecord) {
+    public MainFrame(final TrainingRecord initialTrainingRecord) {
+        trainingRecord = initialTrainingRecord;
+
         recordsModel = new DefaultComboBoxModel<Entry>(trainingRecord.getEntries());
 
         RecordsListPanel recordsListPanel = new RecordsListPanel(this, recordsModel);
@@ -72,6 +76,16 @@ public final class MainFrame extends JFrame implements ActionListener {
 
     void log(final String s) {
         systemMessagesPanel.println(s);
+    }
+
+    void updateWithSearchByName(String name) {
+        recordsModel.removeAllElements();
+        recordsModel.addAll(trainingRecord.lookupEntriesByName(name));
+    }
+
+    void updateWithSearchByDate(LocalDate date) {
+        recordsModel.removeAllElements();
+        recordsModel.addAll(trainingRecord.lookupEntriesByDay(date));
     }
 
     void handleInvalidInput(InvalidFieldsException ex) {

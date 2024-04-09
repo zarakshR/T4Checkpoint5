@@ -29,13 +29,14 @@ final class SearchPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == nameSearchPanel.searchByNameButton) {
             try {
-                System.out.println("name search = " + nameSearchPanel.getValidatedName());
+                mainFrame.updateWithSearchByName(nameSearchPanel.getValidatedName());
             } catch (InvalidFieldsException ex) {
                 mainFrame.handleInvalidInput(ex);
             }
         }
         if (e.getSource() == nameSearchPanel.weeklyDistanceButton) {
             try {
+                // TODO
                 System.out.println("weekly distance = " + nameSearchPanel.getValidatedName());
             } catch (InvalidFieldsException ex) {
                 mainFrame.handleInvalidInput(ex);
@@ -43,7 +44,7 @@ final class SearchPanel extends JPanel implements ActionListener {
         }
         if (e.getSource() == dateSearchPanel.searchByDateButton) {
             try {
-                System.out.println("date search = " + dateSearchPanel.dateEntryPanel.getDate());
+                mainFrame.updateWithSearchByDate(dateSearchPanel.dateEntryPanel.getDate());
             } catch (InvalidFieldsException ex) {
                 mainFrame.handleInvalidInput(ex);
             }
