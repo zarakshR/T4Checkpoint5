@@ -17,8 +17,6 @@ import java.util.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- @author saemundur */
 public class TrainingRecordTest {
 
     final static LocalDateTime aliceDateTime = LocalDateTime.of(

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.stir.cscu9t4practical1.entries;
 
 import org.junit.jupiter.api.Test;
@@ -12,8 +7,6 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- @author saemundur */
 public class EntryTest {
 
     final static LocalDateTime dateTime = LocalDateTime.of(
@@ -26,9 +19,6 @@ public class EntryTest {
         assertEquals(dateTime, instance.getDateTime());
     }
 
-    /**
-     Test of getDistance method, of class Entry.
-     */
     @Test
     public void testGetDistance() {
         assertEquals(3.0, instance.getDistance(), 0.0);

@@ -11,8 +11,6 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- @author saemundur */
 public class CycleEntryTest {
 
     final static LocalDateTime dateTime = LocalDateTime.of(
@@ -21,9 +19,6 @@ public class CycleEntryTest {
     final static CycleEntry instance = new CycleEntry("Alice", dateTime, 3, CycleEntry.Terrain.ASPHALT,
             CycleEntry.Tempo.MODERATE);
 
-    /**
-     Test of getTerrain method, of class CycleEntry.
-     */
     @Test
     public void testGetTerrain() {
         CycleEntry.Terrain expResult = CycleEntry.Terrain.ASPHALT;
@@ -31,9 +26,6 @@ public class CycleEntryTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     Test of getTempo method, of class CycleEntry.
-     */
     @Test
     public void testGetTempo() {
         CycleEntry.Tempo expResult = CycleEntry.Tempo.MODERATE;
@@ -41,9 +33,6 @@ public class CycleEntryTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     Test of getEntry method, of class CycleEntry.
-     */
     @Test
     public void testToString() {
         String expResult = "Alice cycled 3.0 km in 0:16:7 on 1/2/2003 on asphalt at moderate tempo\n";
