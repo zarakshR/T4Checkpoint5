@@ -70,37 +70,26 @@ public class MainFrameTest {
         assertDoesNotThrow(() -> mainFrame.handleInvalidInput(new InvalidFieldsException("FIELD", "VALUE")));
     }
 
-    private static class TrainingRecordAppModelMock implements TrainingRecordAppModel {
-
-        private final Entry expectedEntry;
-        private final String expectedName;
-        private final LocalDate expectedDate;
-
-        private TrainingRecordAppModelMock(Entry expectedEntry,
-                                           String expectedName,
-                                           LocalDate expectedDate) {
-            this.expectedEntry = expectedEntry;
-            this.expectedName = expectedName;
-            this.expectedDate = expectedDate;
-        }
+    private record TrainingRecordAppModelMock(Entry expectedEntry, String expectedName, LocalDate expectedDate)
+            implements TrainingRecordAppModel {
 
         @Override
         public void addEntry(Entry e) throws RuntimeException {
-            if (! (e.equals(expectedEntry))) {
+            if (!(e.equals(expectedEntry))) {
                 throw new RuntimeException();
             }
         }
 
         @Override
         public void removeEntry(Entry e) {
-            if (! (e.equals(expectedEntry))) {
+            if (!(e.equals(expectedEntry))) {
                 throw new RuntimeException();
             }
         }
 
         @Override
         public Collection<Entry> lookupEntriesByName(String name) {
-            if (! (name.equals(expectedName))) {
+            if (!(name.equals(expectedName))) {
                 throw new RuntimeException();
             }
 
@@ -109,7 +98,7 @@ public class MainFrameTest {
 
         @Override
         public Collection<Entry> lookupEntriesByDay(LocalDate date) {
-            if (! (date.equals(expectedDate))) {
+            if (!(date.equals(expectedDate))) {
                 throw new RuntimeException();
             }
 
@@ -118,7 +107,7 @@ public class MainFrameTest {
 
         @Override
         public Double lookupWeeklyDistance(String name, LocalDate today) {
-            if (! (name.equals(expectedName) && today.equals(LocalDate.now()))) {
+            if (!(name.equals(expectedName) && today.equals(LocalDate.now()))) {
                 throw new RuntimeException();
             }
 
