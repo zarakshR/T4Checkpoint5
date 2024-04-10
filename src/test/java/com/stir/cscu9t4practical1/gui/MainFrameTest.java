@@ -1,6 +1,5 @@
 // This is the only GUI class with enough public methods to unit test meaningfully
-// Unfortunately we don't have stub implementations for entries.* so we can't do much for most tests except call a function and
-// check that it doesn't throw
+// Use a mock implementation of TrainingRecordAppModel to check that MainFrame is doing the right thing
 package com.stir.cscu9t4practical1.gui;
 
 import com.stir.cscu9t4practical1.entries.Entry;
@@ -39,6 +38,10 @@ public class MainFrameTest {
 
     @Test
     public void testRequestRemovalOfEntryAtIndex() {
+        // after we add this here, it should be the 0'th entry. this assumes that requestCreationOfEntry is working, so if this
+        //  test fails, make sure that test is working first before expecting to find an issue here.
+        // We cannot directly add an Entry to mockTrainingRecord because it will not also get added to the internal list model
+        // of MainFrame
         mainFrame.requestCreationOfEntry(mockEntry);
         assertDoesNotThrow(() -> mainFrame.requestRemovalOfEntryAtIndex(0));
     }
@@ -68,6 +71,8 @@ public class MainFrameTest {
         assertDoesNotThrow(() -> mainFrame.handleInvalidInput(new InvalidFieldsException("FIELD", "VALUE")));
     }
 
+    // The mock TrainingRecordAppModel. It is constructed with the entries and dates we expect to call from the tests and
+    // throws a RuntimeException if the expected entries/dates are not called by MainFrame
     private record TrainingRecordAppModelMock(Entry expectedEntry, String expectedName, LocalDate expectedDate)
             implements TrainingRecordAppModel {
 
@@ -105,6 +110,7 @@ public class MainFrameTest {
 
         @Override
         public Double lookupWeeklyDistance(String name, LocalDate today) {
+            // mainFrame must call weekly distance using today's date as the end point
             if (!(name.equals(expectedName) && today.equals(LocalDate.now()))) {
                 throw new RuntimeException();
             }
@@ -114,6 +120,7 @@ public class MainFrameTest {
 
         @Override
         public Collection<Entry> getEntries() {
+            // no way to mock this as such
             return List.of();
         }
     }
