@@ -15,14 +15,12 @@ import java.util.Collection;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MainFrameTest {
 
     private static final Entry mockEntry = new RunEntry("Mariam", LocalDateTime.now(), 10.0);
     private static final String mockName = "Mariam";
     private static final LocalDate mockDate = LocalDate.of(1,1,1);
-    private static final LocalDate mockToday = LocalDate.of(9,9,9);
     private static final TrainingRecordAppModel mockTrainingRecord
             = new TrainingRecordAppModelMock(mockEntry, mockName, mockDate);
     private static final MainFrame mainFrame = new MainFrame(mockTrainingRecord);
