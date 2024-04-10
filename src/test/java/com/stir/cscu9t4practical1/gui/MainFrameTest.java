@@ -19,14 +19,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MainFrameTest {
 
-    private static final TrainingRecordAppModel mockTrainingRecord = new TrainingRecordAppModelMock();
-    private static final MainFrame mainFrame = new MainFrame(mockTrainingRecord);
     private static final Entry mockEntry = new RunEntry("Mariam", LocalDateTime.now(), 10.0);
+    private static final String mockName = "Mariam";
+    private static final LocalDate mockDate = LocalDate.of(1,1,1);
+    private static final LocalDate mockToday = LocalDate.of(9,9,9);
+    private static final TrainingRecordAppModel mockTrainingRecord
+            = new TrainingRecordAppModelMock(mockEntry, mockName, mockDate);
+    private static final MainFrame mainFrame = new MainFrame(mockTrainingRecord);
 
     @Test
     public void testRequestCreationOfEntry() {
-        mainFrame.requestCreationOfEntry(mockEntry);
-        assertTrue(mockTrainingRecord.getEntries().contains(mockEntry));
+        assertDoesNotThrow(() -> mainFrame.requestCreationOfEntry(mockEntry));
     }
 
     // we can't test the following without stubs
@@ -38,22 +41,23 @@ public class MainFrameTest {
 
     @Test
     public void testRequestRemovalOfEntryAtIndex() {
+        mainFrame.requestCreationOfEntry(mockEntry);
         assertDoesNotThrow(() -> mainFrame.requestRemovalOfEntryAtIndex(0));
     }
 
     @Test
     public void testRequestSearchByName() {
-        assertDoesNotThrow(() -> mainFrame.requestSearchByName("Mariam"));
+        assertDoesNotThrow(() -> mainFrame.requestSearchByName(mockName));
     }
 
     @Test
     public void testRequestSearchByDate() {
-        assertDoesNotThrow(() -> mainFrame.requestSearchByDate(LocalDate.now()));
+        assertDoesNotThrow(() -> mainFrame.requestSearchByDate(mockDate));
     }
 
     @Test
     public void testRequestShowWeeklyDistance() {
-        assertDoesNotThrow(() -> mainFrame.requestShowWeeklyDistance("Mariam"));
+        assertDoesNotThrow(() -> mainFrame.requestShowWeeklyDistance(mockName));
     }
 
     @Test
@@ -68,28 +72,56 @@ public class MainFrameTest {
 
     private static class TrainingRecordAppModelMock implements TrainingRecordAppModel {
 
-        @Override
-        public void addEntry(Entry e) {
+        private final Entry expectedEntry;
+        private final String expectedName;
+        private final LocalDate expectedDate;
 
+        private TrainingRecordAppModelMock(Entry expectedEntry,
+                                           String expectedName,
+                                           LocalDate expectedDate) {
+            this.expectedEntry = expectedEntry;
+            this.expectedName = expectedName;
+            this.expectedDate = expectedDate;
+        }
+
+        @Override
+        public void addEntry(Entry e) throws RuntimeException {
+            if (! (e.equals(expectedEntry))) {
+                throw new RuntimeException();
+            }
         }
 
         @Override
         public void removeEntry(Entry e) {
-
+            if (! (e.equals(expectedEntry))) {
+                throw new RuntimeException();
+            }
         }
 
         @Override
         public Collection<Entry> lookupEntriesByName(String name) {
+            if (! (name.equals(expectedName))) {
+                throw new RuntimeException();
+            }
+
             return List.of();
         }
 
         @Override
         public Collection<Entry> lookupEntriesByDay(LocalDate date) {
+            if (! (date.equals(expectedDate))) {
+                throw new RuntimeException();
+            }
+
             return List.of();
         }
 
         @Override
         public Double lookupWeeklyDistance(String name, LocalDate today) {
+            if (! (name.equals(expectedName) && today.equals(LocalDate.now()))) {
+                throw new RuntimeException();
+            }
+
             return 0.0;
         }
 
