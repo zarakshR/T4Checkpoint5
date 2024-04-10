@@ -16,8 +16,9 @@ final class RecordsListPanel extends JList<Entry> {
 
     /**
      Create a <code>RecordsListPanel</code> with the given controller implementation and backed by the given list model
+
      @param controller the {@link TrainingRecordAppController} of the running app
-     @param listModel the {@link ComboBoxModel} that backs up this list
+     @param listModel  the {@link ComboBoxModel} that backs up this list
      */
     // We need to use at least a ComboBoxModel because it must support selecting elements (for remove/weekly distance operation)
     RecordsListPanel(final TrainingRecordAppController controller, final ComboBoxModel<Entry> listModel) {

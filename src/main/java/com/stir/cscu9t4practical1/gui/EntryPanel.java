@@ -48,6 +48,7 @@ final class EntryPanel extends JPanel {
 
     /**
      Shown an {@link EntryFieldsPanel} associated with a <code>String</code> key
+
      @param entryKey the string key associated with the {@link EntryFieldsPanel} to be shown
      */
     public void setEntryType(final String entryKey) {
@@ -70,6 +71,7 @@ final class EntryPanel extends JPanel {
 
     /**
      Returns the Entry that is defined by the input provided by the user
+
      @return the entry defined by the user
 
      @throws InvalidFieldsException if the user has provided invalid fields for a field

@@ -21,12 +21,14 @@ public final class InvalidFieldsException extends Exception {
 
     /**
      Gets the name of the field which had invalid input provided to it
+
      @return the field name
      */
     public String getFieldName() {return this.fieldName;}
 
     /**
      Gets the invalid value provided
+
      @return the bad value
      */
     public String getBadValue() {return this.badValue;}

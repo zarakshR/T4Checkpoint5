@@ -23,6 +23,7 @@ final class SystemMessagesPanel extends JScrollPane {
 
     /**
      Write a message to the log. The message will be appended with a newline iff it does not already end in a newline
+
      @param s the string to log
      */
     public void println(final String s) {

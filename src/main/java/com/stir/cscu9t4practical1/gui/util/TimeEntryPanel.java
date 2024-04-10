@@ -8,6 +8,7 @@ import java.time.LocalTime;
  from data provided by the user
  */
 public final class TimeEntryPanel extends JPanel {
+
     private final LabelledTextPanel hourField = new LabelledTextPanel("Hour", 2);
     private final LabelledTextPanel minuteField = new LabelledTextPanel("Minute", 2);
     private final LabelledTextPanel secondField = new LabelledTextPanel("Second", 2);
@@ -23,6 +24,7 @@ public final class TimeEntryPanel extends JPanel {
 
     /**
      Attempts to create and return a <code>LocalTime</code> object defined by the user input
+
      @return the <code>LocalTime</code> object created
 
      @throws InvalidFieldsException if the user entered invalid input for a field

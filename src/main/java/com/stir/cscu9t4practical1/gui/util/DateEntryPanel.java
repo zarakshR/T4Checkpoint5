@@ -8,6 +8,7 @@ import java.time.LocalDate;
  from data provided by the user
  */
 public final class DateEntryPanel extends JPanel {
+
     private final LabelledTextPanel yearField = new LabelledTextPanel("Year", 4);
     private final LabelledTextPanel monthField = new LabelledTextPanel("Month", 2);
     private final LabelledTextPanel dayField = new LabelledTextPanel("Day", 2);
@@ -23,6 +24,7 @@ public final class DateEntryPanel extends JPanel {
 
     /**
      Attempts to create and return a <code>LocalDate</code> object defined by the user input
+
      @return the <code>LocalDate</code> object created
 
      @throws InvalidFieldsException if the user entered invalid input for a field

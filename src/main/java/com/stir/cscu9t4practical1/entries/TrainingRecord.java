@@ -21,6 +21,7 @@ public final class TrainingRecord implements TrainingRecordAppModel {
     /**
      Add an entry to the training record database. If the entry already exists (as defined by Entry.equals()), it is
      overwritten with the new entry.
+
      @param e the entry to add
      */
     @Override
@@ -30,13 +31,15 @@ public final class TrainingRecord implements TrainingRecordAppModel {
 
     /**
      Remove an entry, if it exists, from the training record database
+
      @param e the entry to remove
      */
     @Override
-    public void removeEntry(final Entry e) { store.remove(e); }
+    public void removeEntry(final Entry e) {store.remove(e);}
 
     /**
      Returns a collection of all entries in the database which match the given name
+
      @param name the name to lookup by
 
      @return the entries which have the same name as <code>name</code>
@@ -56,6 +59,7 @@ public final class TrainingRecord implements TrainingRecordAppModel {
 
     /**
      Returns a collection of all entries in the database which match the given date
+
      @param date the name to lookup by
 
      @return the entries which have the same date as <code>date</code>
