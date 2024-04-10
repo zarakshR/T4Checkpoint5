@@ -47,7 +47,7 @@ public interface TrainingRecordAppModel {
 
      @return the total distance accumulated by the entries
      */
-    Double lookupWeeklyDistance(String name, LocalDate today);
+    double lookupWeeklyDistance(String name, LocalDate today);
 
     /**
      @return all entries in the database as a <code>Collection<Entry></code>

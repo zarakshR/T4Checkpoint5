@@ -109,7 +109,7 @@ public class MainFrameTest {
         }
 
         @Override
-        public Double lookupWeeklyDistance(String name, LocalDate today) {
+        public double lookupWeeklyDistance(String name, LocalDate today) {
             // mainFrame must call weekly distance using today's date as the end point
             if (!(name.equals(expectedName) && today.equals(LocalDate.now()))) {
                 throw new RuntimeException();

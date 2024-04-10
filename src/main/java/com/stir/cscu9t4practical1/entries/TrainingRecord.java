@@ -76,13 +76,14 @@ public final class TrainingRecord implements TrainingRecordAppModel {
     /**
      Returns the total distance accumulated by all entries with the given name which occurred within the last seven days
      of the date
-     @param name the name to lookup by
+
+     @param name  the name to lookup by
      @param today the date which entries must be within seven days before of
 
      @return the total distance accumulated by the entries
      */
     @Override
-    public Double lookupWeeklyDistance(final String name, final LocalDate today) {
+    public double lookupWeeklyDistance(final String name, final LocalDate today) {
         // the easiest way to do this, since we know exactly what the valid range of days is, is to just generate
         //  all possible matching days :)
         final ArrayList<LocalDate> lastSevenDays = new ArrayList<LocalDate>(List.of(
@@ -95,7 +96,7 @@ public final class TrainingRecord implements TrainingRecordAppModel {
                 today.minusDays(6)
         ));
 
-        Double totalDistance = 0.0;
+        double totalDistance = 0.0;
 
         for (Entry entry : store) {
             final String entryName = entry.getName();
