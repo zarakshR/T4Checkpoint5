@@ -1,7 +1,7 @@
 package com.stir.cscu9t4practical1.gui;
 
 import com.stir.cscu9t4practical1.entries.Entry;
-import com.stir.cscu9t4practical1.entries.TrainingRecord;
+import com.stir.cscu9t4practical1.entries.TrainingRecordAppModel;
 import com.stir.cscu9t4practical1.gui.util.InvalidFieldsException;
 
 import javax.swing.*;
@@ -12,17 +12,17 @@ import java.util.Vector;
 
 public final class MainFrame extends JFrame implements TrainingRecordAppController {
 
-    private final TrainingRecord trainingRecord;
+    private final TrainingRecordAppModel model;
     private final DefaultComboBoxModel<Entry> recordsModel;
     private final SystemMessagesPanel systemMessagesPanel;
 
     // MainFrame acts as the controller + model combined. It is passed to the child panels so they don't have to concern
     //  themselves with the data representation
-    public MainFrame(final TrainingRecord initialTrainingRecord) {
-        trainingRecord = initialTrainingRecord;
+    public MainFrame(final TrainingRecordAppModel initialModel) {
+        model = initialModel;
 
         // DefaultComboBoxModel only accepts Vectors
-        recordsModel = new DefaultComboBoxModel<Entry>(new Vector<Entry>(trainingRecord.getEntries()));
+        recordsModel = new DefaultComboBoxModel<Entry>(new Vector<Entry>(model.getEntries()));
 
         RecordsListPanel recordsListPanel = new RecordsListPanel(this, recordsModel);
         AddEntryPanel addEntryPanel = new AddEntryPanel(this);
@@ -69,7 +69,7 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
 
     @Override
     public void requestCreationOfEntry(final Entry e) {
-        trainingRecord.addEntry(e);
+        model.addEntry(e);
         recordsModel.addElement(e);
         requestLog("added entry: " + e);
     }
@@ -82,14 +82,14 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
     @Override
     public void requestRemovalOfEntryAtIndex(final int index) {
         Entry toRemove = recordsModel.getElementAt(index);
-        trainingRecord.removeEntry(toRemove);
+        model.removeEntry(toRemove);
         recordsModel.removeElementAt(index);
         requestLog("removed entry: " + toRemove);
     }
 
     @Override
     public void requestSearchByName(final String name) {
-        Collection<Entry> entries = trainingRecord.lookupEntriesByName(name);
+        Collection<Entry> entries = model.lookupEntriesByName(name);
 
         // don't replace the records with an empty list in case we find no search matches, that is probably not what the user
         //  expects
@@ -103,7 +103,7 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
 
     @Override
     public void requestSearchByDate(final LocalDate date) {
-        Collection<Entry> entries = trainingRecord.lookupEntriesByDay(date);
+        Collection<Entry> entries = model.lookupEntriesByDay(date);
 
         if (entries.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No search results for query: " + date);
@@ -122,14 +122,14 @@ public final class MainFrame extends JFrame implements TrainingRecordAppControll
     @Override
     public void requestShowWeeklyDistance(final String name) {
         JOptionPane.showMessageDialog(this,
-                name + " achieved total distance " + trainingRecord.lookupWeeklyDistance(name, LocalDate.now())
+                name + " achieved total distance " + model.lookupWeeklyDistance(name, LocalDate.now())
                         + " in the last week");
     }
 
     @Override
     public void requestReinitializeRecords() {
         recordsModel.removeAllElements();
-        recordsModel.addAll(trainingRecord.getEntries());
+        recordsModel.addAll(model.getEntries());
         requestLog("refreshed all records");
     }
 

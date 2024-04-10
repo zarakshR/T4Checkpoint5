@@ -5,40 +5,27 @@ package com.stir.cscu9t4practical1.gui;
 
 import com.stir.cscu9t4practical1.entries.Entry;
 import com.stir.cscu9t4practical1.entries.RunEntry;
-import com.stir.cscu9t4practical1.entries.TrainingRecord;
+import com.stir.cscu9t4practical1.entries.TrainingRecordAppModel;
 import com.stir.cscu9t4practical1.gui.util.InvalidFieldsException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MainFrameTest {
 
-    private static final TrainingRecord mockTrainingRecord = new TrainingRecord();
-    private static final MainFrame mockMainFrame = new MainFrame(mockTrainingRecord);
+    private static final TrainingRecordAppModel mockTrainingRecord = new TrainingRecordAppModelMock();
+    private static final MainFrame mainFrame = new MainFrame(mockTrainingRecord);
     private static final Entry mockEntry = new RunEntry("Mariam", LocalDateTime.now(), 10.0);
-
-    private static final Entry alice = new RunEntry("Alice", LocalDateTime.now(), 10.0);
-    private static final Entry bob = new RunEntry("Bob", LocalDateTime.now(), 10.0);
-    private static final Entry charlie = new RunEntry("Charlie", LocalDateTime.now(), 10.0);
-    // extra Charlies for everyone
-    private static final Entry charlie2 = new RunEntry("Charlie", LocalDateTime.of(1, 1, 1, 1, 1, 1, 1), 10.0);
-    private static final Entry david = new RunEntry("David", LocalDateTime.now(), 10.0);
-
-    static {
-        mockTrainingRecord.addEntry(alice);
-        mockTrainingRecord.addEntry(bob);
-        mockTrainingRecord.addEntry(charlie);
-        mockTrainingRecord.addEntry(charlie2);
-        mockTrainingRecord.addEntry(david);
-    }
 
     @Test
     public void testRequestCreationOfEntry() {
-        mockMainFrame.requestCreationOfEntry(mockEntry);
+        mainFrame.requestCreationOfEntry(mockEntry);
         assertTrue(mockTrainingRecord.getEntries().contains(mockEntry));
     }
 
@@ -46,36 +33,69 @@ public class MainFrameTest {
     // some of these will create GUI message dialogs, just click OK and proceed
     @Test
     public void testRequestLog() {
-        assertDoesNotThrow(() -> mockMainFrame.requestLog("Hello, World!"));
+        assertDoesNotThrow(() -> mainFrame.requestLog("Hello, World!"));
     }
 
     @Test
     public void testRequestRemovalOfEntryAtIndex() {
-        assertDoesNotThrow(() -> mockMainFrame.requestRemovalOfEntryAtIndex(0));
+        assertDoesNotThrow(() -> mainFrame.requestRemovalOfEntryAtIndex(0));
     }
 
     @Test
     public void testRequestSearchByName() {
-        assertDoesNotThrow(() -> mockMainFrame.requestSearchByName("Mariam"));
+        assertDoesNotThrow(() -> mainFrame.requestSearchByName("Mariam"));
     }
 
     @Test
     public void testRequestSearchByDate() {
-        assertDoesNotThrow(() -> mockMainFrame.requestSearchByDate(LocalDate.now()));
+        assertDoesNotThrow(() -> mainFrame.requestSearchByDate(LocalDate.now()));
     }
 
     @Test
     public void testRequestShowWeeklyDistance() {
-        assertDoesNotThrow(() -> mockMainFrame.requestShowWeeklyDistance("Mariam"));
+        assertDoesNotThrow(() -> mainFrame.requestShowWeeklyDistance("Mariam"));
     }
 
     @Test
     public void testRequestReinitializeRecords() {
-        assertDoesNotThrow(() -> mockMainFrame.requestReinitializeRecords());
+        assertDoesNotThrow(() -> mainFrame.requestReinitializeRecords());
     }
 
     @Test
     public void testHandleInvalidInput() {
-        assertDoesNotThrow(() -> mockMainFrame.handleInvalidInput(new InvalidFieldsException("FIELD", "VALUE")));
+        assertDoesNotThrow(() -> mainFrame.handleInvalidInput(new InvalidFieldsException("FIELD", "VALUE")));
+    }
+
+    private static class TrainingRecordAppModelMock implements TrainingRecordAppModel {
+
+        @Override
+        public void addEntry(Entry e) {
+
+        }
+
+        @Override
+        public void removeEntry(Entry e) {
+
+        }
+
+        @Override
+        public Collection<Entry> lookupEntriesByName(String name) {
+            return List.of();
+        }
+
+        @Override
+        public Collection<Entry> lookupEntriesByDay(LocalDate date) {
+            return List.of();
+        }
+
+        @Override
+        public Double lookupWeeklyDistance(String name, LocalDate today) {
+            return 0.0;
+        }
+
+        @Override
+        public Collection<Entry> getEntries() {
+            return List.of();
+        }
     }
 }

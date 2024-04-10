@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 
-public final class TrainingRecord {
+public final class TrainingRecord implements TrainingRecordAppModel {
 
     // Use a Set because the primary use of TrainingRecordApp will be lookups.
     private final Set<Entry> store;
@@ -23,6 +23,7 @@ public final class TrainingRecord {
      overwritten with the new entry.
      @param e the entry to add
      */
+    @Override
     public void addEntry(final Entry e) {
         store.add(e);
     }
@@ -31,6 +32,7 @@ public final class TrainingRecord {
      Remove an entry, if it exists, from the training record database
      @param e the entry to remove
      */
+    @Override
     public void removeEntry(final Entry e) { store.remove(e); }
 
     /**
@@ -39,6 +41,7 @@ public final class TrainingRecord {
 
      @return the entries which have the same name as <code>name</code>
      */
+    @Override
     public Collection<Entry> lookupEntriesByName(final String name) {
         return store.stream().filter(e -> e.getName().equals(name)).toList();
     }
@@ -49,6 +52,7 @@ public final class TrainingRecord {
 
      @return the entries which have the same date as <code>date</code>
      */
+    @Override
     public Collection<Entry> lookupEntriesByDay(final LocalDate date) {
         return store.stream().filter(e -> e.getDateTime().toLocalDate().equals(date)).toList();
     }
@@ -61,6 +65,7 @@ public final class TrainingRecord {
 
      @return the total distance accumulated by the entries
      */
+    @Override
     public Double lookupWeeklyDistance(final String name, final LocalDate today) {
         // I'm on that Functional Programming grindset
         return store.stream()
@@ -88,6 +93,7 @@ public final class TrainingRecord {
     /**
      @return all entries in the database as a <code>Collection<Entry></code>
      */
+    @Override
     public Collection<Entry> getEntries() {
         return new Vector<Entry>(store);
     }
