@@ -37,6 +37,8 @@ final class AddEntryPanel extends JPanel implements ActionListener {
         swimEntrySelector.addActionListener(this);
         sprintEntrySelector.addActionListener(this);
 
+        // addButton should be disabled when the program first starts up
+        addButton.setEnabled(false);
         addButton.addActionListener(this);
 
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -51,23 +53,25 @@ final class AddEntryPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(final ActionEvent e) {
         if (e.getSource() == runEntrySelector) {
+            addButton.setEnabled(true); // enable addButton once the user selects anything
             entryPanel.setEntryType("RUN");
         }
         if (e.getSource() == cycleEntrySelector) {
+            addButton.setEnabled(true); // enable addButton once the user selects anything
             entryPanel.setEntryType("CYCLE");
         }
         if (e.getSource() == swimEntrySelector) {
+            addButton.setEnabled(true); // enable addButton once the user selects anything
             entryPanel.setEntryType("SWIM");
         }
         if (e.getSource() == sprintEntrySelector) {
+            addButton.setEnabled(true); // enable addButton once the user selects anything
             entryPanel.setEntryType("SPRINT");
         }
         if (e.getSource() == addButton) {
             try {
                 controller.requestCreationOfEntry(entryPanel.emitEntry());
                 entryPanel.clearFields();
-            } catch (NullPointerException ex) {
-                // NullPointerException is thrown iff blank panel is still active in which case do nothing
             } catch (InvalidFieldsException ex) {
                 controller.handleInvalidInput(ex);
             }

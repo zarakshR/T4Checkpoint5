@@ -58,8 +58,7 @@ final class EntryPanel extends JPanel {
 
     // this is really hacky, but we have no choice since CardLayout doesn't do this for us. hopefully failing early with an
     //  exception will alert us early in case something goes wrong.
-    // NullPointerException can be thrown iff blank panel is still being shown
-    private EntryFieldsPanel getActivePanel() throws NullPointerException {
+    private EntryFieldsPanel getActivePanel() {
         return switch (currentlyShowing) {
             case "RUN" -> runEntryPanel;
             case "CYCLE" -> cycleEntryPanel;
@@ -74,20 +73,15 @@ final class EntryPanel extends JPanel {
      @return the entry defined by the user
 
      @throws InvalidFieldsException if the user has provided invalid fields for a field
-     @throws NullPointerException if no entry is currently showing, this can happen if an attempt is made to perform this
-     action before the user has selected any entry type for the first time
      */
-    public Entry emitEntry() throws InvalidFieldsException, NullPointerException {
+    public Entry emitEntry() throws InvalidFieldsException {
         return getActivePanel().emitEntry();
     }
 
     /**
      Clears the fields of the currently active entry
-
-     @throws NullPointerException if no entry is currently showing, this can happen if an attempt is made to perform this
-     action before the user has selected any entry type for the first time
      */
-    public void clearFields() throws NullPointerException {
+    public void clearFields() {
         getActivePanel().clearFields();
     }
 
@@ -162,7 +156,7 @@ final class EntryPanel extends JPanel {
         }
 
         @Override
-        void clearFields() throws NullPointerException {
+        void clearFields() {
             super.clearFields();
         }
     }
@@ -204,7 +198,7 @@ final class EntryPanel extends JPanel {
         }
 
         @Override
-        void clearFields() throws NullPointerException {
+        void clearFields() {
             super.clearFields();
         }
     }
@@ -241,7 +235,7 @@ final class EntryPanel extends JPanel {
         }
 
         @Override
-        void clearFields() throws NullPointerException {
+        void clearFields() {
             super.clearFields();
         }
     }
@@ -298,7 +292,7 @@ final class EntryPanel extends JPanel {
         }
 
         @Override
-        void clearFields() throws NullPointerException {
+        void clearFields() {
             super.clearFields();
             this.repetitionsField.clearText();
             this.recoveryField.clearText();
