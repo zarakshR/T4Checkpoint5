@@ -1,10 +1,7 @@
 package com.stir.cscu9t4practical1.entries;
 
-import lombok.Getter;
-
 import java.time.LocalDateTime;
 
-@Getter
 public final class CycleEntry extends Entry {
 
     private final TERRAIN terrain;
@@ -22,6 +19,10 @@ public final class CycleEntry extends Entry {
         return getName() + " cycled " + getDistance() + " km in " + getFormattedTime() + " "
                 + "on " + getFormattedDate() + " on " + getTerrain() + " at " + getTempo() + " tempo\n";
     }
+
+    public TERRAIN getTerrain() {return this.terrain;}
+
+    public TEMPO getTempo() {return this.tempo;}
 
     public enum TERRAIN {
         ASPHALT,

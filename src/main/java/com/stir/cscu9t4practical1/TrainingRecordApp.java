@@ -3,13 +3,11 @@ package com.stir.cscu9t4practical1;
 import com.stir.cscu9t4practical1.entries.RunEntry;
 import com.stir.cscu9t4practical1.entries.TrainingRecord;
 import com.stir.cscu9t4practical1.gui.MainFrame;
-import lombok.experimental.UtilityClass;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDateTime;
 
-@UtilityClass
 public final class TrainingRecordApp {
 
     private static final TrainingRecord trainingRecord = new TrainingRecord();

@@ -1,10 +1,7 @@
 package com.stir.cscu9t4practical1.entries;
 
-import lombok.Getter;
-
 import java.time.LocalDateTime;
 
-@Getter
 public final class SwimEntry extends Entry {
 
     private final LOCATION location;
@@ -19,6 +16,8 @@ public final class SwimEntry extends Entry {
         return getName() + " swam " + getDistance() + " km " + getLocation() + " in " + getFormattedTime() + " "
                 + "on " + getFormattedDate() + "\n";
     }
+
+    public LOCATION getLocation() {return this.location;}
 
     public enum LOCATION {
         OUTDOORS,

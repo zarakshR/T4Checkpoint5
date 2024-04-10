@@ -1,11 +1,8 @@
 package com.stir.cscu9t4practical1.entries;
 
-import lombok.Getter;
-
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Getter
 public abstract class Entry {
 
     private final String name;
@@ -17,6 +14,12 @@ public abstract class Entry {
         this.dateTime = dateTime;
         this.distance = distance;
     }
+
+    public String getName() {return this.name;}
+
+    public LocalDateTime getDateTime() {return this.dateTime;}
+
+    public double getDistance() {return this.distance;}
 
     /**
      @return the time that the training event took place at, formatted as : HOUR:MINUTE:SECOND
