@@ -1,7 +1,10 @@
 package com.stir.cscu9t4practical1.entries;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 
+@Getter
 public final class SprintEntry extends Entry {
 
     private final Integer repetitions;
@@ -12,14 +15,6 @@ public final class SprintEntry extends Entry {
         super(name, dateTime, dist);
         this.repetitions = repetitions;
         this.recovery = recovery;
-    }
-
-    public Integer getRepetitions() {
-        return repetitions;
-    }
-
-    public Integer getRecovery() {
-        return recovery;
     }
 
     @Override

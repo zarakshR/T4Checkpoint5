@@ -1,7 +1,10 @@
 package com.stir.cscu9t4practical1.entries;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 
+@Getter
 public final class SwimEntry extends Entry {
 
     private final LOCATION location;
@@ -9,10 +12,6 @@ public final class SwimEntry extends Entry {
     public SwimEntry(final String n, final LocalDateTime dateTime, final double dist, final LOCATION location) {
         super(n, dateTime, dist);
         this.location = location;
-    }
-
-    public LOCATION getLocation() {
-        return location;
     }
 
     @Override

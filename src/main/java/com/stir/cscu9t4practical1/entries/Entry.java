@@ -1,9 +1,11 @@
-// This class holds information about a single training session
 package com.stir.cscu9t4practical1.entries;
+
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Getter
 public abstract class Entry {
 
     private final String name;
@@ -14,16 +16,6 @@ public abstract class Entry {
         this.name = name;
         this.dateTime = dateTime;
         this.distance = distance;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public LocalDateTime getDateTime() { return dateTime; }
-
-    public double getDistance() {
-        return distance;
     }
 
     /**

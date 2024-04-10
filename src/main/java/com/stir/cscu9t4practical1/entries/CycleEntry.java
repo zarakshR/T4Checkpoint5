@@ -1,7 +1,10 @@
 package com.stir.cscu9t4practical1.entries;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 
+@Getter
 public final class CycleEntry extends Entry {
 
     private final TERRAIN terrain;
@@ -12,14 +15,6 @@ public final class CycleEntry extends Entry {
         super(name, dateTime, dist);
         this.terrain = terrain;
         this.tempo = tempo;
-    }
-
-    public TERRAIN getTerrain() {
-        return terrain;
-    }
-
-    public TEMPO getTempo() {
-        return tempo;
     }
 
     @Override
