@@ -43,7 +43,15 @@ public final class TrainingRecord implements TrainingRecordAppModel {
      */
     @Override
     public Collection<Entry> lookupEntriesByName(final String name) {
-        return store.stream().filter(e -> e.getName().equals(name)).toList();
+        final Collection<Entry> toReturn = new Vector<Entry>();
+
+        for (Entry entry : store) {
+            if (entry.getName().equals(name)) {
+                toReturn.add(entry);
+            }
+        }
+
+        return toReturn;
     }
 
     /**
@@ -54,7 +62,15 @@ public final class TrainingRecord implements TrainingRecordAppModel {
      */
     @Override
     public Collection<Entry> lookupEntriesByDay(final LocalDate date) {
-        return store.stream().filter(e -> e.getDateTime().toLocalDate().equals(date)).toList();
+        final Collection<Entry> toReturn = new Vector<>();
+
+        for (final Entry entry : store) {
+            if (entry.getDateTime().toLocalDate().equals(date)) {
+                toReturn.add(entry);
+            }
+        }
+
+        return toReturn;
     }
 
     /**
@@ -67,27 +83,30 @@ public final class TrainingRecord implements TrainingRecordAppModel {
      */
     @Override
     public Double lookupWeeklyDistance(final String name, final LocalDate today) {
-        // I'm on that Functional Programming grindset
-        return store.stream()
-                .filter(e -> e.getName().equals(name))
-                // only consider dates within the last seven days
-                .filter(e -> {
-                    // the easiest way to do this, since we know exactly what the valid range of days is, is to just generate
-                    //  all possible matching days :)
-                    ArrayList<LocalDate> lastSevenDays = new ArrayList<LocalDate>(List.of(
-                            today,
-                            today.minusDays(1),
-                            today.minusDays(2),
-                            today.minusDays(3),
-                            today.minusDays(4),
-                            today.minusDays(5),
-                            today.minusDays(6)
-                    ));
+        // the easiest way to do this, since we know exactly what the valid range of days is, is to just generate
+        //  all possible matching days :)
+        final ArrayList<LocalDate> lastSevenDays = new ArrayList<LocalDate>(List.of(
+                today,
+                today.minusDays(1),
+                today.minusDays(2),
+                today.minusDays(3),
+                today.minusDays(4),
+                today.minusDays(5),
+                today.minusDays(6)
+        ));
 
-                    return lastSevenDays.contains(e.getDateTime().toLocalDate());
-                })
-                // this should parallelize easily
-                .reduce(0.0, (acc, e) -> acc + e.getDistance(), (acc1, acc2) -> acc1 + acc2);
+        Double totalDistance = 0.0;
+
+        for (Entry entry : store) {
+            final String entryName = entry.getName();
+            final boolean inLast7Days = lastSevenDays.contains(entry.getDateTime().toLocalDate());
+
+            if (entryName.equals(name) && inLast7Days) {
+                totalDistance += entry.getDistance();
+            }
+        }
+
+        return totalDistance;
     }
 
     /**
